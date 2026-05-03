@@ -20,7 +20,6 @@ a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar-track{background:var(--bg2)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(var(--p6),var(--p8));border-radius:10px}
 
-/* GLASS CARD */
 .g{background:var(--c);backdrop-filter:blur(28px) saturate(1.6);border:1px solid var(--b);border-radius:24px;position:relative;overflow:hidden;transition:all .55s cubic-bezier(.23,1,.32,1)}
 .g::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(168,85,247,.4) 50%,transparent 95%);opacity:0;transition:opacity .55s}
 .g::after{content:'';position:absolute;inset:0;border-radius:24px;background:radial-gradient(800px circle at var(--mx,50%) var(--my,50%),var(--gl),transparent 40%);opacity:0;transition:opacity .55s;pointer-events:none;z-index:0}
@@ -29,7 +28,6 @@ a{color:inherit;text-decoration:none}
 .g:hover::after{opacity:1}
 .g>*{position:relative;z-index:1}
 
-/* BG */
 #pc{position:fixed;inset:0;z-index:0;pointer-events:none}
 .bgr{position:fixed;inset:0;background-image:linear-gradient(var(--b) 1px,transparent 1px),linear-gradient(90deg,var(--b) 1px,transparent 1px);background-size:70px 70px;opacity:.1;z-index:0;pointer-events:none;mask-image:radial-gradient(ellipse at center,black 10%,transparent 65%)}
 .orb{position:fixed;border-radius:50%;filter:blur(160px);opacity:.09;pointer-events:none;z-index:0;animation:oF 30s ease-in-out infinite}
@@ -38,7 +36,6 @@ a{color:inherit;text-decoration:none}
 .o3{width:500px;height:500px;background:var(--p5);top:50%;left:35%;animation-delay:-20s}
 @keyframes oF{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(80px,-60px) scale(1.18)}50%{transform:translate(-60px,80px) scale(.82)}75%{transform:translate(60px,60px) scale(1.1)}}
 
-/* COOKIE */
 .ck{position:fixed;bottom:0;left:0;right:0;z-index:80000;background:var(--c);backdrop-filter:blur(32px);border-top:1px solid var(--b);padding:1.2rem 2rem;display:none;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;animation:sU .6s}
 .ck.show{display:flex}
 @keyframes sU{from{transform:translateY(100%)}to{transform:translateY(0)}}
@@ -49,7 +46,6 @@ a{color:inherit;text-decoration:none}
 .ca:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(147,51,234,.45)}
 .cdd{background:var(--c);color:var(--t3);border:1px solid var(--b)}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--nv);backdrop-filter:blur(32px) saturate(1.6);border-bottom:1px solid var(--b);transition:all .4s;padding:0 2rem}
 nav.s{box-shadow:0 4px 60px var(--sh)}
 .ni{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:74px}
@@ -80,7 +76,6 @@ nav.s{box-shadow:0 4px 60px var(--sh)}
 .mm a{font-size:1.6rem;font-weight:600}
 .sp{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--p6),var(--p4),var(--p3));z-index:10001;border-radius:0 3px 3px 0}
 
-/* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:7rem 2rem 4rem}
 .hc{max-width:920px;text-align:center;position:relative;z-index:10}
 .hb{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem 1.3rem;border-radius:50px;background:var(--c);border:1px solid var(--b);font-size:.76rem;color:var(--t2);margin-bottom:1.8rem;animation:fD .8s}
@@ -119,7 +114,6 @@ section{position:relative;z-index:5}
 .stt{font-size:clamp(1.9rem,4.2vw,3.3rem);font-weight:800;letter-spacing:-2px;margin-bottom:1.1rem}
 .sd{font-size:1rem;color:var(--t3);max-width:620px;margin:0 auto}
 
-/* SKILLS */
 .skg{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.25rem}
 .sk{display:flex;align-items:center;gap:1.2rem;padding:1.5rem 1.7rem;cursor:default}
 .ski{width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.45rem;flex-shrink:0;transition:all .55s}
@@ -135,7 +129,6 @@ section{position:relative;z-index:5}
 .s5 .ski{background:rgba(255,193,7,.1);color:#ffc107}.s5 .skf{background:linear-gradient(90deg,#ffc107,#ff9800)}
 .s6 .ski{background:rgba(88,101,242,.1);color:#5865f2}.s6 .skf{background:linear-gradient(90deg,#5865f2,#7289da)}
 
-/* TEAMS */
 #tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem}
 .tc{padding:2.4rem;display:block;cursor:pointer}
 .th{display:flex;align-items:center;gap:1.1rem;margin-bottom:1.5rem}
@@ -152,7 +145,6 @@ section{position:relative;z-index:5}
 .tw .tl{background:rgba(99,102,241,.1);color:#6366f1}.tw .tr{background:rgba(99,102,241,.1);color:#818cf8}.tw .tj{color:#6366f1}
 .txx .tl{background:rgba(147,51,234,.1);color:var(--p4)}.txx .tr{background:rgba(147,51,234,.1);color:var(--p4)}.txx .tj{color:var(--p4)}
 
-/* SERVICES */
 .svg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
 .sv{padding:2.4rem}
 .svi{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,rgba(147,51,234,.1),rgba(168,85,247,.02));display:flex;align-items:center;justify-content:center;font-size:1.55rem;margin-bottom:1.4rem;transition:all .55s}
@@ -165,7 +157,6 @@ section{position:relative;z-index:5}
 .tg{padding:.28rem .8rem;border-radius:10px;background:rgba(147,51,234,.05);font-size:.71rem;color:var(--t2);font-weight:500;border:1px solid rgba(147,51,234,.05);transition:all .35s}
 .tg:hover{background:rgba(147,51,234,.12);transform:translateY(-2px)}
 
-/* PROCESS */
 .pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.5rem}
 .ps{padding:2.4rem;text-align:center}
 .pn{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;color:var(--p4);margin-bottom:.9rem;letter-spacing:4px;text-transform:uppercase}
@@ -176,7 +167,6 @@ section{position:relative;z-index:5}
 .ps h3{font-size:1.06rem;font-weight:700;margin-bottom:.5rem}
 .ps p{color:var(--t3);font-size:.82rem}
 
-/* PORTFOLIO */
 #pog{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:1.5rem}
 .po{overflow:hidden}
 .pot{position:relative;height:240px;background:linear-gradient(135deg,var(--p0),var(--bg3));display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
@@ -192,7 +182,6 @@ section{position:relative;z-index:5}
 .poi h3{font-size:1.12rem;font-weight:700;margin-bottom:.5rem}
 .poi p{color:var(--t3);font-size:.84rem}
 
-/* LIGHTBOX */
 .lx{position:fixed;inset:0;z-index:90000;background:rgba(0,0,0,.95);backdrop-filter:blur(28px);display:none;align-items:center;justify-content:center;cursor:zoom-out}
 .lx.a{display:flex}
 .lx img{max-width:90vw;max-height:85vh;border-radius:20px;box-shadow:0 30px 100px rgba(0,0,0,.6);animation:lZ .35s}
@@ -204,10 +193,9 @@ section{position:relative;z-index:5}
 .lp{left:1.5rem}.lnn{right:1.5rem}
 .lct{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace}
 
-/* REVIEWS */
-.rc{position:relative;overflow:hidden;padding:0 4rem}
+.rc{position:relative;overflow:hidden;padding:0;width:100vw;left:calc(-50vw + 50%)}
 .rtr{display:flex;transition:transform .75s cubic-bezier(.23,1,.32,1)}
-.rsl{min-width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;padding:0 .3rem}
+.rsl{min-width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;padding:0}
 .rv{padding:2.4rem}
 .rvs{display:flex;gap:.4rem;margin-bottom:1.4rem;height:30px;align-items:center}
 .rvst{font-size:1.1rem;cursor:default;display:inline-block;transition:all .45s}
@@ -234,7 +222,6 @@ section{position:relative;z-index:5}
 .crpg{width:100%;height:2px;background:var(--b);border-radius:10px;margin-top:.9rem;overflow:hidden}
 .crpb{height:100%;background:linear-gradient(90deg,var(--p6),var(--p4));border-radius:10px;width:0}
 
-/* CONTACT */
 .cg{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:940px;margin:0 auto}
 .ci{padding:2.8rem}
 .ci h3{font-size:1.4rem;font-weight:700;margin-bottom:1.1rem;display:flex;align-items:center;gap:.65rem}
@@ -266,7 +253,6 @@ section{position:relative;z-index:5}
 .fok h3{font-size:1.35rem;margin-bottom:.6rem}
 .fok p{color:var(--t3)}
 
-/* FOOTER */
 footer{position:relative;z-index:5;border-top:1px solid var(--b);background:var(--bg2)}
 .fi{max-width:1200px;margin:0 auto;padding:4.5rem 2rem 2rem}
 .fgr{display:grid;grid-template-columns:2.2fr 1fr 1fr;gap:3rem;margin-bottom:3.5rem}
@@ -296,7 +282,6 @@ footer{position:relative;z-index:5;border-top:1px solid var(--b);background:var(
 .sg>*{opacity:0;transform:translateY(35px);transition:all .75s cubic-bezier(.23,1,.32,1)}
 .sg.v>*:nth-child(1){transition-delay:.06s;opacity:1;transform:translateY(0)}.sg.v>*:nth-child(2){transition-delay:.12s;opacity:1;transform:translateY(0)}.sg.v>*:nth-child(3){transition-delay:.18s;opacity:1;transform:translateY(0)}.sg.v>*:nth-child(4){transition-delay:.24s;opacity:1;transform:translateY(0)}.sg.v>*:nth-child(5){transition-delay:.3s;opacity:1;transform:translateY(0)}.sg.v>*:nth-child(6){transition-delay:.36s;opacity:1;transform:translateY(0)}
 
-/* ADMIN */
 .ao{position:fixed;inset:0;z-index:50000;background:rgba(0,0,0,.9);backdrop-filter:blur(28px);display:none;align-items:center;justify-content:center}.ao.a{display:flex}
 .al{background:var(--bg3);border:1px solid var(--b);border-radius:28px;padding:3.2rem;width:90%;max-width:430px;text-align:center;animation:scI .45s;position:relative}
 @keyframes scI{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:scale(1)}}
@@ -373,245 +358,1186 @@ footer{position:relative;z-index:5;border-top:1px solid var(--b);background:var(
 @keyframes spin{to{transform:rotate(360deg)}}
 .sec{position:fixed;bottom:.5rem;left:.5rem;width:16px;height:16px;background:transparent;border:none;cursor:default;z-index:999;opacity:0}
 
+/* Config section in admin */
+.cfg-item{background:var(--c);border:1px solid var(--b);border-radius:18px;padding:1.2rem 1.4rem;margin-bottom:.8rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:all .35s}
+.cfg-item:hover{border-color:var(--bh)}
+.cfg-label{font-size:.75rem;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:.2rem}
+.cfg-val{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--t);word-break:break-all}
+.cfg-edit{width:36px;height:36px;border-radius:12px;border:1px solid var(--b);background:var(--c);color:var(--t3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .35s;flex-shrink:0}
+.cfg-edit:hover{border-color:var(--p5);color:var(--p4)}
+.cfg-status{margin-top:1rem;padding:.8rem 1.2rem;border-radius:14px;background:var(--c);border:1px solid var(--b);font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
+
 @media(max-width:968px){.nl{display:none}.mt{display:flex}.fgr{grid-template-columns:1fr}#pog,#tg{grid-template-columns:1fr}.fr{grid-template-columns:1fr}.rc{padding:0 2.8rem}.rsl{grid-template-columns:1fr}.cg{grid-template-columns:1fr}}
 @media(max-width:640px){.sc{padding:4.5rem 1.25rem}.hero{padding:5.5rem 1.25rem 3rem}.svg,.pg,.skg{grid-template-columns:1fr}.ha{flex-direction:column;align-items:center}.bp,.bs{width:100%;justify-content:center}.cd2,.cr2{display:none}.fbt{flex-direction:column;text-align:center}.rc{padding:0 2.2rem}#pog{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
 <div class="ld" id="ld"><div class="ld-s"></div></div>
-<div class="ck" id="ck"><div class="ck-t"><i class="fas fa-cookie-bite"></i> Ta strona wykorzystuje pliki cookies.</div><div class="ck-b"><button class="cb ca" onclick="aCk()">Akceptuje</button><button class="cb cdd" onclick="dCk()">Odmawiam</button></div></div>
+
+<div class="ck" id="ck">
+  <div class="ck-t"><i class="fas fa-cookie-bite"></i> Ta strona wykorzystuje pliki cookies.</div>
+  <div>
+    <button class="cb ca" onclick="aCk()">Akceptuje</button>
+    <button class="cb cdd" onclick="dCk()">Odmawiam</button>
+  </div>
+</div>
+
 <div class="sp" id="sp"></div>
-<div class="cd2" id="cd"></div><div class="cr2" id="cr"></div>
-<canvas id="pc"></canvas><div class="bgr"></div>
-<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+<div class="cd2" id="cd"></div>
+<div class="cr2" id="cr"></div>
+<canvas id="pc"></canvas>
+<div class="bgr"></div>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<div class="orb o3"></div>
 <button class="sec" id="sec"></button>
 
-<nav id="nav"><div class="ni">
-<a href="#" class="lo">Vern0x<span class="d">.</span></a>
-<ul class="nl"><li><a href="#home" class="a">Start</a></li><li><a href="#skills">Umiejetnosci</a></li><li><a href="#teams">Zespoly</a></li><li><a href="#services">Uslugi</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#contact">Kontakt</a></li></ul>
-<div class="na"><button class="nb" id="thT"><i class="fas fa-moon" id="thI"></i></button><a href="#contact" class="nc"><i class="fas fa-arrow-right"></i> Kontakt</a><div class="mt" id="mT"><span></span><span></span><span></span></div></div>
-</div></nav>
-<div class="mm" id="mM"><a href="#home">Start</a><a href="#skills">Umiejetnosci</a><a href="#teams">Zespoly</a><a href="#services">Uslugi</a><a href="#portfolio">Portfolio</a><a href="#contact">Kontakt</a></div>
+<nav id="nav">
+  <div class="ni">
+    <a href="#" class="lo">Vern0x<span class="d">.</span></a>
+    <ul class="nl">
+      <li><a href="#home" class="a">Start</a></li>
+      <li><a href="#skills">Umiejetnosci</a></li>
+      <li><a href="#teams">Zespoly</a></li>
+      <li><a href="#services">Uslugi</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+    <div class="na">
+      <button class="nb" id="thT"><i class="fas fa-moon" id="thI"></i></button>
+      <a href="#contact" class="nc"><i class="fas fa-arrow-right"></i> Kontakt</a>
+      <div class="mt" id="mT"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</nav>
 
-<section class="hero" id="home"><div class="hc">
-<div class="hb"><span class="pd"></span> Dostepny do wspolpracy</div>
-<div class="pi"><span class="pll"><i class="fas fa-palette"></i> Grafiki</span><span class="pll"><i class="fas fa-cube"></i> Minecraft</span><span class="pll"><i class="fas fa-terminal"></i> Skript</span></div>
-<h1>Czesc, jestem<br><span class="gr" id="hN">Vern0x</span></h1>
-<p class="hs">Kreatywny tworca specjalizujacy sie w <strong>grafikach</strong>, <strong>serwerach Minecraft</strong> oraz <strong>skryptach Skript</strong>.</p>
-<div class="ha"><a href="#portfolio" class="bp"><i class="fas fa-eye"></i> Portfolio</a><a href="#contact" class="bs"><i class="fas fa-paper-plane"></i> Napisz do mnie</a></div>
-<div class="ht"><div class="st"><div class="n" data-t="150">0</div><div class="l">Projektow</div></div><div class="st"><div class="n" data-t="80">0</div><div class="l">Klientow</div></div><div class="st"><div class="n" data-t="3">0</div><div class="l">Lata</div></div><div class="st"><div class="n" data-t="99">0</div><div class="l">Satysfakcji</div></div></div>
-</div><div class="si" onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})"><span>Przewin</span><i class="fas fa-chevron-down"></i></div></section>
-
-<section id="skills"><div class="sc"><div class="sh rv2"><div class="sl"><i class="fas fa-wrench"></i> Umiejetnosci</div><h2 class="stt">Narzedzia i technologie</h2></div>
-<div class="skg sg rv2" id="skG">
-<div class="sk g s1"><div class="ski"><i class="fas fa-paint-brush"></i></div><div class="sk-info"><div class="skn">Adobe Photoshop</div><div class="skb"><div class="skf" data-w="95"></div></div><div class="skp">95%</div></div></div>
-<div class="sk g s2"><div class="ski"><i class="fab fa-figma"></i></div><div class="sk-info"><div class="skn">Figma</div><div class="skb"><div class="skf" data-w="88"></div></div><div class="skp">88%</div></div></div>
-<div class="sk g s3"><div class="ski"><i class="fas fa-film"></i></div><div class="sk-info"><div class="skn">After Effects</div><div class="skb"><div class="skf" data-w="46"></div></div><div class="skp">46%</div></div></div>
-<div class="sk g s4"><div class="ski"><i class="fas fa-cube"></i></div><div class="sk-info"><div class="skn">Minecraft Servers</div><div class="skb"><div class="skf" data-w="92"></div></div><div class="skp">92%</div></div></div>
-<div class="sk g s5"><div class="ski"><i class="fas fa-scroll"></i></div><div class="sk-info"><div class="skn">Skript</div><div class="skb"><div class="skf" data-w="63"></div></div><div class="skp">63%</div></div></div>
-<div class="sk g s6"><div class="ski"><i class="fab fa-discord"></i></div><div class="sk-info"><div class="skn">Discord Bots</div><div class="skb"><div class="skf" data-w="85"></div></div><div class="skp">85%</div></div></div>
-</div></div></section>
-
-<section id="teams"><div class="sc"><div class="sh rv2"><div class="sl"><i class="fas fa-users-cog"></i> Zespoly</div><h2 class="stt">Gdzie aktualnie pracuje</h2></div><div id="tg" class="sg rv2"></div></div></section>
-
-<section id="services"><div class="sc"><div class="sh rv2"><div class="sl"><i class="fas fa-rocket"></i> Uslugi</div><h2 class="stt">Pelny zakres uslug</h2></div>
-<div class="svg sg rv2">
-<div class="sv g"><div class="svi"><i class="fas fa-palette"></i></div><h3>Grafiki i Design</h3><p>Logotypy, banery, thumbnails i branding.</p><div class="tgs"><span class="tg">Logo</span><span class="tg">Banery</span><span class="tg">Branding</span></div></div>
-<div class="sv g"><div class="svi"><i class="fas fa-server"></i></div><h3>Serwery Minecraft</h3><p>Konfiguracja, pluginy, optymalizacja.</p><div class="tgs"><span class="tg">Setup</span><span class="tg">Pluginy</span></div></div>
-<div class="sv g"><div class="svi"><i class="fas fa-terminal"></i></div><h3>Skrypty Skript</h3><p>GUI, komendy, systemy.</p><div class="tgs"><span class="tg">Skript</span><span class="tg">GUI</span></div></div>
-<div class="sv g"><div class="svi"><i class="fas fa-play-circle"></i></div><h3>Animacje i Motion</h3><p>Intra, outra, animowane logotypy.</p><div class="tgs"><span class="tg">Intro</span><span class="tg">Motion</span></div></div>
-</div></div></section>
-
-<section id="process"><div class="sc"><div class="sh rv2"><div class="sl"><i class="fas fa-route"></i> Proces</div><h2 class="stt">Przebieg wspolpracy</h2></div>
-<div class="pg sg rv2">
-<div class="ps g"><div class="pn">Krok 01</div><div class="psi"><i class="fas fa-lightbulb"></i></div><h3>Pomysl i Brief</h3><p>Omawiamy cele projektu.</p></div>
-<div class="ps g"><div class="pn">Krok 02</div><div class="psi"><i class="fas fa-pencil-ruler"></i></div><h3>Projekt</h3><p>Koncepcja do perfekcji.</p></div>
-<div class="ps g"><div class="pn">Krok 03</div><div class="psi"><i class="fas fa-hammer"></i></div><h3>Realizacja</h3><p>Wdrozenie z dbalosc.</p></div>
-<div class="ps g"><div class="pn">Krok 04</div><div class="psi"><i class="fas fa-check-double"></i></div><h3>Dostawa</h3><p>Gotowy produkt.</p></div>
-</div></div></section>
-
-<section id="portfolio"><div class="sc"><div class="sh rv2"><div class="sl"><i class="fas fa-th-large"></i> Portfolio</div><h2 class="stt">Zrealizowane projekty</h2></div><div id="pog" class="sg rv2"></div></div></section>
-
-<section id="reviews"><div class="sc"><div class="sh rv2"><div class="sl"><i class="fas fa-comment-dots"></i> Opinie</div><h2 class="stt">Glosy klientow</h2></div>
-<div class="rc rv2"><button class="crb crp" onclick="cNav(-1)"><i class="fas fa-chevron-left"></i></button><div style="overflow:hidden"><div class="rtr" id="rT"></div></div><button class="crb crn" onclick="cNav(1)"><i class="fas fa-chevron-right"></i></button><div class="crd" id="cD"></div><div class="crpg"><div class="crpb" id="cP"></div></div></div>
-</div></section>
-
-<section id="contact"><div class="sc"><div class="sh rv2"><div class="sl"><i class="fas fa-envelope-open-text"></i> Kontakt</div><h2 class="stt">Rozpocznijmy wspolprace</h2></div>
-<div class="cg rv2">
-<div class="ci g"><h3><i class="fas fa-info-circle"></i> Informacje</h3><p>Szukasz grafiki, setupu lub skryptu? Napisz!</p>
-<div class="cit"><i class="fab fa-discord"></i><div><strong>Discord</strong><span>Vern0x</span></div></div>
-<div class="cit"><i class="fas fa-clock"></i><div><strong>Odpowiedz</strong><span>Do 24h</span></div></div>
-<div class="cit"><i class="fas fa-shield-alt"></i><div><strong>Gwarancja</strong><span>100% satysfakcji</span></div></div>
+<div class="mm" id="mM">
+  <a href="#home">Start</a>
+  <a href="#skills">Umiejetnosci</a>
+  <a href="#teams">Zespoly</a>
+  <a href="#services">Uslugi</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#contact">Kontakt</a>
 </div>
-<div class="cf g">
-<form id="cF" onsubmit="subCF(event)">
-<div class="fr"><div class="fg"><label><i class="fab fa-discord"></i> Discord Nick <span class="rq">WYMAGANE</span></label><input id="fn" placeholder="np. Vern0x" required></div><div class="fg"><label><i class="fas fa-id-badge"></i> Discord ID <span class="rq">WYMAGANE</span></label><input id="fid" placeholder="np. 123456789012345678" required pattern="[0-9]{17,20}"></div></div>
-<div class="fg"><label><i class="fas fa-tag"></i> Usluga</label><select id="fs"><option value="grafika">Grafika</option><option value="minecraft">Minecraft</option><option value="skript">Skript</option><option value="animacja">Animacja</option><option value="inne">Inne</option></select></div>
-<div class="fg"><label><i class="fas fa-pen-nib"></i> Wiadomosc <span class="rq">WYMAGANE</span></label><textarea id="fm" placeholder="Opisz czego potrzebujesz..." required></textarea></div>
-<button type="submit" class="fsb"><i class="fas fa-paper-plane"></i> Wyslij</button>
-</form>
-<div class="fok" id="fO"><i class="fas fa-check-circle"></i><h3>Wyslano</h3><p>Odezwe sie wkrotce!</p></div>
-</div></div></div></section>
 
-<footer><div class="fi"><div class="fgr">
-<div class="fbr"><div class="flo">Vern0x<span style="-webkit-text-fill-color:var(--p4)">.</span></div><p>Profesjonalne rozwiazania kreatywne.</p><div class="fsc"><a href="https://discord.gg/vern0x" target="_blank"><i class="fab fa-discord"></i></a><a href="https://youtube.com/@vern0x" target="_blank"><i class="fab fa-youtube"></i></a></div></div>
-<div class="fcl"><h4>Nawigacja</h4><ul><li><a href="#home"><i class="fas fa-chevron-right" style="font-size:.48rem"></i> Start</a></li><li><a href="#portfolio"><i class="fas fa-chevron-right" style="font-size:.48rem"></i> Portfolio</a></li><li><a href="#contact"><i class="fas fa-chevron-right" style="font-size:.48rem"></i> Kontakt</a></li></ul></div>
-<div class="fcl"><h4>Zespoly</h4><ul id="fT"></ul></div>
-</div><div class="fbt"><span>&copy; 2025 Vern0x</span><span>Made with <i class="fas fa-heart" style="color:var(--p5)"></i></span></div></div></footer>
+<section class="hero" id="home">
+  <div class="hc">
+    <div class="hb"><span class="pd"></span> Dostepny do wspolpracy</div>
+    <div class="pi">
+      <span class="pll"><i class="fas fa-palette"></i> Grafiki</span>
+      <span class="pll"><i class="fas fa-cube"></i> Minecraft</span>
+      <span class="pll"><i class="fas fa-terminal"></i> Skript</span>
+    </div>
+    <h1>Czesc, jestem<br><span class="gr" id="hN">Vern0x</span></h1>
+    <p class="hs">Kreatywny tworca specjalizujacy sie w <strong>grafikach</strong>, <strong>serwerach Minecraft</strong> oraz <strong>skryptach Skript</strong>.</p>
+    <div class="ha">
+      <a href="#portfolio" class="bp"><i class="fas fa-eye"></i> Portfolio</a>
+      <a href="#contact" class="bs"><i class="fas fa-paper-plane"></i> Napisz do mnie</a>
+    </div>
+    <div class="ht">
+      <div class="st"><div class="n" data-t="150">0</div><div class="l">Projektow</div></div>
+      <div class="st"><div class="n" data-t="80">0</div><div class="l">Klientow</div></div>
+      <div class="st"><div class="n" data-t="3">0</div><div class="l">Lata</div></div>
+      <div class="st"><div class="n" data-t="99">0</div><div class="l">Satysfakcji</div></div>
+    </div>
+  </div>
+  <div class="si" onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">
+    <span>Przewin</span><i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sc">
+    <div class="sh rv2">
+      <div class="sl"><i class="fas fa-wrench"></i> Umiejetnosci</div>
+      <h2 class="stt">Narzedzia i technologie</h2>
+    </div>
+    <div class="skg sg rv2" id="skG">
+      <div class="sk g s1"><div class="ski"><i class="fas fa-paint-brush"></i></div><div class="sk-info"><div class="skn">Adobe Photoshop</div><div class="skb"><div class="skf" data-w="95"></div></div><div class="skp">95%</div></div></div>
+      <div class="sk g s2"><div class="ski"><i class="fab fa-figma"></i></div><div class="sk-info"><div class="skn">Figma</div><div class="skb"><div class="skf" data-w="88"></div></div><div class="skp">88%</div></div></div>
+      <div class="sk g s3"><div class="ski"><i class="fas fa-film"></i></div><div class="sk-info"><div class="skn">After Effects</div><div class="skb"><div class="skf" data-w="46"></div></div><div class="skp">46%</div></div></div>
+      <div class="sk g s4"><div class="ski"><i class="fas fa-cube"></i></div><div class="sk-info"><div class="skn">Minecraft Servers</div><div class="skb"><div class="skf" data-w="92"></div></div><div class="skp">92%</div></div></div>
+      <div class="sk g s5"><div class="ski"><i class="fas fa-scroll"></i></div><div class="sk-info"><div class="skn">Skript</div><div class="skb"><div class="skf" data-w="63"></div></div><div class="skp">63%</div></div></div>
+      <div class="sk g s6"><div class="ski"><i class="fab fa-discord"></i></div><div class="sk-info"><div class="skn">Discord Bots</div><div class="skb"><div class="skf" data-w="85"></div></div><div class="skp">85%</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="teams">
+  <div class="sc">
+    <div class="sh rv2">
+      <div class="sl"><i class="fas fa-users-cog"></i> Zespoly</div>
+      <h2 class="stt">Gdzie aktualnie pracuje</h2>
+    </div>
+    <div id="tg" class="sg rv2"></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="sc">
+    <div class="sh rv2">
+      <div class="sl"><i class="fas fa-rocket"></i> Uslugi</div>
+      <h2 class="stt">Pelny zakres uslug</h2>
+    </div>
+    <div class="svg sg rv2">
+      <div class="sv g"><div class="svi"><i class="fas fa-palette"></i></div><h3>Grafiki i Design</h3><p>Logotypy, banery, thumbnails i branding.</p><div class="tgs"><span class="tg">Logo</span><span class="tg">Banery</span><span class="tg">Branding</span></div></div>
+      <div class="sv g"><div class="svi"><i class="fas fa-server"></i></div><h3>Serwery Minecraft</h3><p>Konfiguracja, pluginy, optymalizacja.</p><div class="tgs"><span class="tg">Setup</span><span class="tg">Pluginy</span></div></div>
+      <div class="sv g"><div class="svi"><i class="fas fa-terminal"></i></div><h3>Skrypty Skript</h3><p>GUI, komendy, systemy.</p><div class="tgs"><span class="tg">Skript</span><span class="tg">GUI</span></div></div>
+      <div class="sv g"><div class="svi"><i class="fas fa-play-circle"></i></div><h3>Animacje i Motion</h3><p>Intra, outra, animowane logotypy.</p><div class="tgs"><span class="tg">Intro</span><span class="tg">Motion</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="sc">
+    <div class="sh rv2">
+      <div class="sl"><i class="fas fa-route"></i> Proces</div>
+      <h2 class="stt">Przebieg wspolpracy</h2>
+    </div>
+    <div class="pg sg rv2">
+      <div class="ps g"><div class="pn">Krok 01</div><div class="psi"><i class="fas fa-lightbulb"></i></div><h3>Pomysl i Brief</h3><p>Omawiamy cele projektu.</p></div>
+      <div class="ps g"><div class="pn">Krok 02</div><div class="psi"><i class="fas fa-pencil-ruler"></i></div><h3>Projekt</h3><p>Koncepcja do perfekcji.</p></div>
+      <div class="ps g"><div class="pn">Krok 03</div><div class="psi"><i class="fas fa-hammer"></i></div><h3>Realizacja</h3><p>Wdrozenie z dbalosc.</p></div>
+      <div class="ps g"><div class="pn">Krok 04</div><div class="psi"><i class="fas fa-check-double"></i></div><h3>Dostawa</h3><p>Gotowy produkt.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="sc">
+    <div class="sh rv2">
+      <div class="sl"><i class="fas fa-th-large"></i> Portfolio</div>
+      <h2 class="stt">Zrealizowane projekty</h2>
+    </div>
+    <div id="pog" class="sg rv2"></div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="sc">
+    <div class="sh rv2">
+      <div class="sl"><i class="fas fa-comment-dots"></i> Opinie</div>
+      <h2 class="stt">Glosy klientow</h2>
+    </div>
+    <div class="rc rv2">
+      <button class="crb crp" onclick="cNav(-1)"><i class="fas fa-chevron-left"></i></button>
+      <div style="overflow:hidden">
+        <div class="rtr" id="rT"></div>
+      </div>
+      <button class="crb crn" onclick="cNav(1)"><i class="fas fa-chevron-right"></i></button>
+      <div class="crd" id="cD"></div>
+      <div class="crpg"><div class="crpb" id="cP"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sc">
+    <div class="sh rv2">
+      <div class="sl"><i class="fas fa-envelope-open-text"></i> Kontakt</div>
+      <h2 class="stt">Rozpocznijmy wspolprace</h2>
+    </div>
+    <div class="cg rv2">
+      <div class="ci g">
+        <h3><i class="fas fa-info-circle"></i> Informacje</h3>
+        <p>Szukasz grafiki, setupu lub skryptu? Napisz!</p>
+        <div class="cit"><i class="fab fa-discord"></i><div><strong>Discord</strong><span>Vern0x</span></div></div>
+        <div class="cit"><i class="fas fa-clock"></i><div><strong>Odpowiedz</strong><span>Do 24h</span></div></div>
+        <div class="cit"><i class="fas fa-shield-alt"></i><div><strong>Gwarancja</strong><span>100% satysfakcji</span></div></div>
+      </div>
+      <div class="cf g">
+        <form id="cF" onsubmit="subCF(event)">
+          <div class="fr">
+            <div class="fg"><label><i class="fab fa-discord"></i> Discord Nick <span class="rq">WYMAGANE</span></label><input id="fn" placeholder="np. Vern0x" required></div>
+            <div class="fg"><label><i class="fas fa-id-badge"></i> Discord ID <span class="rq">WYMAGANE</span></label><input id="fid" placeholder="np. 123456789012345678" required pattern="[0-9]{17,20}"></div>
+          </div>
+          <div class="fg"><label><i class="fas fa-tag"></i> Usluga</label><select id="fs"><option value="grafika">Grafika</option><option value="minecraft">Minecraft</option><option value="skript">Skript</option><option value="animacja">Animacja</option><option value="inne">Inne</option></select></div>
+          <div class="fg"><label><i class="fas fa-pen-nib"></i> Wiadomosc <span class="rq">WYMAGANE</span></label><textarea id="fm" placeholder="Opisz czego potrzebujesz..." required></textarea></div>
+          <button type="submit" class="fsb"><i class="fas fa-paper-plane"></i> Wyslij</button>
+        </form>
+        <div class="fok" id="fO"><i class="fas fa-check-circle"></i><h3>Wyslano</h3><p>Odezwe sie wkrotce!</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fi">
+    <div class="fgr">
+      <div class="fbr">
+        <div class="flo">Vern0x<span style="-webkit-text-fill-color:var(--p4)">.</span></div>
+        <p>Profesjonalne rozwiazania kreatywne.</p>
+        <div class="fsc">
+          <a href="https://discord.gg/vern0x" target="_blank"><i class="fab fa-discord"></i></a>
+          <a href="https://youtube.com/@vern0x" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="fcl">
+        <h4>Nawigacja</h4>
+        <ul>
+          <li><a href="#home"><i class="fas fa-chevron-right" style="font-size:.48rem"></i> Start</a></li>
+          <li><a href="#portfolio"><i class="fas fa-chevron-right" style="font-size:.48rem"></i> Portfolio</a></li>
+          <li><a href="#contact"><i class="fas fa-chevron-right" style="font-size:.48rem"></i> Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="fcl">
+        <h4>Zespoly</h4>
+        <ul id="fT"></ul>
+      </div>
+    </div>
+    <div class="fbt">
+      <span>&copy; 2025 Vern0x</span>
+      <span>Made with <i class="fas fa-heart" style="color:var(--p5)"></i></span>
+    </div>
+  </div>
+</footer>
+
 <button class="sct" id="sct"><i class="fas fa-arrow-up"></i></button>
-<div class="lx" id="lx"><button class="lc" onclick="clLB()"><i class="fas fa-times"></i></button><button class="ln lp" onclick="nLB(-1)"><i class="fas fa-chevron-left"></i></button><img id="lI" src="" alt=""><button class="ln lnn" onclick="nLB(1)"><i class="fas fa-chevron-right"></i></button><div class="lct" id="lC"></div></div>
 
-<div class="ao" id="aO"><div class="al"><button class="xb" onclick="clA()"><i class="fas fa-times"></i></button><h2><i class="fas fa-lock" style="color:var(--p4)"></i> Admin</h2><p>Kod dostepu</p><div class="cinp" id="cI"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"><input type="text" maxlength="1" inputmode="numeric"></div><div class="em" id="cE"><i class="fas fa-exclamation-triangle"></i> Bledny kod</div><button class="bp" onclick="vC()" style="width:100%;justify-content:center"><i class="fas fa-unlock-alt"></i> Zaloguj</button></div></div>
-<div class="ap" id="aP"><div class="ah"><h2><i class="fas fa-shield-alt" style="color:var(--p4)"></i> Admin <span class="bdg">PANEL</span></h2><button class="nb" onclick="clAP()"><i class="fas fa-times"></i></button></div>
-<div class="aby">
-<div class="atb"><button class="at a" onclick="swT('proj')"><i class="fas fa-folder"></i> Portfolio</button><button class="at" onclick="swT('rev')"><i class="fas fa-star"></i> Opinie</button><button class="at" onclick="swT('team')"><i class="fas fa-users"></i> Zespoly</button><button class="at" onclick="swT('msg')"><i class="fas fa-inbox"></i> Zgloszenia</button></div>
-<div class="asc a" id="t-proj"><div class="abr"><h3>Projekty</h3><button class="aad" onclick="oM('project')"><i class="fas fa-plus"></i> Dodaj</button></div><div class="ais" id="aProj"></div></div>
-<div class="asc" id="t-rev"><div class="abr"><h3>Opinie</h3><button class="aad" onclick="oM('review')"><i class="fas fa-plus"></i> Dodaj</button></div><div class="ais" id="aRev"></div></div>
-<div class="asc" id="t-team"><div class="abr"><h3>Zespoly</h3><button class="aad" onclick="oM('team')"><i class="fas fa-plus"></i> Dodaj</button></div><div class="ais" id="aTeam"></div></div>
-<div class="asc" id="t-msg"><div class="abr"><h3>Zgloszenia</h3></div><div id="aMsgs"></div></div>
-</div></div>
+<!-- LIGHTBOX -->
+<div class="lx" id="lx">
+  <button class="lc" onclick="clLB()"><i class="fas fa-times"></i></button>
+  <button class="ln lp" onclick="nLB(-1)"><i class="fas fa-chevron-left"></i></button>
+  <img id="lI" src="" alt="">
+  <button class="ln lnn" onclick="nLB(1)"><i class="fas fa-chevron-right"></i></button>
+  <div class="lct" id="lC"></div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div class="ao" id="aO">
+  <div class="al">
+    <button class="xb" onclick="clA()"><i class="fas fa-times"></i></button>
+    <h2><i class="fas fa-lock" style="color:var(--p4)"></i> Admin</h2>
+    <p>Kod dostepu</p>
+    <div class="cinp" id="cI">
+      <input type="text" maxlength="1" inputmode="numeric">
+      <input type="text" maxlength="1" inputmode="numeric">
+      <input type="text" maxlength="1" inputmode="numeric">
+      <input type="text" maxlength="1" inputmode="numeric">
+    </div>
+    <div class="em" id="cE"><i class="fas fa-exclamation-triangle"></i> Bledny kod</div>
+    <button class="bp" onclick="vC()" style="width:100%;justify-content:center"><i class="fas fa-unlock-alt"></i> Zaloguj</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="ap" id="aP">
+  <div class="ah">
+    <h2><i class="fas fa-shield-alt" style="color:var(--p4)"></i> Admin <span class="bdg">PANEL</span></h2>
+    <button class="nb" onclick="clAP()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="aby">
+    <div class="atb">
+      <button class="at a" onclick="swT('proj')"><i class="fas fa-folder"></i> Portfolio</button>
+      <button class="at" onclick="swT('rev')"><i class="fas fa-star"></i> Opinie</button>
+      <button class="at" onclick="swT('team')"><i class="fas fa-users"></i> Zespoly</button>
+      <button class="at" onclick="swT('cfg')"><i class="fas fa-cogs"></i> Konfiguracja</button>
+      <button class="at" onclick="swT('msg')"><i class="fas fa-inbox"></i> Zgloszenia</button>
+    </div>
+
+    <div class="asc a" id="t-proj">
+      <div class="abr"><h3>Projekty</h3><button class="aad" onclick="oM('project')"><i class="fas fa-plus"></i> Dodaj</button></div>
+      <div class="ais" id="aProj"></div>
+    </div>
+
+    <div class="asc" id="t-rev">
+      <div class="abr"><h3>Opinie</h3><button class="aad" onclick="oM('review')"><i class="fas fa-plus"></i> Dodaj</button></div>
+      <div class="ais" id="aRev"></div>
+    </div>
+
+    <div class="asc" id="t-team">
+      <div class="abr"><h3>Zespoly</h3><button class="aad" onclick="oM('team')"><i class="fas fa-plus"></i> Dodaj</button></div>
+      <div class="ais" id="aTeam"></div>
+    </div>
+
+    <div class="asc" id="t-msg">
+      <div class="abr"><h3>Zgloszenia</h3></div>
+      <div id="aMsgs"></div>
+    </div>
+
+    <div class="asc" id="t-cfg">
+      <div class="abr">
+        <h3>Konfiguracja JSONBin.io</h3>
+        <button class="aad" onclick="testDB()"><i class="fas fa-plug"></i> Test polaczenia</button>
+      </div>
+      <div class="ais">
+        <div class="cfg-item">
+          <div>
+            <div class="cfg-label">BIN_ID</div>
+            <div class="cfg-val" id="cfg_bin"></div>
+          </div>
+          <button class="cfg-edit" onclick="oCfg('bin')"><i class="fas fa-pen"></i></button>
+        </div>
+        <div class="cfg-item">
+          <div>
+            <div class="cfg-label">API Key (Master Key)</div>
+            <div class="cfg-val" id="cfg_key"></div>
+          </div>
+          <button class="cfg-edit" onclick="oCfg('key')"><i class="fas fa-pen"></i></button>
+        </div>
+      </div>
+      <div class="cfg-status" id="cfg_status"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
 <div class="amo" id="aMo"><div class="amd" id="mC"></div></div>
+
+<!-- TOAST -->
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="tM"></span></div>
 
 <script>
-// ========== CONFIG — ZMIEN NA SWOJE ==========
-var BIN_ID = '69f7147a36566621a81cc02c';        // np. '683a1f2e8960c979a59e1234'
-var API_KEY = '$2a$10$Le4wZl.A59MXubNvshmM5.OKj36bhHw8.53wQlQwy3NcuDDCUuuD.';       // np. '$2a$10$xxxxxxxxxxxxx'
-// =============================================
+// ========== CONFIG ==========
+var CONFIG = JSON.parse(localStorage.getItem('v_config') || '{}');
+var BIN_ID = CONFIG.bin_id || '69f7147a36566621a81cc02c';
+var API_KEY = CONFIG.api_key || '$2a$10$Le4wZl.A59MXubNvshmM5.OKj36bhHw8.53wQlQwy3NcuDDCUuuD.';
 
-var DB={projects:[],reviews:[],teams:[],submissions:[]};
-var dbLoaded=false;
-
-async function loadDB(){
-  try{
-    var r=await fetch('https://api.jsonbin.io/v3/b/'+BIN_ID+'/latest',{headers:{'X-Access-Key':API_KEY}});
-    var d=await r.json();
-    if(d.record){DB=Object.assign({projects:[],reviews:[],teams:[],submissions:[]},d.record);dbLoaded=true}
-  }catch(e){console.error('DB load error:',e);
-    DB={projects:[{id:'1',name:'CraftNetwork Setup',category:'minecraft',icon:'fas fa-gamepad',desc:'Kompletna konfiguracja serwera Minecraft.',tags:['Minecraft','Setup'],image:''},{id:'2',name:'Branding SkyPvP',category:'grafika',icon:'fas fa-paint-brush',desc:'Pelny pakiet graficzny.',tags:['Grafika','Logo'],image:''}],reviews:[{id:'r1',name:'MateuszMC',role:'Wlasciciel serwera',stars:5,text:'Niesamowita jakosc grafik i profesjonalne podejscie!',avatar:''},{id:'r2',name:'KacperDev',role:'Developer',stars:5,text:'Skrypty napisane perfekcyjnie.',avatar:''},{id:'r3',name:'DarekPvP',role:'Tester',stars:4,text:'Wspolpraca na najwyzszym poziomie.',avatar:''},{id:'r4',name:'AniaDesign',role:'Klientka',stars:5,text:'Profesjonalizm i kreatywnosc.',avatar:''}],teams:[{id:'t1',name:'VerCode',role:'Grafik',desc:'Zespol developerow i grafikow.',link:'https://discord.gg/vercode',style:'tv',icon:'',logo:'VC'},{id:'t2',name:'Zglos Cwela',role:'Vice-CEO',desc:'Spolecznosc gamingowa.',link:'https://discord.gg/zgloscwela',style:'tz',icon:'',logo:'ZC'},{id:'t3',name:'WindCode',role:'CEO',desc:'Moj autorski zespol.',link:'https://discord.gg/windcode',style:'tw',icon:'',logo:'WC'}],submissions:[]};
-    dbLoaded=true}
+function saveConfig() {
+  CONFIG = { bin_id: BIN_ID, api_key: API_KEY };
+  localStorage.setItem('v_config', JSON.stringify(CONFIG));
 }
 
-async function saveDB(){
-  try{await fetch('https://api.jsonbin.io/v3/b/'+BIN_ID,{method:'PUT',headers:{'Content-Type':'application/json','X-Access-Key':API_KEY},body:JSON.stringify(DB)})}catch(e){console.error('DB save error:',e)}
+function testDB() {
+  sT2('Test API... 🔄', 'ok');
+  fetch('https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest', { headers: { 'X-Access-Key': API_KEY } })
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status + ': ' + r.statusText);
+      return r.json();
+    })
+    .then(function() { sT2('✅ Polaczono z Bin! Dane zaladowane.', 'ok'); })
+    .catch(function(e) {
+      var msg = e.message.indexOf('401') > -1 ? '❌ 401: Nieprawidlowy API_KEY' :
+                e.message.indexOf('403') > -1 ? '❌ 403: Bin nie nalezy do konta' :
+                e.message.indexOf('404') > -1 ? '❌ 404: BIN_ID nie istnieje' :
+                '❌ BLAD: ' + e.message;
+      sT2(msg, 'er');
+    });
 }
 
-function gId(){return Date.now().toString(36)+Math.random().toString(36).substr(2,6)}
-function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
-function aCk(){localStorage.setItem('v_ck','1');document.getElementById('ck').classList.remove('show')}
-function dCk(){localStorage.setItem('v_ck','0');document.getElementById('ck').classList.remove('show')}
+// ========== DATABASE ==========
+var DB = { projects: [], reviews: [], teams: [], submissions: [] };
 
-async function subCF(e){e.preventDefault();
-  DB.submissions.push({id:gId(),nick:document.getElementById('fn').value.trim(),discordId:document.getElementById('fid').value.trim(),service:document.getElementById('fs').value,message:document.getElementById('fm').value.trim(),time:Date.now()});
-  await saveDB();document.getElementById('cF').style.display='none';document.getElementById('fO').classList.add('show');sT2('Wyslano!','ok')}
+async function loadDB() {
+  try {
+    var r = await fetch('https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest', { headers: { 'X-Access-Key': API_KEY } });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    var d = await r.json();
+    if (d.record) {
+      DB = Object.assign({ projects: [], reviews: [], teams: [], submissions: [] }, d.record);
+      var localSubs = JSON.parse(localStorage.getItem('v_subs') || '[]');
+      if (localSubs.length) {
+        DB.submissions = DB.submissions.concat(localSubs);
+      }
+    }
+  } catch (e) {
+    console.error('DB load error:', e);
+    DB = {
+      projects: [
+        { id: '1', name: 'CraftNetwork Setup', category: 'minecraft', icon: 'fas fa-gamepad', desc: 'Kompletna konfiguracja serwera Minecraft.', tags: ['Minecraft', 'Setup'], image: '' },
+        { id: '2', name: 'Branding SkyPvP', category: 'grafika', icon: 'fas fa-paint-brush', desc: 'Pelny pakiet graficzny.', tags: ['Grafika', 'Logo'], image: '' }
+      ],
+      reviews: [
+        { id: 'r1', name: 'MateuszMC', role: 'Wlasciciel serwera', stars: 5, text: 'Niesamowita jakosc grafik i profesjonalne podejscie!', avatar: '' },
+        { id: 'r2', name: 'KacperDev', role: 'Developer', stars: 5, text: 'Skrypty napisane perfekcyjnie.', avatar: '' },
+        { id: 'r3', name: 'DarekPvP', role: 'Tester', stars: 4, text: 'Wspolpraca na najwyzszym poziomie.', avatar: '' },
+        { id: 'r4', name: 'AniaDesign', role: 'Klientka', stars: 5, text: 'Profesjonalizm i kreatywnosc.', avatar: '' }
+      ],
+      teams: [
+        { id: 't1', name: 'VerCode', role: 'Grafik', desc: 'Zespol developerow i grafikow.', link: 'https://discord.gg/vercode', style: 'tv', icon: '', logo: 'VC' },
+        { id: 't2', name: 'Zglos Cwela', role: 'Vice-CEO', desc: 'Spolecznosc gamingowa.', link: 'https://discord.gg/zgloscwela', style: 'tz', icon: '', logo: 'ZC' },
+        { id: 't3', name: 'WindCode', role: 'CEO', desc: 'Moj autorski zespol.', link: 'https://discord.gg/windcode', style: 'tw', icon: '', logo: 'WC' }
+      ],
+      submissions: JSON.parse(localStorage.getItem('v_subs') || '[]')
+    };
+    sT2('Brak polaczenia z serwerem - tryb lokalny', 'er');
+  }
+}
 
-var lII=[],lXX=0;
-function oLB(i,x){lII=i;lXX=x;document.getElementById('lI').src=lII[lXX];document.getElementById('lC').textContent=(lXX+1)+'/'+lII.length;document.getElementById('lx').classList.add('a');document.body.style.overflow='hidden'}
-function clLB(){document.getElementById('lx').classList.remove('a');document.body.style.overflow=''}
-function nLB(d){lXX=(lXX+d+lII.length)%lII.length;var i=document.getElementById('lI');i.style.animation='none';i.offsetHeight;i.style.animation='lZ .35s';i.src=lII[lXX];document.getElementById('lC').textContent=(lXX+1)+'/'+lII.length}
-document.getElementById('lx').addEventListener('click',function(e){if(e.target===e.currentTarget)clLB()});
-document.addEventListener('keydown',function(e){if(!document.getElementById('lx').classList.contains('a'))return;if(e.key==='Escape')clLB();if(e.key==='ArrowLeft')nLB(-1);if(e.key==='ArrowRight')nLB(1)});
+async function saveDB() {
+  try {
+    var r = await fetch('https://api.jsonbin.io/v3/b/' + BIN_ID, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Access-Key': API_KEY },
+      body: JSON.stringify(DB)
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status + ': ' + r.statusText);
+    localStorage.setItem('v_subs', JSON.stringify([]));
+    return true;
+  } catch (e) {
+    console.error('saveDB error:', e);
+    localStorage.setItem('v_subs', JSON.stringify(DB.submissions));
+    sT2('Zapisano LOKALNIE (blad: ' + e.message.slice(0, 50) + ')', 'er');
+    return false;
+  }
+}
 
-function rPort(){var g=document.getElementById('pog');g.innerHTML='';DB.projects.forEach(function(x){var c=document.createElement('div');c.className='po g';var h=x.image&&x.image.length>50;c.innerHTML='<div class="pot" '+(h?'onclick="zP(\''+x.id+'\')"':'')+'>'+(h?'<img src="'+x.image+'" alt="'+esc(x.name)+'" loading="lazy">':'<i class="'+(x.icon||'fas fa-folder')+' ti"></i>')+'<div class="ov">'+(h?'<button class="ovb" onclick="event.stopPropagation();zP(\''+x.id+'\')"><i class="fas fa-search-plus"></i> Zoom</button>':'')+'</div></div><div class="poi"><h3>'+esc(x.name)+'</h3><p>'+esc(x.desc||'')+'</p><div class="tgs">'+(x.tags||[]).map(function(t){return '<span class="tg">'+esc(t)+'</span>'}).join('')+'</div></div>';g.appendChild(c)})}
-window.zP=function(id){var imgs=DB.projects.filter(function(x){return x.image&&x.image.length>50}).map(function(x){return x.image});var it=DB.projects.find(function(x){return x.id===id});if(it&&it.image)oLB(imgs,Math.max(0,imgs.indexOf(it.image)))};
+// ========== UTILS ==========
+function gId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 6); }
+function esc(s) { if (!s) return ''; var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function aCk() { localStorage.setItem('v_ck', '1'); document.getElementById('ck').classList.remove('show'); }
+function dCk() { localStorage.setItem('v_ck', '0'); document.getElementById('ck').classList.remove('show'); }
 
-var cIdx=0,cAu,cAD=6500;
-function rRev(){var r=DB.reviews,tr=document.getElementById('rT'),dt=document.getElementById('cD');var ps=innerWidth<968?1:2;var sl=[];for(var i=0;i<r.length;i+=ps)sl.push(r.slice(i,i+ps));
-tr.innerHTML=sl.map(function(s){return '<div class="rsl">'+s.map(function(rv){var sh='';for(var i=0;i<5;i++)sh+=i<rv.stars?'<i class="fas fa-star rvst f"></i>':'<i class="far fa-star rvst e"></i>';return '<div class="rv g"><div class="rvs">'+sh+'</div><p class="rvtx">'+esc(rv.text)+'</p><div class="rva"><div class="rvav">'+(rv.avatar&&rv.avatar.length>50?'<img src="'+rv.avatar+'">':(rv.name?rv.name[0]:'?'))+'</div><div><div class="rvnm">'+esc(rv.name)+'</div><div class="rvrl">'+esc(rv.role)+'</div></div></div></div>'}).join('')+'</div>'}).join('');
-dt.innerHTML=sl.map(function(_,i){return '<button class="crdot '+(i===0?'a':'')+'" onclick="gSl('+i+')"></button>'}).join('');cIdx=0;uC();stAC()}
-function uC(){document.getElementById('rT').style.transform='translateX(-'+cIdx*100+'%)';document.querySelectorAll('.crdot').forEach(function(d,i){d.classList.toggle('a',i===cIdx)});stPB()}
-window.cNav=function(d){var t=document.querySelectorAll('.rsl').length;cIdx=(cIdx+d+t)%t;uC();rsAC()};
-window.gSl=function(i){cIdx=i;uC();rsAC()};
-function stAC(){clearInterval(cAu);cAu=setInterval(function(){var t=document.querySelectorAll('.rsl').length;if(t>0){cIdx=(cIdx+1)%t;uC()}},cAD)}
-function rsAC(){clearInterval(cAu);stAC()}
-var pAn;function stPB(){var b=document.getElementById('cP');b.style.transition='none';b.style.width='0%';cancelAnimationFrame(pAn);var st=null;function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/cAD*100,100);b.style.width=p+'%';if(p<100)pAn=requestAnimationFrame(step)}pAn=requestAnimationFrame(step)}
+function sT2(m, t) {
+  var el = document.getElementById('toast'), msg = document.getElementById('tM');
+  msg.textContent = m;
+  el.className = 'toast ' + (t || 'ok');
+  el.querySelector('i').className = t === 'ok' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+  setTimeout(function() { el.classList.add('show'); }, 10);
+  setTimeout(function() { el.classList.remove('show'); }, 3500);
+}
 
-function rTeams(){document.getElementById('tg').innerHTML=DB.teams.map(function(x){return '<a href="'+esc(x.link)+'" target="_blank" rel="noreferrer" class="tc g '+(x.style||'txx')+'"><div class="th"><div class="tl">'+(x.icon&&x.icon.length>50?'<img src="'+x.icon+'">':(x.logo||x.name[0]))+'</div><div><div class="tn">'+esc(x.name)+'</div><div class="tr">'+esc(x.role)+'</div></div></div><p class="td">'+esc(x.desc||'')+'</p><div class="tj"><i class="fab fa-discord"></i> Dolacz <i class="fas fa-arrow-right" style="font-size:.6rem"></i></div></a>'}).join('');
-document.getElementById('fT').innerHTML=DB.teams.map(function(x){return '<li><a href="'+esc(x.link)+'" target="_blank"><i class="fas fa-chevron-right" style="font-size:.48rem"></i> '+esc(x.name)+'</a></li>'}).join('')}
+// ========== CONTACT FORM ==========
+async function subCF(e) {
+  e.preventDefault();
+  var sub = {
+    id: gId(),
+    nick: document.getElementById('fn').value.trim(),
+    discordId: document.getElementById('fid').value.trim(),
+    service: document.getElementById('fs').value,
+    message: document.getElementById('fm').value.trim(),
+    time: Date.now()
+  };
+  DB.submissions.push(sub);
+  var success = await saveDB();
+  document.getElementById('cF').style.display = 'none';
+  document.getElementById('fO').classList.add('show');
+  sT2(success ? 'Wyslano na serwer!' : 'Zapisano lokalnie', success ? 'ok' : 'er');
+}
 
-var TABS=['proj','rev','team','msg'];
-function swT(tab){document.querySelectorAll('.at').forEach(function(t,i){t.classList.toggle('a',TABS[i]===tab)});document.querySelectorAll('.asc').forEach(function(s){s.classList.toggle('a',s.id==='t-'+tab)});if(tab==='msg')rAM()}
-function rAM(){var s=DB.submissions||[];document.getElementById('aMsgs').innerHTML=s.length?s.map(function(x){return '<div class="amsg"><div class="amav">'+esc(x.nick||'?')[0].toUpperCase()+'</div><div class="aminf"><h4>'+esc(x.nick)+'</h4><div class="mdc"><i class="fab fa-discord"></i> '+esc(x.discordId)+'</div><p><strong>'+esc(x.service)+':</strong> '+esc(x.message)+'</p><div class="mdt">'+new Date(x.time).toLocaleString('pl')+'</div></div><button class="amx" onclick="dSub(\''+x.id+'\')"><i class="fas fa-trash"></i></button></div>'}).join(''):'<p style="text-align:center;color:var(--t3);padding:3rem">Brak zgloszen</p>'}
-window.dSub=async function(id){DB.submissions=DB.submissions.filter(function(x){return x.id!==id});await saveDB();rAM();sT2('Usunieto','ok')};
+// ========== LIGHTBOX ==========
+var lII = [], lXX = 0;
+function oLB(i, x) {
+  lII = i; lXX = x;
+  document.getElementById('lI').src = lII[lXX];
+  document.getElementById('lC').textContent = (lXX + 1) + '/' + lII.length;
+  document.getElementById('lx').classList.add('a');
+  document.body.style.overflow = 'hidden';
+}
+function clLB() {
+  document.getElementById('lx').classList.remove('a');
+  document.body.style.overflow = '';
+}
+function nLB(d) {
+  lXX = (lXX + d + lII.length) % lII.length;
+  var i = document.getElementById('lI');
+  i.style.animation = 'none'; i.offsetHeight; i.style.animation = 'lZ .35s';
+  i.src = lII[lXX];
+  document.getElementById('lC').textContent = (lXX + 1) + '/' + lII.length;
+}
+document.getElementById('lx').addEventListener('click', function(e) { if (e.target === e.currentTarget) clLB(); });
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lx').classList.contains('a')) return;
+  if (e.key === 'Escape') clLB();
+  if (e.key === 'ArrowLeft') nLB(-1);
+  if (e.key === 'ArrowRight') nLB(1);
+});
 
-function rAdm(){
-  var rF=function(cId,items,ty,fn){document.getElementById(cId).innerHTML=items.map(function(i){return '<div class="ai">'+fn(i)+'<div class="aiac"><button class="aie" onclick="oM(\''+ty+'\',\''+i.id+'\')"><i class="fas fa-pen"></i></button><button class="aidd" onclick="dI(\''+ty+'\',\''+i.id+'\')"><i class="fas fa-trash"></i></button></div></div>'}).join('')||'<p style="text-align:center;color:var(--t3);padding:2rem">Brak</p>'};
-  rF('aProj',DB.projects,'project',function(p){return '<div class="aith">'+(p.image&&p.image.length>50?'<img src="'+p.image+'">':'<i class="'+(p.icon||'fas fa-folder')+'"></i>')+'</div><div class="aif"><h4>'+esc(p.name)+'</h4><p>'+esc(p.desc||'')+'</p></div>'});
-  rF('aRev',DB.reviews,'review',function(r){return '<div class="aith"><i class="fas fa-user"></i></div><div class="aif"><h4>'+esc(r.name)+' <span style="color:#fbbf24;font-size:.55rem">'+'<i class="fas fa-star"></i>'.repeat(r.stars)+'</span></h4><p>'+esc(r.text)+'</p></div>'});
-  rF('aTeam',DB.teams,'team',function(t){return '<div class="aith"><i class="fas fa-users"></i></div><div class="aif"><h4>'+esc(t.name)+'</h4><p>'+esc(t.desc||'')+'</p></div>'});
-  rAM()}
+// ========== PORTFOLIO RENDER ==========
+function rPort() {
+  var g = document.getElementById('pog');
+  g.innerHTML = '';
+  DB.projects.forEach(function(x) {
+    var c = document.createElement('div');
+    c.className = 'po g';
+    var h = x.image && x.image.length > 50;
+    c.innerHTML =
+      '<div class="pot" ' + (h ? 'onclick="zP(\'' + x.id + '\')"' : '') + '>' +
+        (h ? '<img src="' + x.image + '" alt="' + esc(x.name) + '" loading="lazy">' :
+             '<i class="' + (x.icon || 'fas fa-folder') + ' ti"></i>') +
+        '<div class="ov">' +
+          (h ? '<button class="ovb" onclick="event.stopPropagation();zP(\'' + x.id + '\')"><i class="fas fa-search-plus"></i> Zoom</button>' : '') +
+        '</div>' +
+      '</div>' +
+      '<div class="poi">' +
+        '<h3>' + esc(x.name) + '</h3>' +
+        '<p>' + esc(x.desc || '') + '</p>' +
+        '<div class="tgs">' + (x.tags || []).map(function(t) { return '<span class="tg">' + esc(t) + '</span>'; }).join('') + '</div>' +
+      '</div>';
+    g.appendChild(c);
+  });
+}
 
-var mTy='',eI=null,mIm='';
-function oM(ty,id){mTy=ty;eI=id||null;mIm='';var mc=document.getElementById('mC');
-var iF='<div class="fg"><label>Obraz</label><div class="imu" id="uA"><input type="file" accept="image/*" onchange="hI(event)"><button type="button" class="rmi" onclick="rI(event)"><i class="fas fa-times"></i></button><div class="uic"><i class="fas fa-cloud-upload-alt"></i></div><div class="utx"><strong>Kliknij</strong></div><img class="ipv" id="iP" src="" alt=""></div></div>';
-if(ty==='project'){var p=eI?DB.projects.find(function(x){return x.id===eI}):null;mIm=p?p.image||'':'';mc.innerHTML='<h3><i class="fas fa-'+(eI?'pen':'plus-circle')+'"></i> '+(eI?'Edytuj':'Nowy')+' projekt</h3><form onsubmit="svI(event)">'+iF+'<div class="fg"><label>Nazwa</label><input id="f_n" value="'+(p?esc(p.name):'')+'" required></div><div class="fr"><div class="fg"><label>Kategoria</label><select id="f_c"><option value="minecraft" '+(p&&p.category==='minecraft'?'selected':'')+'>Minecraft</option><option value="grafika" '+(p&&p.category==='grafika'?'selected':'')+'>Grafika</option><option value="skript" '+(p&&p.category==='skript'?'selected':'')+'>Skript</option><option value="animacja" '+(p&&p.category==='animacja'?'selected':'')+'>Animacja</option></select></div><div class="fg"><label>Ikona</label><input id="f_i" value="'+(p?p.icon:'fas fa-gamepad')+'"></div></div><div class="fg"><label>Opis</label><textarea id="f_d" required>'+(p?esc(p.desc||''):'')+'</textarea></div><div class="fg"><label>Tagi</label><input id="f_t" value="'+(p?(p.tags||[]).join(', '):'')+'"></div><div class="fac"><button type="button" class="fcn" onclick="clM()">Anuluj</button><button type="submit" class="fsv"><i class="fas fa-save"></i> Zapisz</button></div></form>'}
-else if(ty==='review'){var r=eI?DB.reviews.find(function(x){return x.id===eI}):null;mIm=r?r.avatar||'':'';mc.innerHTML='<h3><i class="fas fa-'+(eI?'pen':'plus-circle')+'"></i> '+(eI?'Edytuj':'Nowa')+' opinia</h3><form onsubmit="svI(event)">'+iF+'<div class="fr"><div class="fg"><label>Imie</label><input id="f_n" value="'+(r?esc(r.name):'')+'" required></div><div class="fg"><label>Rola</label><input id="f_r" value="'+(r?esc(r.role):'')+'" required></div></div><div class="fg"><label>Ocena (1-5)</label><input type="number" id="f_s" min="1" max="5" value="'+(r?r.stars:5)+'" required></div><div class="fg"><label>Tresc</label><textarea id="f_tx" required>'+(r?esc(r.text):'')+'</textarea></div><div class="fac"><button type="button" class="fcn" onclick="clM()">Anuluj</button><button type="submit" class="fsv"><i class="fas fa-save"></i> Zapisz</button></div></form>'}
-else if(ty==='team'){var t=eI?DB.teams.find(function(x){return x.id===eI}):null;mIm=t?t.icon||'':'';mc.innerHTML='<h3><i class="fas fa-'+(eI?'pen':'plus-circle')+'"></i> '+(eI?'Edytuj':'Nowy')+' zespol</h3><form onsubmit="svI(event)">'+iF+'<div class="fr"><div class="fg"><label>Nazwa</label><input id="f_n" value="'+(t?esc(t.name):'')+'" required></div><div class="fg"><label>Rola</label><input id="f_r" value="'+(t?esc(t.role):'')+'" required></div></div><div class="fg"><label>Opis</label><textarea id="f_d" required>'+(t?esc(t.desc||''):'')+'</textarea></div><div class="fr"><div class="fg"><label>Link</label><input id="f_l" value="'+(t?esc(t.link):'')+'" required></div><div class="fg"><label>Styl</label><select id="f_st"><option value="tv" '+(t&&t.style==='tv'?'selected':'')+'>Niebieski</option><option value="tz" '+(t&&t.style==='tz'?'selected':'')+'>Pomaranczowy</option><option value="tw" '+(t&&t.style==='tw'?'selected':'')+'>Fioletowy</option><option value="txx" '+(t&&t.style==='txx'?'selected':'')+'>Domyslny</option></select></div></div><div class="fg"><label>Skrot</label><input id="f_lo" maxlength="3" value="'+(t?esc(t.logo||''):'')+'"></div><div class="fac"><button type="button" class="fcn" onclick="clM()">Anuluj</button><button type="submit" class="fsv"><i class="fas fa-save"></i> Zapisz</button></div></form>'}
-document.getElementById('aMo').classList.add('a');setTimeout(function(){if(mIm){var a=document.getElementById('uA');if(a){document.getElementById('iP').src=mIm;a.classList.add('has')}}},60)}
-function clM(){document.getElementById('aMo').classList.remove('a');eI=null}
-window.hI=function(e){var f=e.target.files[0];if(!f)return;if(f.size>2e6){sT2('Max 2MB!','er');return}var r=new FileReader();r.onload=function(ev){mIm=ev.target.result;document.getElementById('iP').src=mIm;document.getElementById('uA').classList.add('has')};r.readAsDataURL(f)};
-window.rI=function(e){e.preventDefault();e.stopPropagation();mIm='';document.getElementById('iP').src='';document.getElementById('uA').classList.remove('has')};
+window.zP = function(id) {
+  var imgs = DB.projects.filter(function(x) { return x.image && x.image.length > 50; }).map(function(x) { return x.image; });
+  var it = DB.projects.find(function(x) { return x.id === id; });
+  if (it && it.image) oLB(imgs, Math.max(0, imgs.indexOf(it.image)));
+};
 
-window.svI=async function(e){e.preventDefault();
-if(mTy==='project'){var it={id:eI||gId(),name:document.getElementById('f_n').value.trim(),category:document.getElementById('f_c').value,icon:document.getElementById('f_i').value.trim()||'fas fa-folder',desc:document.getElementById('f_d').value.trim(),tags:document.getElementById('f_t').value.split(',').map(function(t){return t.trim()}).filter(Boolean),image:mIm};if(eI){var i=DB.projects.findIndex(function(x){return x.id===eI});if(i!==-1)DB.projects[i]=it}else DB.projects.push(it)}
-else if(mTy==='review'){var it={id:eI||gId(),name:document.getElementById('f_n').value.trim(),role:document.getElementById('f_r').value.trim(),stars:Math.min(5,Math.max(1,+document.getElementById('f_s').value)),text:document.getElementById('f_tx').value.trim(),avatar:mIm};if(eI){var i=DB.reviews.findIndex(function(x){return x.id===eI});if(i!==-1)DB.reviews[i]=it}else DB.reviews.push(it)}
-else if(mTy==='team'){var it={id:eI||gId(),name:document.getElementById('f_n').value.trim(),role:document.getElementById('f_r').value.trim(),desc:document.getElementById('f_d').value.trim(),link:document.getElementById('f_l').value.trim(),style:document.getElementById('f_st').value,icon:mIm,logo:document.getElementById('f_lo').value.trim()};if(eI){var i=DB.teams.findIndex(function(x){return x.id===eI});if(i!==-1)DB.teams[i]=it}else DB.teams.push(it)}
-await saveDB();renderAll();rAdm();clM();sT2(eI?'Zaktualizowano!':'Dodano!','ok')};
+// ========== CAROUSEL ==========
+var cIdx = 0, cAu, cAD = 6500, rcPaused = false, pAn;
 
-window.dI=async function(ty,id){if(!confirm('Usunac?'))return;
-if(ty==='project')DB.projects=DB.projects.filter(function(x){return x.id!==id});
-else if(ty==='review')DB.reviews=DB.reviews.filter(function(x){return x.id!==id});
-else if(ty==='team')DB.teams=DB.teams.filter(function(x){return x.id!==id});
-await saveDB();renderAll();rAdm();sT2('Usunieto','ok')};
+function rRev() {
+  var r = DB.reviews, tr = document.getElementById('rT'), dt = document.getElementById('cD');
+  if (!r || !r.length) {
+    tr.innerHTML = '<div class="rsl"><div class="rv g" style="text-align:center;padding:3rem"><p style="color:var(--t3)">Brak opinii</p></div></div>';
+    dt.innerHTML = '';
+    return;
+  }
+  var ps = innerWidth < 968 ? 1 : 2;
+  var sl = [];
+  for (var i = 0; i < r.length; i += ps) sl.push(r.slice(i, i + ps));
 
-var SEC='2234',sC=0,sTm;
-document.getElementById('sec').addEventListener('click',function(){sC++;clearTimeout(sTm);sTm=setTimeout(function(){sC=0},2000);if(sC>=5){sC=0;oAL()}});
-document.addEventListener('keydown',function(e){if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault();oAL()}});
-function oAL(){document.getElementById('aO').classList.add('a');document.getElementById('cE').style.display='none';var inp=document.querySelectorAll('#cI input');inp.forEach(function(x){x.value=''});setTimeout(function(){inp[0].focus()},120)}
-function clA(){document.getElementById('aO').classList.remove('a')}
-document.querySelectorAll('#cI input').forEach(function(inp,i,arr){inp.addEventListener('input',function(){inp.value=inp.value.replace(/\D/g,'');if(inp.value&&i<arr.length-1)arr[i+1].focus();if(i===arr.length-1&&inp.value)vC()});inp.addEventListener('keydown',function(e){if(e.key==='Backspace'&&!inp.value&&i>0){arr[i-1].focus();arr[i-1].value=''}if(e.key==='Enter')vC()});inp.addEventListener('paste',function(e){e.preventDefault();var p=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'').substr(0,4);p.split('').forEach(function(ch,ci){if(arr[ci])arr[ci].value=ch});if(p.length===4)vC()})});
-function vC(){var inputs=document.querySelectorAll('#cI input'),code=Array.from(inputs).map(function(i){return i.value}).join('');if(code===SEC){clA();document.getElementById('aP').classList.add('a');document.body.style.overflow='hidden';rAdm();sT2('Zalogowano!','ok')}else{document.getElementById('cE').style.display='flex';inputs.forEach(function(inp){inp.value='';inp.style.borderColor='#ef4444';setTimeout(function(){inp.style.borderColor=''},1500)});inputs[0].focus();var l=document.querySelector('.al');l.style.animation='none';l.offsetHeight;l.style.animation='shk .45s'}}
-function clAP(){document.getElementById('aP').classList.remove('a');document.body.style.overflow=''}
-function sT2(m,t){var el=document.getElementById('toast'),msg=document.getElementById('tM');msg.textContent=m;el.className='toast '+(t||'ok');el.querySelector('i').className=t==='ok'?'fas fa-check-circle':'fas fa-exclamation-circle';setTimeout(function(){el.classList.add('show')},10);setTimeout(function(){el.classList.remove('show')},3500)}
+  tr.innerHTML = sl.map(function(s) {
+    return '<div class="rsl">' + s.map(function(rv) {
+      var sh = '';
+      for (var i = 0; i < 5; i++) sh += i < rv.stars ? '<i class="fas fa-star rvst f"></i>' : '<i class="far fa-star rvst e"></i>';
+      return '<div class="rv g"><div class="rvs">' + sh + '</div><p class="rvtx">' + esc(rv.text) + '</p><div class="rva"><div class="rvav">' +
+        (rv.avatar && rv.avatar.length > 50 ? '<img src="' + rv.avatar + '">' : (rv.name ? rv.name[0] : '?')) +
+        '</div><div><div class="rvnm">' + esc(rv.name) + '</div><div class="rvrl">' + esc(rv.role) + '</div></div></div></div>';
+    }).join('') + '</div>';
+  }).join('');
 
-function renderAll(){rPort();rRev();rTeams()}
+  dt.innerHTML = sl.map(function(_, i) {
+    return '<button class="crdot ' + (i === 0 ? 'a' : '') + '" onclick="gSl(' + i + ')"></button>';
+  }).join('');
 
-// PARTICLES
-var cv=document.getElementById('pc'),cx2=cv.getContext('2d'),pts=[],mP={x:null,y:null},aI;
-function rsz(){cv.width=innerWidth;cv.height=innerHeight}rsz();addEventListener('resize',function(){rsz();iP();rRev()});
-function P(){this.x=Math.random()*cv.width;this.y=Math.random()*cv.height;this.s=Math.random()*1.6+.3;this.vx=(Math.random()-.5)*.2;this.vy=(Math.random()-.5)*.2;this.o=Math.random()*.3+.04;this.oD=Math.random()>.5?1:-1;this.h=Math.random()*35+262}
-P.prototype.u=function(){this.x+=this.vx;this.y+=this.vy;if(mP.x!==null){var dx=mP.x-this.x,dy=mP.y-this.y,d=Math.sqrt(dx*dx+dy*dy);if(d<160){var f=(160-d)/160;this.x-=(dx/d)*f*.9;this.y-=(dy/d)*f*.9}}this.o+=.001*this.oD;if(this.o>=.35)this.oD=-1;if(this.o<=.04)this.oD=1;if(this.x<-10)this.x=cv.width+10;if(this.x>cv.width+10)this.x=-10;if(this.y<-10)this.y=cv.height+10;if(this.y>cv.height+10)this.y=-10};
-P.prototype.d=function(){cx2.beginPath();cx2.arc(this.x,this.y,this.s,0,Math.PI*2);cx2.fillStyle='hsla('+this.h+',60%,55%,'+this.o+')';cx2.fill()};
-function iP(){pts=[];for(var i=0;i<Math.min(Math.floor(cv.width*cv.height/16000),110);i++)pts.push(new P)}
-function dC(){for(var i=0;i<pts.length;i++)for(var j=i+1;j<pts.length;j++){var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<85){cx2.beginPath();cx2.moveTo(pts[i].x,pts[i].y);cx2.lineTo(pts[j].x,pts[j].y);cx2.strokeStyle='hsla(270,45%,42%,'+(1-d/85)*.05+')';cx2.lineWidth=.35;cx2.stroke()}}}
-function anm(){cx2.clearRect(0,0,cv.width,cv.height);pts.forEach(function(p){p.u();p.d()});dC();aI=requestAnimationFrame(anm)}iP();anm();
-document.addEventListener('mousemove',function(e){mP.x=e.clientX;mP.y=e.clientY});
+  cIdx = 0;
+  uC();
+  stAC();
+}
 
-// CURSOR
-var cDe=document.getElementById('cd'),cRe=document.getElementById('cr'),cxx=0,cyy=0,rxx=0,ryy=0;
-document.addEventListener('mousemove',function(e){cxx=e.clientX;cyy=e.clientY});
-function cLoop(){rxx+=(cxx-rxx)*.13;ryy+=(cyy-ryy)*.13;cDe.style.left=(cxx-3)+'px';cDe.style.top=(cyy-3)+'px';cRe.style.left=(rxx-20)+'px';cRe.style.top=(ryy-20)+'px';requestAnimationFrame(cLoop)}cLoop();
-document.querySelectorAll('a,button,.g,.pll,.nb,.tg,.ovb').forEach(function(el){el.addEventListener('mouseenter',function(){cRe.classList.add('h')});el.addEventListener('mouseleave',function(){cRe.classList.remove('h')})});
-document.addEventListener('mousemove',function(e){document.querySelectorAll('.g').forEach(function(c){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})});
+function uC() {
+  var tr = document.getElementById('rT');
+  if (tr) tr.style.transform = 'translateX(-' + cIdx * 100 + '%)';
+  document.querySelectorAll('.crdot').forEach(function(d, i) { d.classList.toggle('a', i === cIdx); });
+  stPB();
+}
 
-addEventListener('scroll',function(){var s=scrollY;document.getElementById('nav').classList.toggle('s',s>50);document.querySelectorAll('section[id]').forEach(function(sec){if(s+200>=sec.offsetTop&&s+200<sec.offsetTop+sec.offsetHeight){document.querySelectorAll('.nl a').forEach(function(a){a.classList.remove('a')});var a=document.querySelector('.nl a[href="#'+sec.id+'"]');if(a)a.classList.add('a')}});document.getElementById('sp').style.width=(s/(document.documentElement.scrollHeight-innerHeight))*100+'%';document.getElementById('sct').classList.toggle('v',s>400)});
-document.getElementById('sct').addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
-var mTg=document.getElementById('mT'),mMe=document.getElementById('mM');mTg.addEventListener('click',function(){mTg.classList.toggle('a');mMe.classList.toggle('a')});mMe.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mTg.classList.remove('a');mMe.classList.remove('a')})});
-var html=document.documentElement;html.dataset.theme=localStorage.getItem('v_th')||'dark';document.getElementById('thI').className=html.dataset.theme==='dark'?'fas fa-moon':'fas fa-sun';
-document.getElementById('thT').addEventListener('click',function(){var n=html.dataset.theme==='dark'?'light':'dark';html.dataset.theme=n;localStorage.setItem('v_th',n);document.getElementById('thI').className=n==='dark'?'fas fa-moon':'fas fa-sun'});
-function anCt(){document.querySelectorAll('.st .n').forEach(function(c){var t=+c.dataset.t,step=t/90,cur=0;var timer=setInterval(function(){cur+=step;if(cur>=t){c.textContent=t+(t===99?'%':'+');clearInterval(timer)}else c.textContent=Math.floor(cur)+(t===99?'%':'+')},20)})}
-var sOb=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){document.querySelectorAll('.skf').forEach(function(b){b.style.width=b.dataset.w+'%'});sOb.unobserve(en.target)}})},{threshold:.25});if(document.getElementById('skG'))sOb.observe(document.getElementById('skG'));
-document.querySelectorAll('.rv2,.sg').forEach(function(el){new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('v')})},{threshold:.05}).observe(el)});
-document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
-addEventListener('scroll',function(){var s=scrollY,h=document.querySelector('.hc');if(h&&s<innerHeight){h.style.transform='translateY('+s*.18+'px)';h.style.opacity=1-s/(innerHeight*.6)}});
-var hN=document.getElementById('hN'),oN='Vern0x',gCh='!@#$%^&*01_-+=<>~';hN.addEventListener('mouseenter',function(){var it=0;var iv=setInterval(function(){hN.textContent=oN.split('').map(function(c,i){return i<it?oN[i]:gCh[Math.floor(Math.random()*gCh.length)]}).join('');if(it>=oN.length)clearInterval(iv);it+=.35},32)});
-document.querySelectorAll('.stt').forEach(function(t){var o=t.textContent;var p=false;new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!p){p=true;var it=0;var ch='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';var iv=setInterval(function(){t.textContent=o.split('').map(function(c,i){return c===' '?' ':i<it?o[i]:ch[Math.floor(Math.random()*ch.length)]}).join('');if(it>=o.length)clearInterval(iv);it+=.45},26)}})},{threshold:.35}).observe(t)});
-document.getElementById('sec').style.transition='opacity .3s';document.getElementById('sec').addEventListener('mouseenter',function(){this.style.opacity='.3'});document.getElementById('sec').addEventListener('mouseleave',function(){this.style.opacity='0'});
-document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(aI);else anm()});
-if(!localStorage.getItem('v_ck'))setTimeout(function(){document.getElementById('ck').classList.add('show')},1800);
+function stPB() {
+  var b = document.getElementById('cP');
+  if (!b) return;
+  b.style.transition = 'none';
+  b.style.width = '0%';
+  if (pAn) cancelAnimationFrame(pAn);
+  var st = null;
+  function step(ts) {
+    if (!st) st = ts;
+    var p = Math.min((ts - st) / cAD * 100, 100);
+    b.style.width = p + '%';
+    if (p < 100) pAn = requestAnimationFrame(step);
+  }
+  pAn = requestAnimationFrame(step);
+}
 
-// INIT
-(async function(){
+function stAC() {
+  if (cAu) clearInterval(cAu);
+  cAu = setInterval(function() {
+    if (rcPaused) return;
+    var t = document.querySelectorAll('.rsl').length;
+    if (t > 0) { cIdx = (cIdx + 1) % t; uC(); }
+  }, cAD);
+}
+
+function rsAC() {
+  if (cAu) clearInterval(cAu);
+  stAC();
+}
+
+window.cNav = function(d) {
+  var t = document.querySelectorAll('.rsl').length;
+  if (t > 0) { cIdx = (cIdx + d + t) % t; uC(); rsAC(); }
+};
+window.gSl = function(i) { cIdx = i; uC(); rsAC(); };
+
+// Carousel pause on hover
+(function() {
+  var rc = document.querySelector('.rc');
+  if (rc) {
+    rc.addEventListener('mouseenter', function() { rcPaused = true; });
+    rc.addEventListener('mouseleave', function() { rcPaused = false; });
+  }
+})();
+
+// ========== TEAMS RENDER ==========
+function rTeams() {
+  document.getElementById('tg').innerHTML = DB.teams.map(function(x) {
+    return '<a href="' + esc(x.link) + '" target="_blank" rel="noreferrer" class="tc g ' + (x.style || 'txx') + '">' +
+      '<div class="th"><div class="tl">' +
+        (x.icon && x.icon.length > 50 ? '<img src="' + x.icon + '">' : (x.logo || x.name[0])) +
+      '</div><div><div class="tn">' + esc(x.name) + '</div><div class="tr">' + esc(x.role) + '</div></div></div>' +
+      '<p class="td">' + esc(x.desc || '') + '</p>' +
+      '<div class="tj"><i class="fab fa-discord"></i> Dolacz <i class="fas fa-arrow-right" style="font-size:.6rem"></i></div></a>';
+  }).join('');
+
+  document.getElementById('fT').innerHTML = DB.teams.map(function(x) {
+    return '<li><a href="' + esc(x.link) + '" target="_blank"><i class="fas fa-chevron-right" style="font-size:.48rem"></i> ' + esc(x.name) + '</a></li>';
+  }).join('');
+}
+
+// ========== ADMIN PANEL ==========
+var TABS = ['proj', 'rev', 'team', 'cfg', 'msg'];
+
+function swT(tab) {
+  document.querySelectorAll('.at').forEach(function(t, i) { t.classList.toggle('a', TABS[i] === tab); });
+  document.querySelectorAll('.asc').forEach(function(s) { s.classList.toggle('a', s.id === 't-' + tab); });
+  if (tab === 'msg') rAM();
+  if (tab === 'cfg') updateCfgUI();
+}
+
+function updateCfgUI() {
+  var binEl = document.getElementById('cfg_bin');
+  var keyEl = document.getElementById('cfg_key');
+  var statusEl = document.getElementById('cfg_status');
+  if (binEl) binEl.textContent = BIN_ID;
+  if (keyEl) keyEl.textContent = '******' + API_KEY.slice(-8);
+  if (statusEl) {
+    statusEl.innerHTML = CONFIG.bin_id ?
+      '<i class="fas fa-circle" style="color:#22c55e;font-size:.5rem"></i> Polaczono zdalnie' :
+      '<i class="fas fa-circle" style="color:#ef4444;font-size:.5rem"></i> Demo - TYLKO LOKALNIE';
+  }
+}
+
+function rAM() {
+  var s = DB.submissions || [];
+  document.getElementById('aMsgs').innerHTML = s.length ? s.map(function(x) {
+    return '<div class="amsg"><div class="amav">' + esc(x.nick || '?')[0].toUpperCase() + '</div>' +
+      '<div class="aminf"><h4>' + esc(x.nick) + '</h4>' +
+      '<div class="mdc"><i class="fab fa-discord"></i> ' + esc(x.discordId) + '</div>' +
+      '<p><strong>' + esc(x.service) + ':</strong> ' + esc(x.message) + '</p>' +
+      '<div class="mdt">' + new Date(x.time).toLocaleString('pl') + '</div></div>' +
+      '<button class="amx" onclick="dSub(\'' + x.id + '\')"><i class="fas fa-trash"></i></button></div>';
+  }).join('') : '<p style="text-align:center;color:var(--t3);padding:3rem">Brak zgloszen</p>';
+}
+
+window.dSub = async function(id) {
+  DB.submissions = DB.submissions.filter(function(x) { return x.id !== id; });
+  await saveDB(); rAM(); sT2('Usunieto', 'ok');
+};
+
+var cfgEditType = '';
+window.oCfg = function(ty) {
+  cfgEditType = ty;
+  var mc = document.getElementById('mC');
+  mc.innerHTML =
+    '<h3><i class="fas fa-cogs"></i> Konfiguracja API</h3>' +
+    '<form onsubmit="svCfg(event)">' +
+      '<div class="fg"><label>' + (ty === 'bin' ? 'BIN_ID' : 'API Key (Master Key)') + '</label>' +
+      '<input id="cfg_val" value="' + (ty === 'bin' ? BIN_ID : API_KEY) + '" required style="font-family:monospace"></div>' +
+      '<div class="fac">' +
+        '<button type="button" class="fcn" onclick="clM()">Anuluj</button>' +
+        '<button type="submit" class="fsv">Zapisz & Test</button>' +
+      '</div>' +
+    '</form>';
+  document.getElementById('aMo').classList.add('a');
+};
+
+window.svCfg = async function(e) {
+  e.preventDefault();
+  var val = document.getElementById('cfg_val').value.trim();
+  if (cfgEditType === 'bin') BIN_ID = val;
+  else API_KEY = val;
+  saveConfig();
+  clM();
+  updateCfgUI();
+  testDB();
+  await loadDB();
+  renderAll();
+  sT2('Konfiguracja zapisana!', 'ok');
+};
+
+function rAdm() {
+  var rF = function(cId, items, ty, fn) {
+    document.getElementById(cId).innerHTML = items.map(function(i) {
+      return '<div class="ai">' + fn(i) +
+        '<div class="aiac">' +
+          '<button class="aie" onclick="oM(\'' + ty + '\',\'' + i.id + '\')"><i class="fas fa-pen"></i></button>' +
+          '<button class="aidd" onclick="dI(\'' + ty + '\',\'' + i.id + '\')"><i class="fas fa-trash"></i></button>' +
+        '</div></div>';
+    }).join('') || '<p style="text-align:center;color:var(--t3);padding:2rem">Brak</p>';
+  };
+
+  rF('aProj', DB.projects, 'project', function(p) {
+    return '<div class="aith">' + (p.image && p.image.length > 50 ? '<img src="' + p.image + '">' : '<i class="' + (p.icon || 'fas fa-folder') + '"></i>') + '</div>' +
+      '<div class="aif"><h4>' + esc(p.name) + '</h4><p>' + esc(p.desc || '') + '</p></div>';
+  });
+
+  rF('aRev', DB.reviews, 'review', function(r) {
+    return '<div class="aith"><i class="fas fa-user"></i></div>' +
+      '<div class="aif"><h4>' + esc(r.name) + ' <span style="color:#fbbf24;font-size:.55rem">' + '<i class="fas fa-star"></i>'.repeat(r.stars) + '</span></h4><p>' + esc(r.text) + '</p></div>';
+  });
+
+  rF('aTeam', DB.teams, 'team', function(t) {
+    return '<div class="aith"><i class="fas fa-users"></i></div>' +
+      '<div class="aif"><h4>' + esc(t.name) + '</h4><p>' + esc(t.desc || '') + '</p></div>';
+  });
+
+  rAM();
+  updateCfgUI();
+}
+
+// ========== ADMIN MODALS ==========
+var mTy = '', eI = null, mIm = '';
+
+function oM(ty, id) {
+  mTy = ty; eI = id || null; mIm = '';
+  var mc = document.getElementById('mC');
+
+  var iF = '<div class="fg"><label>Obraz</label><div class="imu" id="uA">' +
+    '<input type="file" accept="image/*" onchange="hI(event)">' +
+    '<button type="button" class="rmi" onclick="rI(event)"><i class="fas fa-times"></i></button>' +
+    '<div class="uic"><i class="fas fa-cloud-upload-alt"></i></div>' +
+    '<div class="utx"><strong>Kliknij</strong></div>' +
+    '<img class="ipv" id="iP" src="" alt=""></div></div>';
+
+  if (ty === 'project') {
+    var p = eI ? DB.projects.find(function(x) { return x.id === eI; }) : null;
+    mIm = p ? p.image || '' : '';
+    mc.innerHTML = '<h3><i class="fas fa-' + (eI ? 'pen' : 'plus-circle') + '"></i> ' + (eI ? 'Edytuj' : 'Nowy') + ' projekt</h3>' +
+      '<form onsubmit="svI(event)">' + iF +
+      '<div class="fg"><label>Nazwa</label><input id="f_n" value="' + (p ? esc(p.name) : '') + '" required></div>' +
+      '<div class="fr"><div class="fg"><label>Kategoria</label><select id="f_c">' +
+        '<option value="minecraft"' + (p && p.category === 'minecraft' ? ' selected' : '') + '>Minecraft</option>' +
+        '<option value="grafika"' + (p && p.category === 'grafika' ? ' selected' : '') + '>Grafika</option>' +
+        '<option value="skript"' + (p && p.category === 'skript' ? ' selected' : '') + '>Skript</option>' +
+        '<option value="animacja"' + (p && p.category === 'animacja' ? ' selected' : '') + '>Animacja</option>' +
+      '</select></div>' +
+      '<div class="fg"><label>Ikona</label><input id="f_i" value="' + (p ? p.icon : 'fas fa-gamepad') + '"></div></div>' +
+      '<div class="fg"><label>Opis</label><textarea id="f_d" required>' + (p ? esc(p.desc || '') : '') + '</textarea></div>' +
+      '<div class="fg"><label>Tagi (oddziel przecinkiem)</label><input id="f_t" value="' + (p ? (p.tags || []).join(', ') : '') + '"></div>' +
+      '<div class="fac"><button type="button" class="fcn" onclick="clM()">Anuluj</button><button type="submit" class="fsv"><i class="fas fa-save"></i> Zapisz</button></div></form>';
+  } else if (ty === 'review') {
+    var r = eI ? DB.reviews.find(function(x) { return x.id === eI; }) : null;
+    mIm = r ? r.avatar || '' : '';
+    mc.innerHTML = '<h3><i class="fas fa-' + (eI ? 'pen' : 'plus-circle') + '"></i> ' + (eI ? 'Edytuj' : 'Nowa') + ' opinia</h3>' +
+      '<form onsubmit="svI(event)">' + iF +
+      '<div class="fr"><div class="fg"><label>Imie</label><input id="f_n" value="' + (r ? esc(r.name) : '') + '" required></div>' +
+      '<div class="fg"><label>Rola</label><input id="f_r" value="' + (r ? esc(r.role) : '') + '" required></div></div>' +
+      '<div class="fg"><label>Ocena (1-5)</label><input type="number" id="f_s" min="1" max="5" value="' + (r ? r.stars : 5) + '" required></div>' +
+      '<div class="fg"><label>Tresc</label><textarea id="f_tx" required>' + (r ? esc(r.text) : '') + '</textarea></div>' +
+      '<div class="fac"><button type="button" class="fcn" onclick="clM()">Anuluj</button><button type="submit" class="fsv"><i class="fas fa-save"></i> Zapisz</button></div></form>';
+  } else if (ty === 'team') {
+    var t = eI ? DB.teams.find(function(x) { return x.id === eI; }) : null;
+    mIm = t ? t.icon || '' : '';
+    mc.innerHTML = '<h3><i class="fas fa-' + (eI ? 'pen' : 'plus-circle') + '"></i> ' + (eI ? 'Edytuj' : 'Nowy') + ' zespol</h3>' +
+      '<form onsubmit="svI(event)">' + iF +
+      '<div class="fr"><div class="fg"><label>Nazwa</label><input id="f_n" value="' + (t ? esc(t.name) : '') + '" required></div>' +
+      '<div class="fg"><label>Rola</label><input id="f_r" value="' + (t ? esc(t.role) : '') + '" required></div></div>' +
+      '<div class="fg"><label>Opis</label><textarea id="f_d" required>' + (t ? esc(t.desc || '') : '') + '</textarea></div>' +
+      '<div class="fr"><div class="fg"><label>Link</label><input id="f_l" value="' + (t ? esc(t.link) : '') + '" required></div>' +
+      '<div class="fg"><label>Styl</label><select id="f_st">' +
+        '<option value="tv"' + (t && t.style === 'tv' ? ' selected' : '') + '>Niebieski</option>' +
+        '<option value="tz"' + (t && t.style === 'tz' ? ' selected' : '') + '>Pomaranczowy</option>' +
+        '<option value="tw"' + (t && t.style === 'tw' ? ' selected' : '') + '>Fioletowy</option>' +
+        '<option value="txx"' + (t && t.style === 'txx' ? ' selected' : '') + '>Domyslny</option>' +
+      '</select></div></div>' +
+      '<div class="fg"><label>Skrot (max 3 znaki)</label><input id="f_lo" maxlength="3" value="' + (t ? esc(t.logo || '') : '') + '"></div>' +
+      '<div class="fac"><button type="button" class="fcn" onclick="clM()">Anuluj</button><button type="submit" class="fsv"><i class="fas fa-save"></i> Zapisz</button></div></form>';
+  }
+
+  document.getElementById('aMo').classList.add('a');
+  setTimeout(function() {
+    if (mIm) {
+      var a = document.getElementById('uA');
+      if (a) { document.getElementById('iP').src = mIm; a.classList.add('has'); }
+    }
+  }, 60);
+}
+
+function clM() { document.getElementById('aMo').classList.remove('a'); eI = null; }
+
+window.hI = function(e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  if (f.size > 2e6) { sT2('Max 2MB!', 'er'); return; }
+  var r = new FileReader();
+  r.onload = function(ev) {
+    mIm = ev.target.result;
+    document.getElementById('iP').src = mIm;
+    document.getElementById('uA').classList.add('has');
+  };
+  r.readAsDataURL(f);
+};
+
+window.rI = function(e) {
+  e.preventDefault(); e.stopPropagation();
+  mIm = '';
+  document.getElementById('iP').src = '';
+  document.getElementById('uA').classList.remove('has');
+};
+
+window.svI = async function(e) {
+  e.preventDefault();
+  var success = true;
+
+  if (mTy === 'project') {
+    var it = {
+      id: eI || gId(),
+      name: document.getElementById('f_n').value.trim(),
+      category: document.getElementById('f_c').value,
+      icon: document.getElementById('f_i').value.trim() || 'fas fa-folder',
+      desc: document.getElementById('f_d').value.trim(),
+      tags: document.getElementById('f_t').value.split(',').map(function(t) { return t.trim(); }).filter(Boolean),
+      image: mIm
+    };
+    if (eI) { var i = DB.projects.findIndex(function(x) { return x.id === eI; }); if (i !== -1) DB.projects[i] = it; }
+    else DB.projects.push(it);
+  } else if (mTy === 'review') {
+    var it = {
+      id: eI || gId(),
+      name: document.getElementById('f_n').value.trim(),
+      role: document.getElementById('f_r').value.trim(),
+      stars: Math.min(5, Math.max(1, +document.getElementById('f_s').value)),
+      text: document.getElementById('f_tx').value.trim(),
+      avatar: mIm
+    };
+    if (eI) { var i = DB.reviews.findIndex(function(x) { return x.id === eI; }); if (i !== -1) DB.reviews[i] = it; }
+    else DB.reviews.push(it);
+  } else if (mTy === 'team') {
+    var it = {
+      id: eI || gId(),
+      name: document.getElementById('f_n').value.trim(),
+      role: document.getElementById('f_r').value.trim(),
+      desc: document.getElementById('f_d').value.trim(),
+      link: document.getElementById('f_l').value.trim(),
+      style: document.getElementById('f_st').value,
+      icon: mIm,
+      logo: document.getElementById('f_lo').value.trim()
+    };
+    if (eI) { var i = DB.teams.findIndex(function(x) { return x.id === eI; }); if (i !== -1) DB.teams[i] = it; }
+    else DB.teams.push(it);
+  }
+
+  success = await saveDB();
+  renderAll(); rAdm(); clM();
+  sT2((eI ? 'Zaktualizowano' : 'Dodano') + (success ? ' na serwer!' : ' lokalnie'), success ? 'ok' : 'er');
+};
+
+window.dI = async function(ty, id) {
+  if (!confirm('Usunac?')) return;
+  if (ty === 'project') DB.projects = DB.projects.filter(function(x) { return x.id !== id; });
+  else if (ty === 'review') DB.reviews = DB.reviews.filter(function(x) { return x.id !== id; });
+  else if (ty === 'team') DB.teams = DB.teams.filter(function(x) { return x.id !== id; });
+  await saveDB(); renderAll(); rAdm(); sT2('Usunieto', 'ok');
+};
+
+// ========== ADMIN AUTH ==========
+var SEC = '2234', sC = 0, sTm;
+
+document.getElementById('sec').addEventListener('click', function() {
+  sC++;
+  clearTimeout(sTm);
+  sTm = setTimeout(function() { sC = 0; }, 2000);
+  if (sC >= 5) { sC = 0; oAL(); }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key === 'A') { e.preventDefault(); oAL(); }
+});
+
+function oAL() {
+  document.getElementById('aO').classList.add('a');
+  document.getElementById('cE').style.display = 'none';
+  var inp = document.querySelectorAll('#cI input');
+  inp.forEach(function(x) { x.value = ''; });
+  setTimeout(function() { inp[0].focus(); }, 120);
+}
+
+function clA() { document.getElementById('aO').classList.remove('a'); }
+
+document.querySelectorAll('#cI input').forEach(function(inp, i, arr) {
+  inp.addEventListener('input', function() {
+    inp.value = inp.value.replace(/\D/g, '');
+    if (inp.value && i < arr.length - 1) arr[i + 1].focus();
+    if (i === arr.length - 1 && inp.value) vC();
+  });
+  inp.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace' && !inp.value && i > 0) { arr[i - 1].focus(); arr[i - 1].value = ''; }
+    if (e.key === 'Enter') vC();
+  });
+  inp.addEventListener('paste', function(e) {
+    e.preventDefault();
+    var p = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').substr(0, 4);
+    p.split('').forEach(function(ch, ci) { if (arr[ci]) arr[ci].value = ch; });
+    if (p.length === 4) vC();
+  });
+});
+
+function vC() {
+  var inputs = document.querySelectorAll('#cI input');
+  var code = Array.from(inputs).map(function(i) { return i.value; }).join('');
+  if (code === SEC) {
+    clA();
+    document.getElementById('aP').classList.add('a');
+    document.body.style.overflow = 'hidden';
+    rAdm();
+    sT2('Zalogowano!', 'ok');
+  } else {
+    document.getElementById('cE').style.display = 'flex';
+    inputs.forEach(function(inp) {
+      inp.value = '';
+      inp.style.borderColor = '#ef4444';
+      setTimeout(function() { inp.style.borderColor = ''; }, 1500);
+    });
+    inputs[0].focus();
+    var l = document.querySelector('.al');
+    l.style.animation = 'none'; l.offsetHeight; l.style.animation = 'shk .45s';
+  }
+}
+
+function clAP() {
+  document.getElementById('aP').classList.remove('a');
+  document.body.style.overflow = '';
+}
+
+// ========== RENDER ALL ==========
+function renderAll() { rPort(); rRev(); rTeams(); }
+
+// ========== PARTICLES ==========
+var cv = document.getElementById('pc'), cx2 = cv.getContext('2d'), pts = [], mP = { x: null, y: null }, aI;
+
+function rsz() { cv.width = innerWidth; cv.height = innerHeight; }
+rsz();
+
+function P() {
+  this.x = Math.random() * cv.width;
+  this.y = Math.random() * cv.height;
+  this.s = Math.random() * 1.6 + .3;
+  this.vx = (Math.random() - .5) * .2;
+  this.vy = (Math.random() - .5) * .2;
+  this.o = Math.random() * .3 + .04;
+  this.oD = Math.random() > .5 ? 1 : -1;
+  this.h = Math.random() * 35 + 262;
+}
+P.prototype.u = function() {
+  this.x += this.vx; this.y += this.vy;
+  if (mP.x !== null) {
+    var dx = mP.x - this.x, dy = mP.y - this.y, d = Math.sqrt(dx * dx + dy * dy);
+    if (d < 160) { var f = (160 - d) / 160; this.x -= (dx / d) * f * .9; this.y -= (dy / d) * f * .9; }
+  }
+  this.o += .001 * this.oD;
+  if (this.o >= .35) this.oD = -1;
+  if (this.o <= .04) this.oD = 1;
+  if (this.x < -10) this.x = cv.width + 10;
+  if (this.x > cv.width + 10) this.x = -10;
+  if (this.y < -10) this.y = cv.height + 10;
+  if (this.y > cv.height + 10) this.y = -10;
+};
+P.prototype.d = function() {
+  cx2.beginPath(); cx2.arc(this.x, this.y, this.s, 0, Math.PI * 2);
+  cx2.fillStyle = 'hsla(' + this.h + ',60%,55%,' + this.o + ')'; cx2.fill();
+};
+
+function iP() {
+  pts = [];
+  for (var i = 0; i < Math.min(Math.floor(cv.width * cv.height / 16000), 110); i++) pts.push(new P());
+}
+
+function dC() {
+  for (var i = 0; i < pts.length; i++) {
+    for (var j = i + 1; j < pts.length; j++) {
+      var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 85) {
+        cx2.beginPath(); cx2.moveTo(pts[i].x, pts[i].y); cx2.lineTo(pts[j].x, pts[j].y);
+        cx2.strokeStyle = 'hsla(270,45%,42%,' + (1 - d / 85) * .05 + ')';
+        cx2.lineWidth = .35; cx2.stroke();
+      }
+    }
+  }
+}
+
+function anm() {
+  cx2.clearRect(0, 0, cv.width, cv.height);
+  pts.forEach(function(p) { p.u(); p.d(); });
+  dC();
+  aI = requestAnimationFrame(anm);
+}
+iP(); anm();
+
+// ========== CUSTOM CURSOR ==========
+var cDe = document.getElementById('cd'), cRe = document.getElementById('cr');
+var cxx = 0, cyy = 0, rxx = 0, ryy = 0;
+
+document.addEventListener('mousemove', function(e) {
+  cxx = e.clientX; cyy = e.clientY;
+  mP.x = e.clientX; mP.y = e.clientY;
+  // Glass card glow
+  document.querySelectorAll('.g').forEach(function(c) {
+    var r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
+
+function cLoop() {
+  rxx += (cxx - rxx) * .13; ryy += (cyy - ryy) * .13;
+  if (cDe) { cDe.style.left = (cxx - 3) + 'px'; cDe.style.top = (cyy - 3) + 'px'; }
+  if (cRe) { cRe.style.left = (rxx - 20) + 'px'; cRe.style.top = (ryy - 20) + 'px'; }
+  requestAnimationFrame(cLoop);
+}
+cLoop();
+
+// Cursor hover — use event delegation for dynamic elements
+document.addEventListener('mouseenter', function(e) {
+  if (e.target.closest && e.target.closest('a,button,.g,.pll,.nb,.tg,.ovb')) {
+    cRe && cRe.classList.add('h');
+  }
+}, true);
+document.addEventListener('mouseleave', function(e) {
+  if (e.target.closest && e.target.closest('a,button,.g,.pll,.nb,.tg,.ovb')) {
+    cRe && cRe.classList.remove('h');
+  }
+}, true);
+
+// ========== SCROLL EVENTS ==========
+var lastScroll = 0;
+addEventListener('scroll', function() {
+  var s = scrollY;
+
+  // Nav shadow
+  document.getElementById('nav').classList.toggle('s', s > 50);
+
+  // Active nav link
+  document.querySelectorAll('section[id]').forEach(function(sec) {
+    if (s + 200 >= sec.offsetTop && s + 200 < sec.offsetTop + sec.offsetHeight) {
+      document.querySelectorAll('.nl a').forEach(function(a) { a.classList.remove('a'); });
+      var a = document.querySelector('.nl a[href="#' + sec.id + '"]');
+      if (a) a.classList.add('a');
+    }
+  });
+
+  // Progress bar
+  document.getElementById('sp').style.width = (s / (document.documentElement.scrollHeight - innerHeight)) * 100 + '%';
+
+  // Scroll to top button
+  document.getElementById('sct').classList.toggle('v', s > 400);
+
+  // Hero parallax
+  var h = document.querySelector('.hc');
+  if (h && s < innerHeight) {
+    h.style.transform = 'translateY(' + s * .18 + 'px)';
+    h.style.opacity = 1 - s / (innerHeight * .6);
+  }
+
+  lastScroll = s;
+});
+
+document.getElementById('sct').addEventListener('click', function() { scrollTo({ top: 0, behavior: 'smooth' }); });
+
+// ========== RESIZE ==========
+var resizeTimer;
+addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    rsz(); iP(); rRev();
+  }, 250);
+});
+
+// ========== MOBILE MENU ==========
+var mTg = document.getElementById('mT'), mMe = document.getElementById('mM');
+mTg.addEventListener('click', function() { mTg.classList.toggle('a'); mMe.classList.toggle('a'); });
+mMe.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() { mTg.classList.remove('a'); mMe.classList.remove('a'); });
+});
+
+// ========== THEME ==========
+var html = document.documentElement;
+html.dataset.theme = localStorage.getItem('v_th') || 'dark';
+document.getElementById('thI').className = html.dataset.theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+
+document.getElementById('thT').addEventListener('click', function() {
+  var n = html.dataset.theme === 'dark' ? 'light' : 'dark';
+  html.dataset.theme = n;
+  localStorage.setItem('v_th', n);
+  document.getElementById('thI').className = n === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+});
+
+// ========== COUNTER ANIMATION ==========
+function anCt() {
+  document.querySelectorAll('.st .n').forEach(function(c) {
+    var t = +c.dataset.t, step = t / 90, cur = 0;
+    var timer = setInterval(function() {
+      cur += step;
+      if (cur >= t) {
+        c.textContent = t + (t === 99 ? '%' : '+');
+        clearInterval(timer);
+      } else {
+        c.textContent = Math.floor(cur) + (t === 99 ? '%' : '+');
+      }
+    }, 20);
+  });
+}
+
+// ========== SKILL BARS OBSERVER ==========
+var skObs = new IntersectionObserver(function(e) {
+  e.forEach(function(en) {
+    if (en.isIntersecting) {
+      document.querySelectorAll('.skf').forEach(function(b) { b.style.width = b.dataset.w + '%'; });
+      skObs.unobserve(en.target);
+    }
+  });
+}, { threshold: .25 });
+var skG = document.getElementById('skG');
+if (skG) skObs.observe(skG);
+
+// ========== REVEAL ON SCROLL ==========
+document.querySelectorAll('.rv2,.sg').forEach(function(el) {
+  new IntersectionObserver(function(e) {
+    e.forEach(function(en) { if (en.isIntersecting) en.target.classList.add('v'); });
+  }, { threshold: .05 }).observe(el);
+});
+
+// ========== SMOOTH SCROLL ==========
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ========== GLITCH TEXT ==========
+var hN = document.getElementById('hN'), oN = 'Vern0x', gCh = '!@#$%^&*01_-+=<>~';
+hN.addEventListener('mouseenter', function() {
+  var it = 0;
+  var iv = setInterval(function() {
+    hN.textContent = oN.split('').map(function(c, i) {
+      return i < it ? oN[i] : gCh[Math.floor(Math.random() * gCh.length)];
+    }).join('');
+    if (it >= oN.length) clearInterval(iv);
+    it += .35;
+  }, 32);
+});
+
+// ========== SECTION TITLE SCRAMBLE ==========
+document.querySelectorAll('.stt').forEach(function(t) {
+  var o = t.textContent, p = false;
+  new IntersectionObserver(function(e) {
+    e.forEach(function(en) {
+      if (en.isIntersecting && !p) {
+        p = true;
+        var it = 0, ch = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var iv = setInterval(function() {
+          t.textContent = o.split('').map(function(c, i) {
+            return c === ' ' ? ' ' : i < it ? o[i] : ch[Math.floor(Math.random() * ch.length)];
+          }).join('');
+          if (it >= o.length) clearInterval(iv);
+          it += .45;
+        }, 26);
+      }
+    });
+  }, { threshold: .35 }).observe(t);
+});
+
+// ========== SECRET BUTTON ==========
+document.getElementById('sec').style.transition = 'opacity .3s';
+document.getElementById('sec').addEventListener('mouseenter', function() { this.style.opacity = '.3'; });
+document.getElementById('sec').addEventListener('mouseleave', function() { this.style.opacity = '0'; });
+
+// ========== VISIBILITY ==========
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden) cancelAnimationFrame(aI);
+  else anm();
+});
+
+// ========== COOKIES ==========
+if (!localStorage.getItem('v_ck')) {
+  setTimeout(function() { document.getElementById('ck').classList.add('show'); }, 1800);
+}
+
+// ========== INIT ==========
+(async function() {
   await loadDB();
   renderAll();
   anCt();
