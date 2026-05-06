@@ -578,7 +578,7 @@ async function saveDB(){
 // UTILS
 function gId(){return Date.now().toString(36)+Math.random().toString(36).substr(2,6)}
 function ec(s){if(!s)return'';var d=document.createElement('div');d.textContent=s;return d.innerHTML}
-function ea(s){if(!s)return'';return s.replace(/[&"'<>]/g,function(c){return{'&':'&amp;','"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;'}[c])}
+function ea(s){if(!s)return'';return s.replace(/[&"'<>]/g,function(c){return{'&':'&amp;','"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;'}[c]})}
 function setLd(t,p){var e=document.getElementById('LDT'),b=document.getElementById('LDB');if(e)e.textContent=t;if(b)b.style.width=(p||0)+'%'}
 function toast(m,t){var el=document.getElementById('TST'),sp=document.getElementById('TM');sp.textContent=m;el.className='toast '+(t||'ok');el.querySelector('i').className='fas '+({ok:'fa-check-circle',er:'fa-exclamation-circle',warn:'fa-info-circle'}[t]||'fa-check-circle');setTimeout(function(){el.classList.add('show')},10);setTimeout(function(){el.classList.remove('show')},3500)}
 
