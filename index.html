@@ -712,6 +712,7 @@ footer{position:relative;z-index:5;border-top:1px solid var(--border);background
         <button onclick="forceSave()"><i class="fas fa-cloud-upload-alt"></i> Wymuś</button>
         <button onclick="exportDB()"><i class="fas fa-download"></i> Eksport</button>
         <button onclick="document.getElementById('impF').click()"><i class="fas fa-upload"></i> Import</button>
+        <button onclick="resetToFirebase()"><i class="fas fa-cloud-download-alt"></i> Reset do Firebase</button>
         <input type="file" id="impF" accept=".json" style="display:none" onchange="importDB(event)">
       </div>
       <div class="db-hint">
@@ -779,44 +780,76 @@ function fbUrl(p){return FB.replace(/\/$/,'')+'/'+(p||'')+'.json'}
 async function fbGet(p){var r=await fetch(fbUrl(p));if(!r.ok)throw new Error('GET '+r.status);return r.json()}
 async function fbPut(p,d){var r=await fetch(fbUrl(p),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});if(!r.ok)throw new Error('PUT '+r.status);return r.json()}
 
-// ========== LOAD / SAVE ==========
+// ========== LOAD — FIREBASE FIRST, ALWAYS ==========
 async function loadDB(){
   setLd('Łączenie...',30);
   if(!FB){log('warn','Brak URL');loadLocal();return}
   try{
-    log('info','Pobieranie...');setLd('Pobieranie...',60);
+    log('info','Pobieranie z Firebase...');setLd('Pobieranie...',60);
     var d=await fbGet('portfolio');
-    if(d){DB=merge(d);dbOk=true;log('ok','Załadowano! P:'+DB.projects.length+' R:'+DB.reviews.length+' T:'+DB.teams.length)}
-    else{DB=JSON.parse(JSON.stringify(DEMO));await fbPut('portfolio',DB);dbOk=true;log('ok','Zainicjalizowano z demo!')}
-  }catch(e){log('er',e.message);dbOk=false;loadLocal()}
+    if(d && d.projects){
+      DB=merge(d);
+      // Zapisz do localStorage jako cache
+      localStorage.setItem('v_db',JSON.stringify(DB));
+      dbOk=true;
+      log('ok','Firebase OK! P:'+DB.projects.length+' R:'+DB.reviews.length+' T:'+DB.teams.length);
+    }else{
+      // Baza pusta — wyślij dane demo
+      log('info','Baza pusta — inicjalizacja...');
+      DB=JSON.parse(JSON.stringify(DEMO));
+      await fbPut('portfolio',DB);
+      localStorage.setItem('v_db',JSON.stringify(DB));
+      dbOk=true;
+      log('ok','Zainicjalizowano!');
+    }
+  }catch(e){
+    log('er','Firebase error: '+e.message);
+    dbOk=false;
+    // Fallback na localStorage TYLKO gdy Firebase nie działa
+    loadLocal();
+  }
 }
-function loadLocal(){
-  try{var l=JSON.parse(localStorage.getItem('v_db')||'null');
-  if(l&&l.projects){DB=merge(l);log('ok','Dane lokalne')}
-  else{DB=JSON.parse(JSON.stringify(DEMO));log('info','Demo data')}}
-  catch(e){DB=JSON.parse(JSON.stringify(DEMO))}
-}
-function merge(d){return{
-  projects:Array.isArray(d.projects)?d.projects:[],
-  reviews:Array.isArray(d.reviews)?d.reviews:[],
-  teams:Array.isArray(d.teams)?d.teams:[],
-  submissions:Array.isArray(d.submissions)?d.submissions:[]
-}}
 
-var svT=null;
-async function saveDB(){
-  localStorage.setItem('v_db',JSON.stringify(DB));
-  if(!FB)return false;
-  return new Promise(function(res){
-    clearTimeout(svT);
-    svT=setTimeout(async function(){
-      if(saving){res(false);return}
-      saving=true;
-      try{log('info','Zapisywanie...');await fbPut('portfolio',DB);dbOk=true;log('ok','Zapisano!');res(true)}
-      catch(e){log('er','Save: '+e.message);dbOk=false;res(false)}
-      finally{saving=false}
-    },400);
-  });
+async function resetToFirebase(){
+  if(!FB){toast('Ustaw Firebase URL!','er');return}
+  toast('Resetowanie...','warn');
+  // Wyczyść localStorage
+  localStorage.removeItem('v_db');
+  // Pobierz świeże dane z Firebase
+  try{
+    var d=await fbGet('portfolio');
+    if(d&&d.projects){
+      DB=merge(d);
+      localStorage.setItem('v_db',JSON.stringify(DB));
+      dbOk=true;
+      renderAll();
+      if(document.getElementById('adminP').classList.contains('active'))rAdmin();
+      toast('Dane z Firebase załadowane!','ok');
+    }else{
+      toast('Baza Firebase jest pusta','er');
+    }
+  }catch(e){
+    toast('Błąd: '+e.message,'er');
+  }
+}
+
+function loadLocal(){
+  try{
+    var l=JSON.parse(localStorage.getItem('v_db')||'null');
+    if(l&&l.projects&&l.projects.length){
+      DB=merge(l);
+      log('ok','Cache lokalny');
+    }else if(!FB){
+      // Demo TYLKO gdy nie ma Firebase
+      DB=JSON.parse(JSON.stringify(DEMO));
+      log('info','Demo data');
+    }else{
+      DB=merge({});
+      log('warn','Brak danych');
+    }
+  }catch(e){
+    DB=JSON.parse(JSON.stringify(DEMO));
+  }
 }
 
 // ========== UTILS ==========
