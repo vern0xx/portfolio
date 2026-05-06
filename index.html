@@ -521,15 +521,48 @@ async function loadDB(){
   try{
     log('info','Pobieranie...');setLd('Pobieranie...',55);
     var d=await fbGet('portfolio');
-    if(d&&d.projects&&d.projects.length>0){
+    if(d&&(d.projects||d.reviews||d.teams)){
       DB=mg(d);
       localStorage.setItem('v_db',JSON.stringify(DB));
       dbOk=true;
-      log('ok','✓ Firebase załadowany! P:'+DB.projects.length+' R:'+DB.reviews.length+' T:'+DB.teams.length);
+      log('ok','✓ Firebase OK! P:'+DB.projects.length+' R:'+DB.reviews.length+' T:'+DB.teams.length);
+    }else if(d===null){
+      // Baza NAPRAWDĘ pusta (pierwszy raz kiedykolwiek)
+      // Sprawdź czy localStorage ma dane
+      var local=null;
+      try{local=JSON.parse(localStorage.getItem('v_db')||'null')}catch(e){}
+      if(local&&local.projects&&local.projects.length>0){
+        // Wyślij lokalne dane do Firebase zamiast DEMO
+        DB=mg(local);
+        await fbPut('portfolio',DB);
+        dbOk=true;
+        log('ok','✓ Wysłano lokalne dane do Firebase');
+      }else{
+        // Naprawdę pierwsze uruchomienie — użyj DEMO
+        DB=JSON.parse(JSON.stringify(DEMO));
+        await fbPut('portfolio',DB);
+        dbOk=true;
+        log('ok','✓ Zainicjalizowano DEMO');
+      }
+      localStorage.setItem('v_db',JSON.stringify(DB));
     }else{
-      log('info','Baza pusta → inicjalizacja demo...');
-      DB=JSON.parse(JSON.stringify(DEMO));
-      await fbPut('portfolio',DB);
+      // Firebase zwróciło coś ale bez projects
+      DB=mg(d);
+      localStorage.setItem('v_db',JSON.stringify(DB));
+      dbOk=true;
+      log('ok','✓ Dane częściowe');
+    }
+  }catch(e){
+    log('er','✗ Firebase: '+e.message);
+    dbOk=false;
+    loadLocal();
+  }
+}
+// STARE — PROBLEM: nadpisuje dane DEMO
+}else{
+  log('info','Baza pusta → inicjalizacja demo...');
+  DB=JSON.parse(JSON.stringify(DEMO));
+  await fbPut('portfolio',DB);
       localStorage.setItem('v_db',JSON.stringify(DB));
       dbOk=true;
       log('ok','✓ Zainicjalizowano!');
