@@ -455,407 +455,1268 @@ footer{position:relative;z-index:5;border-top:1px solid var(--border);background
 <script>
 'use strict';
 // ============================================================
-// VERN0X v10.0 — FIREBASE FIRST — WSZYSTKIE DANE GLOBALNE
+// VERN0X v10.1 — FIREBASE FIRST — NAPRAWIONY
 // Admin: 2137 | Ctrl+Shift+A | 5x klik lewy dolny róg
 // ============================================================
 
-// TWÓJ FIREBASE URL — hardcoded
+// ===== FIREBASE CONFIG =====
 var FB = 'https://realtime-database-82f2f-default-rtdb.firebaseio.com';
-var DB = {projects:[],reviews:[],teams:[],submissions:[]};
+var DB = { projects: [], reviews: [], teams: [], submissions: [] };
 var dbOk = false, saving = false, logs = [];
 
+// ===== DEMO DATA =====
 var DEMO = {
-  projects:[
-    {id:'d1',name:'CraftNetwork Setup',category:'minecraft',icon:'fas fa-gamepad',desc:'Kompletna konfiguracja serwera Minecraft z pluginami i optymalizacją.',tags:['Minecraft','Setup','Pluginy'],image:''},
-    {id:'d2',name:'Branding SkyPvP',category:'grafika',icon:'fas fa-paint-brush',desc:'Pełny pakiet graficzny — logo, banery, ikony, social media.',tags:['Grafika','Logo','Branding'],image:''},
-    {id:'d3',name:'System Ekonomii',category:'skript',icon:'fas fa-coins',desc:'Zaawansowany skrypt ekonomii z GUI, shopem i rankingami.',tags:['Skript','GUI','Ekonomia'],image:''},
-    {id:'d4',name:'Animowane Intro',category:'animacja',icon:'fas fa-film',desc:'Profesjonalne intro YouTube z motion graphics.',tags:['Motion','After Effects'],image:''}
+  projects: [
+    { id: 'd1', name: 'CraftNetwork Setup', category: 'minecraft', icon: 'fas fa-gamepad', desc: 'Kompletna konfiguracja serwera Minecraft z pluginami i optymalizacją.', tags: ['Minecraft', 'Setup', 'Pluginy'], image: '' },
+    { id: 'd2', name: 'Branding SkyPvP', category: 'grafika', icon: 'fas fa-paint-brush', desc: 'Pełny pakiet graficzny — logo, banery, ikony, social media.', tags: ['Grafika', 'Logo', 'Branding'], image: '' },
+    { id: 'd3', name: 'System Ekonomii', category: 'skript', icon: 'fas fa-coins', desc: 'Zaawansowany skrypt ekonomii z GUI, shopem i rankingami.', tags: ['Skript', 'GUI', 'Ekonomia'], image: '' },
+    { id: 'd4', name: 'Animowane Intro', category: 'animacja', icon: 'fas fa-film', desc: 'Profesjonalne intro YouTube z motion graphics.', tags: ['Motion', 'After Effects'], image: '' }
   ],
-  reviews:[
-    {id:'r1',name:'MateuszMC',role:'Właściciel serwera',stars:5,text:'Niesamowita jakość grafik! Polecam każdemu kto szuka profesjonalisty.',avatar:''},
-    {id:'r2',name:'KacperDev',role:'Developer',stars:5,text:'Skrypty napisane perfekcyjnie — czytelne, wydajne i bez bugów.',avatar:''},
-    {id:'r3',name:'DarekPvP',role:'Gracz',stars:4,text:'Współpraca na najwyższym poziomie. Szybka realizacja.',avatar:''},
-    {id:'r4',name:'AniaDesign',role:'Klientka',stars:5,text:'Profesjonalizm i kreatywność w jednym! Logo wyszło rewelacyjnie.',avatar:''},
-    {id:'r5',name:'TomaszGFX',role:'Grafik',stars:5,text:'Świetna komunikacja i efekty końcowe przekroczyły oczekiwania.',avatar:''},
-    {id:'r6',name:'OlaServer',role:'Admin',stars:4,text:'Setup serwera zrobiony idealnie — wszystko działa od pierwszego dnia.',avatar:''}
+  reviews: [
+    { id: 'r1', name: 'MateuszMC', role: 'Właściciel serwera', stars: 5, text: 'Niesamowita jakość grafik! Polecam każdemu kto szuka profesjonalisty.', avatar: '' },
+    { id: 'r2', name: 'KacperDev', role: 'Developer', stars: 5, text: 'Skrypty napisane perfekcyjnie — czytelne, wydajne i bez bugów.', avatar: '' },
+    { id: 'r3', name: 'DarekPvP', role: 'Gracz', stars: 4, text: 'Współpraca na najwyższym poziomie. Szybka realizacja.', avatar: '' },
+    { id: 'r4', name: 'AniaDesign', role: 'Klientka', stars: 5, text: 'Profesjonalizm i kreatywność w jednym! Logo wyszło rewelacyjnie.', avatar: '' },
+    { id: 'r5', name: 'TomaszGFX', role: 'Grafik', stars: 5, text: 'Świetna komunikacja i efekty końcowe przekroczyły oczekiwania.', avatar: '' },
+    { id: 'r6', name: 'OlaServer', role: 'Admin', stars: 4, text: 'Setup serwera zrobiony idealnie — wszystko działa od pierwszego dnia.', avatar: '' }
   ],
-  teams:[
-    {id:'t1',name:'VerCode',role:'Grafik',desc:'Zespół developerów i grafików tworzących profesjonalne projekty.',link:'https://discord.gg/vercode',style:'tb',icon:'',logo:'VC',tags:['Dev','Grafika'],members:'25+'},
-    {id:'t2',name:'Zgłoś Cwela',role:'Vice-CEO',desc:'Społeczność gamingowa z tysiącami aktywnych członków.',link:'https://discord.gg/zgloscwela',style:'to',icon:'',logo:'ZC',tags:['Gaming','Community'],members:'500+'},
-    {id:'t3',name:'WindCode',role:'CEO',desc:'Mój autorski zespół kreatywny — grafiki, skrypty, serwery.',link:'https://discord.gg/windcode',style:'tp',icon:'',logo:'WC',tags:['Minecraft','Design'],members:'15+'}
+  teams: [
+    { id: 't1', name: 'VerCode', role: 'Grafik', desc: 'Zespół developerów i grafików tworzących profesjonalne projekty.', link: 'https://discord.gg/vercode', style: 'tb', icon: '', logo: 'VC', tags: ['Dev', 'Grafika'], members: '25+' },
+    { id: 't2', name: 'Zgłoś Cwela', role: 'Vice-CEO', desc: 'Społeczność gamingowa z tysiącami aktywnych członków.', link: 'https://discord.gg/zgloscwela', style: 'to', icon: '', logo: 'ZC', tags: ['Gaming', 'Community'], members: '500+' },
+    { id: 't3', name: 'WindCode', role: 'CEO', desc: 'Mój autorski zespół kreatywny — grafiki, skrypty, serwery.', link: 'https://discord.gg/windcode', style: 'tp', icon: '', logo: 'WC', tags: ['Minecraft', 'Design'], members: '15+' }
   ],
-  submissions:[]
+  submissions: []
 };
 
-// CONFIG — pobiera URL z localStorage (nadpisuje hardcoded jeśli zmieniony)
-function initCfg(){
-  try{var c=JSON.parse(localStorage.getItem('v_fb')||'{}');if(c.url)FB=c.url}catch(e){}
-  log('info','Firebase URL: '+(FB||'BRAK'));
-}
-function saveCfg(){localStorage.setItem('v_fb',JSON.stringify({url:FB}))}
-
-function log(t,m){
-  logs.push({t:t,m:m,ts:new Date().toLocaleTimeString('pl')});
-  if(logs.length>50)logs.shift();
-  var e=document.getElementById('DBL');
-  if(e){e.innerHTML=logs.map(function(l){return'<div class="l'+l.t+'">['+l.ts+'] '+l.m+'</div>'}).join('');e.scrollTop=e.scrollHeight}
+// ===== CONFIG =====
+function initCfg() {
+  try {
+    var c = JSON.parse(localStorage.getItem('v_fb') || '{}');
+    if (c.url) FB = c.url;
+  } catch (e) {}
+  log('info', 'Firebase URL: ' + (FB || 'BRAK'));
 }
 
-// FIREBASE REST
-function fbUrl(p){return FB.replace(/\/$/,'')+'/'+(p||'')+'.json'}
-async function fbGet(p){
-  var r=await fetch(fbUrl(p),{cache:'no-cache'});
-  if(!r.ok)throw new Error('GET '+r.status+' '+r.statusText);
+function saveCfg() {
+  localStorage.setItem('v_fb', JSON.stringify({ url: FB }));
+}
+
+// ===== LOGGING =====
+function log(t, m) {
+  logs.push({ t: t, m: m, ts: new Date().toLocaleTimeString('pl') });
+  if (logs.length > 50) logs.shift();
+  var e = document.getElementById('DBL');
+  if (e) {
+    e.innerHTML = logs.map(function(l) {
+      return '<div class="l' + l.t + '">[' + l.ts + '] ' + l.m + '</div>';
+    }).join('');
+    e.scrollTop = e.scrollHeight;
+  }
+}
+
+// ===== FIREBASE REST API =====
+function fbUrl(p) {
+  return FB.replace(/\/$/, '') + '/' + (p || '') + '.json';
+}
+
+async function fbGet(p) {
+  var r = await fetch(fbUrl(p), { cache: 'no-cache' });
+  if (!r.ok) throw new Error('GET ' + r.status + ' ' + r.statusText);
   return r.json();
 }
-async function fbPut(p,d){
-  var r=await fetch(fbUrl(p),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
-  if(!r.ok){var tx=await r.text();throw new Error('PUT '+r.status+': '+tx)}
+
+async function fbPut(p, d) {
+  var r = await fetch(fbUrl(p), {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(d)
+  });
+  if (!r.ok) {
+    var tx = await r.text();
+    throw new Error('PUT ' + r.status + ': ' + tx);
+  }
   return r.json();
 }
 
-// LOAD — FIREBASE FIRST, zawsze pobiera z Firebase
-async function loadDB(){
-  setLd('Łączenie z Firebase...',20);
-  if(!FB){log('warn','Brak Firebase URL!');loadLocal();return}
-  try{
-    log('info','Pobieranie...');setLd('Pobieranie...',55);
-    var d=await fbGet('portfolio');
-    if(d&&(d.projects||d.reviews||d.teams)){
-      DB=mg(d);
-      localStorage.setItem('v_db',JSON.stringify(DB));
-      dbOk=true;
-      log('ok','✓ Firebase OK! P:'+DB.projects.length+' R:'+DB.reviews.length+' T:'+DB.teams.length);
-    }else if(d===null){
-      // Baza NAPRAWDĘ pusta (pierwszy raz kiedykolwiek)
-      // Sprawdź czy localStorage ma dane
-      var local=null;
-      try{local=JSON.parse(localStorage.getItem('v_db')||'null')}catch(e){}
-      if(local&&local.projects&&local.projects.length>0){
-        // Wyślij lokalne dane do Firebase zamiast DEMO
-        DB=mg(local);
-        await fbPut('portfolio',DB);
-        dbOk=true;
-        log('ok','✓ Wysłano lokalne dane do Firebase');
-      }else{
+// ===== DATABASE LOAD — FIREBASE FIRST =====
+async function loadDB() {
+  setLd('Łączenie z Firebase...', 20);
+
+  if (!FB) {
+    log('warn', 'Brak Firebase URL!');
+    loadLocal();
+    return;
+  }
+
+  try {
+    log('info', 'Pobieranie...');
+    setLd('Pobieranie...', 55);
+
+    var d = await fbGet('portfolio');
+
+    if (d && (d.projects || d.reviews || d.teams)) {
+      // Firebase ma dane — użyj ich
+      DB = mg(d);
+      localStorage.setItem('v_db', JSON.stringify(DB));
+      dbOk = true;
+      log('ok', '✓ Firebase OK! P:' + DB.projects.length +
+          ' R:' + DB.reviews.length + ' T:' + DB.teams.length);
+
+    } else if (d === null) {
+      // Baza Firebase jest pusta (pierwszy raz)
+      var local = null;
+      try {
+        local = JSON.parse(localStorage.getItem('v_db') || 'null');
+      } catch (e) {}
+
+      if (local && local.projects && local.projects.length > 0) {
+        // Mamy lokalne dane — wyślij je do Firebase
+        DB = mg(local);
+        await fbPut('portfolio', DB);
+        dbOk = true;
+        log('ok', '✓ Wysłano lokalne dane do Firebase');
+      } else {
         // Naprawdę pierwsze uruchomienie — użyj DEMO
-        DB=JSON.parse(JSON.stringify(DEMO));
-        await fbPut('portfolio',DB);
-        dbOk=true;
-        log('ok','✓ Zainicjalizowano DEMO');
+        DB = JSON.parse(JSON.stringify(DEMO));
+        await fbPut('portfolio', DB);
+        dbOk = true;
+        log('ok', '✓ Zainicjalizowano DEMO');
       }
-      localStorage.setItem('v_db',JSON.stringify(DB));
-    }else{
-      // Firebase zwróciło coś ale bez projects
-      DB=mg(d);
-      localStorage.setItem('v_db',JSON.stringify(DB));
-      dbOk=true;
-      log('ok','✓ Dane częściowe');
-    }
-  }catch(e){
-    log('er','✗ Firebase: '+e.message);
-    dbOk=false;
-    loadLocal();
-  }
-}
-// STARE — PROBLEM: nadpisuje dane DEMO
-}else{
-  log('info','Baza pusta → inicjalizacja demo...');
-  DB=JSON.parse(JSON.stringify(DEMO));
-  await fbPut('portfolio',DB);
-      localStorage.setItem('v_db',JSON.stringify(DB));
-      dbOk=true;
-      log('ok','✓ Zainicjalizowano!');
-    }
-  }catch(e){
-    log('er','✗ Firebase: '+e.message);
-    dbOk=false;
-    log('warn','Fallback na localStorage...');
-    loadLocal();
-  }
-}
-function loadLocal(){
-  try{
-    var l=JSON.parse(localStorage.getItem('v_db')||'null');
-    if(l&&l.projects&&l.projects.length){DB=mg(l);log('ok','Cache OK')}
-    else{DB=JSON.parse(JSON.stringify(DEMO));log('info','Demo data')}
-  }catch(e){DB=JSON.parse(JSON.stringify(DEMO))}
-}
-function mg(d){return{projects:Array.isArray(d.projects)?d.projects:[],reviews:Array.isArray(d.reviews)?d.reviews:[],teams:Array.isArray(d.teams)?d.teams:[],submissions:Array.isArray(d.submissions)?d.submissions:[]}}
+      localStorage.setItem('v_db', JSON.stringify(DB));
 
-// SAVE — debounced, immediate local + delayed Firebase
-var svT=null;
-async function saveDB(){
-  localStorage.setItem('v_db',JSON.stringify(DB));
-  if(!FB)return false;
-  return new Promise(function(res){
+    } else {
+      // Firebase zwróciło coś, ale bez pełnych danych
+      DB = mg(d);
+      localStorage.setItem('v_db', JSON.stringify(DB));
+      dbOk = true;
+      log('ok', '✓ Dane częściowe');
+    }
+
+  } catch (e) {
+    log('er', '✗ Firebase: ' + e.message);
+    dbOk = false;
+    log('warn', 'Fallback na localStorage...');
+    loadLocal();
+  }
+}
+
+// ===== LOCAL FALLBACK =====
+function loadLocal() {
+  try {
+    var l = JSON.parse(localStorage.getItem('v_db') || 'null');
+    if (l && l.projects && l.projects.length) {
+      DB = mg(l);
+      log('ok', 'Cache OK');
+    } else {
+      DB = JSON.parse(JSON.stringify(DEMO));
+      log('info', 'Demo data');
+    }
+  } catch (e) {
+    DB = JSON.parse(JSON.stringify(DEMO));
+  }
+}
+
+// ===== MERGE / SANITIZE =====
+function mg(d) {
+  return {
+    projects: Array.isArray(d.projects) ? d.projects : [],
+    reviews: Array.isArray(d.reviews) ? d.reviews : [],
+    teams: Array.isArray(d.teams) ? d.teams : [],
+    submissions: Array.isArray(d.submissions) ? d.submissions : []
+  };
+}
+
+// ===== SAVE — DEBOUNCED =====
+var svT = null;
+async function saveDB() {
+  localStorage.setItem('v_db', JSON.stringify(DB));
+  if (!FB) return false;
+
+  return new Promise(function(res) {
     clearTimeout(svT);
-    svT=setTimeout(async function(){
-      if(saving){log('warn','Save już w toku, skip');res(false);return}
-      saving=true;
-      try{
-        log('info','Zapisywanie do Firebase...');
-        await fbPut('portfolio',DB);
-        dbOk=true;
-        log('ok','✓ Zapisano do Firebase!');
-        res(true);
-      }catch(e){
-        log('er','✗ Save error: '+e.message);
-        dbOk=false;
+    svT = setTimeout(async function() {
+      if (saving) {
+        log('warn', 'Save już w toku, skip');
         res(false);
-      }finally{saving=false}
-    },300);
+        return;
+      }
+      saving = true;
+      try {
+        log('info', 'Zapisywanie do Firebase...');
+        await fbPut('portfolio', DB);
+        dbOk = true;
+        log('ok', '✓ Zapisano do Firebase!');
+        res(true);
+      } catch (e) {
+        log('er', '✗ Save error: ' + e.message);
+        dbOk = false;
+        res(false);
+      } finally {
+        saving = false;
+      }
+    }, 300);
   });
 }
 
-// UTILS
-function gId(){return Date.now().toString(36)+Math.random().toString(36).substr(2,6)}
-function ec(s){if(!s)return'';var d=document.createElement('div');d.textContent=s;return d.innerHTML}
-function ea(s){if(!s)return'';return s.replace(/[&"'<>]/g,function(c){return{'&':'&amp;','"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;'}[c]})}
-function setLd(t,p){var e=document.getElementById('LDT'),b=document.getElementById('LDB');if(e)e.textContent=t;if(b)b.style.width=(p||0)+'%'}
-function toast(m,t){var el=document.getElementById('TST'),sp=document.getElementById('TM');sp.textContent=m;el.className='toast '+(t||'ok');el.querySelector('i').className='fas '+({ok:'fa-check-circle',er:'fa-exclamation-circle',warn:'fa-info-circle'}[t]||'fa-check-circle');setTimeout(function(){el.classList.add('show')},10);setTimeout(function(){el.classList.remove('show')},3500)}
+// ===== UTILS =====
+function gId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2, 6);
+}
 
-// FORM
-async function subF(e){
+function ec(s) {
+  if (!s) return '';
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function ea(s) {
+  if (!s) return '';
+  return s.replace(/[&"'<>]/g, function(c) {
+    return { '&': '&amp;', '"': '&quot;', "'": '&#39;', '<': '&lt;', '>': '&gt;' }[c];
+  });
+}
+
+function setLd(t, p) {
+  var e = document.getElementById('LDT');
+  var b = document.getElementById('LDB');
+  if (e) e.textContent = t;
+  if (b) b.style.width = (p || 0) + '%';
+}
+
+function toast(m, t) {
+  var el = document.getElementById('TST');
+  var sp = document.getElementById('TM');
+  sp.textContent = m;
+  el.className = 'toast ' + (t || 'ok');
+  el.querySelector('i').className = 'fas ' + (
+    { ok: 'fa-check-circle', er: 'fa-exclamation-circle', warn: 'fa-info-circle' }[t] || 'fa-check-circle'
+  );
+  setTimeout(function() { el.classList.add('show'); }, 10);
+  setTimeout(function() { el.classList.remove('show'); }, 3500);
+}
+
+// ===== CONTACT FORM =====
+async function subF(e) {
   e.preventDefault();
-  var btn=document.getElementById('SBT'),n=document.getElementById('FN').value.trim(),d=document.getElementById('FI').value.trim(),m=document.getElementById('FM').value.trim();
-  if(!n||n.length<2){toast('Nick min. 2 znaki','er');return}
-  if(!/^\d{17,20}$/.test(d)){toast('Nieprawidłowe Discord ID','er');return}
-  if(!m||m.length<10){toast('Wiadomość min. 10 znaków','er');return}
-  var last=localStorage.getItem('v_ls');if(last&&Date.now()-parseInt(last)<60000){toast('Poczekaj minutę','er');return}
-  localStorage.setItem('v_ls',Date.now()+'');
-  btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>';
-  DB.submissions.push({id:gId(),nick:n,discordId:d,service:document.getElementById('FS').value,message:m,time:Date.now()});
-  var ok=await saveDB();
-  document.getElementById('CF').style.display='none';document.getElementById('FOK').classList.add('show');
-  btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane"></i> Wyślij';
-  toast(ok?'Wysłano do Firebase!':'Zapisano lokalnie','ok');
+  var btn = document.getElementById('SBT');
+  var n = document.getElementById('FN').value.trim();
+  var d = document.getElementById('FI').value.trim();
+  var m = document.getElementById('FM').value.trim();
+
+  if (!n || n.length < 2) { toast('Nick min. 2 znaki', 'er'); return; }
+  if (!/^\d{17,20}$/.test(d)) { toast('Nieprawidłowe Discord ID', 'er'); return; }
+  if (!m || m.length < 10) { toast('Wiadomość min. 10 znaków', 'er'); return; }
+
+  var last = localStorage.getItem('v_ls');
+  if (last && Date.now() - parseInt(last) < 60000) {
+    toast('Poczekaj minutę', 'er');
+    return;
+  }
+  localStorage.setItem('v_ls', Date.now() + '');
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+  DB.submissions.push({
+    id: gId(),
+    nick: n,
+    discordId: d,
+    service: document.getElementById('FS').value,
+    message: m,
+    time: Date.now()
+  });
+
+  var ok = await saveDB();
+  document.getElementById('CF').style.display = 'none';
+  document.getElementById('FOK').classList.add('show');
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fas fa-paper-plane"></i> Wyślij';
+  toast(ok ? 'Wysłano do Firebase!' : 'Zapisano lokalnie', 'ok');
 }
 
-// LIGHTBOX
-var lbI=[],lbX=0;
-function oLB(i,x){lbI=i;lbX=x;document.getElementById('LBI').src=lbI[lbX];document.getElementById('LBCT').textContent=(lbX+1)+'/'+lbI.length;document.getElementById('LB').classList.add('act');document.body.style.overflow='hidden'}
-function cLB(){document.getElementById('LB').classList.remove('act');document.body.style.overflow=''}
-function nLB(d){lbX=(lbX+d+lbI.length)%lbI.length;var i=document.getElementById('LBI');i.style.animation='none';i.offsetHeight;i.style.animation='lbZ .35s var(--ease)';i.src=lbI[lbX];document.getElementById('LBCT').textContent=(lbX+1)+'/'+lbI.length}
-document.getElementById('LB').onclick=function(e){if(e.target===e.currentTarget)cLB()};
-document.addEventListener('keydown',function(e){if(!document.getElementById('LB').classList.contains('act'))return;if(e.key==='Escape')cLB();if(e.key==='ArrowLeft')nLB(-1);if(e.key==='ArrowRight')nLB(1)});
+// ===== LIGHTBOX =====
+var lbI = [], lbX = 0;
 
-// PORTFOLIO
-function rPort(){
-  var g=document.getElementById('PG');g.innerHTML='';
-  if(!DB.projects.length){g.innerHTML='<p style="text-align:center;color:var(--text3);padding:3rem;grid-column:1/-1">Brak projektów</p>';return}
-  DB.projects.forEach(function(x){
-    var h=x.image&&x.image.length>50,el=document.createElement('div');el.className='pc card';
-    // Card effects
-    var s=document.createElement('div');s.className='cs';
-    var gl=document.createElement('div');gl.className='cg';
-    el.appendChild(s);el.appendChild(gl);
-    var t=document.createElement('div');t.className='pt';
-    if(h){
-      var im=document.createElement('img');im.src=x.image;im.alt=x.name;im.loading='lazy';t.appendChild(im);
-      var ov=document.createElement('div');ov.className='ov';
-      var b=document.createElement('button');b.className='ob';b.innerHTML='<i class="fas fa-search-plus"></i> Zoom';
-      (function(id){b.onclick=function(e){e.stopPropagation();zP(id)};t.onclick=function(){zP(id)}})(x.id);
-      ov.appendChild(b);t.appendChild(ov);
-    }else{var ic=document.createElement('i');ic.className=(x.icon||'fas fa-folder')+' ti2';t.appendChild(ic)}
-    var inf=document.createElement('div');inf.className='pinf';
-    var h3=document.createElement('h3');h3.textContent=x.name;
-    var p=document.createElement('p');p.textContent=x.desc||'';
-    var tg=document.createElement('div');tg.className='tags';
-    (x.tags||[]).forEach(function(tt){var sp=document.createElement('span');sp.className='tag';sp.textContent=tt;tg.appendChild(sp)});
-    inf.appendChild(h3);inf.appendChild(p);inf.appendChild(tg);
-    el.appendChild(t);el.appendChild(inf);g.appendChild(el);
+function oLB(i, x) {
+  lbI = i; lbX = x;
+  document.getElementById('LBI').src = lbI[lbX];
+  document.getElementById('LBCT').textContent = (lbX + 1) + '/' + lbI.length;
+  document.getElementById('LB').classList.add('act');
+  document.body.style.overflow = 'hidden';
+}
+
+function cLB() {
+  document.getElementById('LB').classList.remove('act');
+  document.body.style.overflow = '';
+}
+
+function nLB(d) {
+  lbX = (lbX + d + lbI.length) % lbI.length;
+  var i = document.getElementById('LBI');
+  i.style.animation = 'none';
+  i.offsetHeight; // force reflow
+  i.style.animation = 'lbZ .35s var(--ease)';
+  i.src = lbI[lbX];
+  document.getElementById('LBCT').textContent = (lbX + 1) + '/' + lbI.length;
+}
+
+document.getElementById('LB').onclick = function(e) {
+  if (e.target === e.currentTarget) cLB();
+};
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('LB').classList.contains('act')) return;
+  if (e.key === 'Escape') cLB();
+  if (e.key === 'ArrowLeft') nLB(-1);
+  if (e.key === 'ArrowRight') nLB(1);
+});
+
+// ===== PORTFOLIO RENDER =====
+function rPort() {
+  var g = document.getElementById('PG');
+  g.innerHTML = '';
+
+  if (!DB.projects.length) {
+    g.innerHTML = '<p style="text-align:center;color:var(--text3);padding:3rem;grid-column:1/-1">Brak projektów</p>';
+    return;
+  }
+
+  DB.projects.forEach(function(x) {
+    var h = x.image && x.image.length > 50;
+    var el = document.createElement('div');
+    el.className = 'pc card';
+
+    var s = document.createElement('div'); s.className = 'cs';
+    var gl = document.createElement('div'); gl.className = 'cg';
+    el.appendChild(s);
+    el.appendChild(gl);
+
+    var t = document.createElement('div'); t.className = 'pt';
+
+    if (h) {
+      var im = document.createElement('img');
+      im.src = x.image; im.alt = x.name; im.loading = 'lazy';
+      t.appendChild(im);
+
+      var ov = document.createElement('div'); ov.className = 'ov';
+      var b = document.createElement('button'); b.className = 'ob';
+      b.innerHTML = '<i class="fas fa-search-plus"></i> Zoom';
+
+      (function(id) {
+        b.onclick = function(e) { e.stopPropagation(); zP(id); };
+        t.onclick = function() { zP(id); };
+      })(x.id);
+
+      ov.appendChild(b);
+      t.appendChild(ov);
+    } else {
+      var ic = document.createElement('i');
+      ic.className = (x.icon || 'fas fa-folder') + ' ti2';
+      t.appendChild(ic);
+    }
+
+    var inf = document.createElement('div'); inf.className = 'pinf';
+    var h3 = document.createElement('h3'); h3.textContent = x.name;
+    var p = document.createElement('p'); p.textContent = x.desc || '';
+    var tg = document.createElement('div'); tg.className = 'tags';
+
+    (x.tags || []).forEach(function(tt) {
+      var sp = document.createElement('span');
+      sp.className = 'tag'; sp.textContent = tt;
+      tg.appendChild(sp);
+    });
+
+    inf.appendChild(h3);
+    inf.appendChild(p);
+    inf.appendChild(tg);
+    el.appendChild(t);
+    el.appendChild(inf);
+    g.appendChild(el);
   });
 }
-function zP(id){var imgs=DB.projects.filter(function(x){return x.image&&x.image.length>50}).map(function(x){return x.image});var it=DB.projects.find(function(x){return x.id===id});if(it&&it.image)oLB(imgs,Math.max(0,imgs.indexOf(it.image)))}
 
-// REVIEWS — INFINITE
-function rRev(){
-  var r=DB.reviews,track=document.getElementById('RT');
-  if(!r||!r.length){track.innerHTML='<div class="rc2 card" style="text-align:center;padding:3rem;min-width:370px"><p style="color:var(--text3)">Brak opinii</p></div>';track.classList.remove('sc');return}
-  var all=r.concat(r);
-  track.innerHTML=all.map(function(rv){
-    var st='';for(var j=0;j<5;j++)st+=j<rv.stars?'<i class="fas fa-star star f"></i>':'<i class="far fa-star star e"></i>';
-    return'<div class="rc2 card"><div class="cs"></div><div class="cg"></div><div class="rs">'+st+'</div><p class="rtx">'+ec(rv.text)+'</p><div class="rau"><div class="rav">'+(rv.avatar&&rv.avatar.length>50?'<img src="'+rv.avatar+'">':ec(rv.name?rv.name[0]:'?'))+'</div><div><div class="rna">'+ec(rv.name)+'</div><div class="rrl">'+ec(rv.role)+'</div></div></div></div>';
-  }).join('');
-  var dur=r.length*(390+24)/40;track.style.setProperty('--dur',dur+'s');track.classList.add('sc');
+function zP(id) {
+  var imgs = DB.projects
+    .filter(function(x) { return x.image && x.image.length > 50; })
+    .map(function(x) { return x.image; });
+  var it = DB.projects.find(function(x) { return x.id === id; });
+  if (it && it.image) {
+    oLB(imgs, Math.max(0, imgs.indexOf(it.image)));
+  }
 }
 
-// TEAMS
-function rTeams(){
-  var g=document.getElementById('TG'),f=document.getElementById('FT');
-  if(!DB.teams.length){g.innerHTML='<p style="text-align:center;color:var(--text3);padding:3rem;grid-column:1/-1">Brak zespołów</p>';f.innerHTML='';return}
-  g.innerHTML=DB.teams.map(function(x){
-    var tH=(x.tags||[]).map(function(t){return'<span class="tt">'+ec(t)+'</span>'}).join('');
-    var mH=x.members?'<div class="tm"><i class="fas fa-users"></i> '+ec(x.members)+' członków</div>':'';
-    return'<a href="'+ea(x.link)+'" target="_blank" rel="noreferrer" class="tc card '+(x.style||'tdf')+'">'+
-      '<div class="cs"></div><div class="cg"></div>'+
-      '<div class="th"><div class="tlo">'+(x.icon&&x.icon.length>50?'<img src="'+x.icon+'">':(x.logo||x.name[0]))+'</div>'+
-      '<div><div class="tn">'+ec(x.name)+'</div><div class="tr2">'+ec(x.role)+'</div></div></div>'+
-      '<p class="td">'+ec(x.desc||'')+'</p>'+
-      (tH?'<div class="tts">'+tH+'</div>':'')+mH+
+// ===== REVIEWS — INFINITE SCROLL =====
+function rRev() {
+  var r = DB.reviews;
+  var track = document.getElementById('RT');
+
+  if (!r || !r.length) {
+    track.innerHTML = '<div class="rc2 card" style="text-align:center;padding:3rem;min-width:370px"><p style="color:var(--text3)">Brak opinii</p></div>';
+    track.classList.remove('sc');
+    return;
+  }
+
+  var all = r.concat(r); // duplicate for infinite loop
+
+  track.innerHTML = all.map(function(rv) {
+    var st = '';
+    for (var j = 0; j < 5; j++) {
+      st += j < rv.stars
+        ? '<i class="fas fa-star star f"></i>'
+        : '<i class="far fa-star star e"></i>';
+    }
+    return '<div class="rc2 card"><div class="cs"></div><div class="cg"></div>' +
+      '<div class="rs">' + st + '</div>' +
+      '<p class="rtx">' + ec(rv.text) + '</p>' +
+      '<div class="rau"><div class="rav">' +
+      (rv.avatar && rv.avatar.length > 50
+        ? '<img src="' + rv.avatar + '">'
+        : ec(rv.name ? rv.name[0] : '?')) +
+      '</div><div><div class="rna">' + ec(rv.name) + '</div>' +
+      '<div class="rrl">' + ec(rv.role) + '</div></div></div></div>';
+  }).join('');
+
+  var dur = r.length * (390 + 24) / 40;
+  track.style.setProperty('--dur', dur + 's');
+  track.classList.add('sc');
+}
+
+// ===== TEAMS RENDER =====
+function rTeams() {
+  var g = document.getElementById('TG');
+  var f = document.getElementById('FT');
+
+  if (!DB.teams.length) {
+    g.innerHTML = '<p style="text-align:center;color:var(--text3);padding:3rem;grid-column:1/-1">Brak zespołów</p>';
+    f.innerHTML = '';
+    return;
+  }
+
+  g.innerHTML = DB.teams.map(function(x) {
+    var tH = (x.tags || []).map(function(t) {
+      return '<span class="tt">' + ec(t) + '</span>';
+    }).join('');
+    var mH = x.members
+      ? '<div class="tm"><i class="fas fa-users"></i> ' + ec(x.members) + ' członków</div>'
+      : '';
+
+    return '<a href="' + ea(x.link) + '" target="_blank" rel="noreferrer" class="tc card ' + (x.style || 'tdf') + '">' +
+      '<div class="cs"></div><div class="cg"></div>' +
+      '<div class="th"><div class="tlo">' +
+      (x.icon && x.icon.length > 50 ? '<img src="' + x.icon + '">' : (x.logo || x.name[0])) +
+      '</div><div><div class="tn">' + ec(x.name) + '</div>' +
+      '<div class="tr2">' + ec(x.role) + '</div></div></div>' +
+      '<p class="td">' + ec(x.desc || '') + '</p>' +
+      (tH ? '<div class="tts">' + tH + '</div>' : '') + mH +
       '<div class="tj"><i class="fab fa-discord"></i> Dołącz <i class="fas fa-arrow-right" style="font-size:.55rem"></i></div></a>';
   }).join('');
-  f.innerHTML=DB.teams.map(function(x){return'<li><a href="'+ea(x.link)+'" target="_blank"><i class="fas fa-chevron-right" style="font-size:.45rem"></i> '+ec(x.name)+'</a></li>'}).join('');
+
+  f.innerHTML = DB.teams.map(function(x) {
+    return '<li><a href="' + ea(x.link) + '" target="_blank"><i class="fas fa-chevron-right" style="font-size:.45rem"></i> ' + ec(x.name) + '</a></li>';
+  }).join('');
 }
 
-// AUTH — KOD: 2137
-var PIN='2137',sC=0,sT2;
-document.getElementById('SB').onclick=function(){sC++;clearTimeout(sT2);sT2=setTimeout(function(){sC=0},2000);if(sC>=5){sC=0;oAuth()}};
-document.addEventListener('keydown',function(e){if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault();oAuth()}});
-function oAuth(){document.getElementById('AO').classList.add('act');document.getElementById('AE').style.display='none';var inp=document.querySelectorAll('#CI input');inp.forEach(function(x){x.value=''});setTimeout(function(){inp[0].focus()},100)}
-document.querySelectorAll('#CI input').forEach(function(inp,i,arr){
-  inp.oninput=function(){inp.value=inp.value.replace(/\D/g,'');if(inp.value&&i<arr.length-1)arr[i+1].focus();if(i===arr.length-1&&inp.value)vC()};
-  inp.onkeydown=function(e){if(e.key==='Backspace'&&!inp.value&&i>0){arr[i-1].focus();arr[i-1].value=''}if(e.key==='Enter')vC()};
-  inp.onpaste=function(e){e.preventDefault();var p=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'').substr(0,4);p.split('').forEach(function(ch,ci){if(arr[ci])arr[ci].value=ch});if(p.length===4)vC()};
+// ===== AUTH — PIN: 2137 =====
+var PIN = '2137', sC = 0, sT2;
+
+document.getElementById('SB').onclick = function() {
+  sC++;
+  clearTimeout(sT2);
+  sT2 = setTimeout(function() { sC = 0; }, 2000);
+  if (sC >= 5) { sC = 0; oAuth(); }
+};
+
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+    e.preventDefault();
+    oAuth();
+  }
 });
-function vC(){
-  var inp=document.querySelectorAll('#CI input'),code=Array.from(inp).map(function(i){return i.value}).join('');
-  if(code===PIN){
+
+function oAuth() {
+  document.getElementById('AO').classList.add('act');
+  document.getElementById('AE').style.display = 'none';
+  var inp = document.querySelectorAll('#CI input');
+  inp.forEach(function(x) { x.value = ''; });
+  setTimeout(function() { inp[0].focus(); }, 100);
+}
+
+document.querySelectorAll('#CI input').forEach(function(inp, i, arr) {
+  inp.oninput = function() {
+    inp.value = inp.value.replace(/\D/g, '');
+    if (inp.value && i < arr.length - 1) arr[i + 1].focus();
+    if (i === arr.length - 1 && inp.value) vC();
+  };
+  inp.onkeydown = function(e) {
+    if (e.key === 'Backspace' && !inp.value && i > 0) {
+      arr[i - 1].focus();
+      arr[i - 1].value = '';
+    }
+    if (e.key === 'Enter') vC();
+  };
+  inp.onpaste = function(e) {
+    e.preventDefault();
+    var p = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').substr(0, 4);
+    p.split('').forEach(function(ch, ci) { if (arr[ci]) arr[ci].value = ch; });
+    if (p.length === 4) vC();
+  };
+});
+
+function vC() {
+  var inp = document.querySelectorAll('#CI input');
+  var code = Array.from(inp).map(function(i) { return i.value; }).join('');
+
+  if (code === PIN) {
     document.getElementById('AO').classList.remove('act');
     document.getElementById('AP').classList.add('act');
-    document.body.style.overflow='hidden';
-    rAdm();toast('Zalogowano!','ok');
-  }else{
-    document.getElementById('AE').style.display='flex';
-    inp.forEach(function(x){x.value='';x.style.borderColor='#ef4444';setTimeout(function(){x.style.borderColor=''},1200)});
+    document.body.style.overflow = 'hidden';
+    rAdm();
+    toast('Zalogowano!', 'ok');
+  } else {
+    document.getElementById('AE').style.display = 'flex';
+    inp.forEach(function(x) {
+      x.value = '';
+      x.style.borderColor = '#ef4444';
+      setTimeout(function() { x.style.borderColor = ''; }, 1200);
+    });
     inp[0].focus();
-    var d=document.querySelector('.ad');d.style.animation='none';d.offsetHeight;d.style.animation='shake .4s';
+    var d = document.querySelector('.ad');
+    d.style.animation = 'none';
+    d.offsetHeight;
+    d.style.animation = 'shake .4s';
   }
 }
 
-// ADMIN TABS
-var TABS=['proj','rev','team','cfg','msg'];
-function swT(t){document.querySelectorAll('.at').forEach(function(b,i){b.classList.toggle('act',TABS[i]===t)});document.querySelectorAll('.asc').forEach(function(s){s.classList.toggle('act',s.id==='t-'+t)});if(t==='msg')rMsg();if(t==='cfg')updCfg()}
-function updCfg(){var u=document.getElementById('CU'),s=document.getElementById('CS2');if(u)u.textContent=FB||'NIE USTAWIONY';if(s)s.innerHTML=dbOk?'<i class="fas fa-circle" style="color:#22c55e;font-size:.45rem"></i> ✓ Połączono z Firebase':'<i class="fas fa-circle" style="color:'+(FB?'#ef4444':'#fbbf24')+';font-size:.45rem"></i> '+(FB?'✗ Błąd połączenia':'Ustaw Firebase URL powyżej')}
+// ===== ADMIN TABS =====
+var TABS = ['proj', 'rev', 'team', 'cfg', 'msg'];
 
-async function testDB(){toast('Testowanie...','warn');if(!FB){toast('Brak URL!','er');return}try{await fbGet('');log('ok','READ OK');await fbPut('_test',{ts:Date.now(),ok:true});log('ok','WRITE OK');dbOk=true;toast('Firebase działa! ✓','ok')}catch(e){dbOk=false;log('er','Test: '+e.message);toast('Błąd: '+e.message,'er')}updCfg()}
-async function syncNow(){toast('Sync...','warn');await loadDB();renderAll();if(document.getElementById('AP').classList.contains('act'))rAdm();toast(dbOk?'✓ Zsynchronizowano!':'Dane lokalne','ok')}
-async function forceSv(){saving=false;var ok=await saveDB();toast(ok?'✓ Wysłano do Firebase!':'✗ Błąd',ok?'ok':'er');updCfg()}
-async function rstFB(){if(!FB){toast('Brak URL!','er');return}toast('Reset...','warn');localStorage.removeItem('v_db');try{var d=await fbGet('portfolio');if(d&&d.projects&&d.projects.length){DB=mg(d);localStorage.setItem('v_db',JSON.stringify(DB));dbOk=true;renderAll();if(document.getElementById('AP').classList.contains('act'))rAdm();toast('✓ Dane z Firebase!','ok')}else toast('Baza Firebase pusta','warn')}catch(e){toast('Błąd: '+e.message,'er')}}
-function expDB(){var b=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='vern0x-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();toast('Eksport OK','ok')}
-async function impDB(e){var f=e.target.files[0];if(!f)return;try{DB=mg(JSON.parse(await f.text()));var ok=await saveDB();renderAll();rAdm();toast('Import'+(ok?' + Firebase':''),'ok')}catch(er){toast('Błąd importu','er')}e.target.value=''}
-function oCfg(){document.getElementById('AMB').innerHTML='<h3><i class="fas fa-fire" style="color:#f97316"></i> Firebase URL</h3><p style="color:var(--text3);font-size:.78rem;margin-bottom:1.2rem">Format: <code>https://projekt-default-rtdb.firebaseio.com</code></p><form onsubmit="svCfg(event)"><div class="fg"><label>URL</label><input id="CU2" value="'+ea(FB)+'" required placeholder="https://twoj-projekt-default-rtdb.firebaseio.com"></div><div class="mbt"><button type="button" class="mcn" onclick="cMod()">Anuluj</button><button type="submit" class="msv"><i class="fas fa-save"></i> Zapisz i połącz</button></div></form>';document.getElementById('AMO').classList.add('act')}
-async function svCfg(e){e.preventDefault();var url=document.getElementById('CU2').value.trim().replace(/\/$/,'');try{new URL(url)}catch(er){toast('Nieprawidłowy URL','er');return}if(!url.includes('.firebaseio.com')){toast('Musi kończyć się na .firebaseio.com','er');return}FB=url;saveCfg();cMod();toast('Testowanie...','warn');await loadDB();renderAll();if(document.getElementById('AP').classList.contains('act'))rAdm();updCfg();toast(dbOk?'✓ Połączono!':'✗ Błąd URL',dbOk?'ok':'er')}
-
-// ADMIN MESSAGES
-function rMsg(){var s=DB.submissions||[];document.getElementById('AM2').innerHTML=s.length?s.map(function(x){return'<div class="amsg"><div class="amav">'+ec(x.nick||'?')[0].toUpperCase()+'</div><div class="aminf"><h4>'+ec(x.nick)+'</h4><div class="mdc"><i class="fab fa-discord"></i> '+ec(x.discordId)+'</div><p><b>'+ec(x.service)+':</b> '+ec(x.message)+'</p><div class="mdt">'+new Date(x.time).toLocaleString('pl')+'</div></div><button class="amx" onclick="dSub(\''+ea(x.id)+'\')"><i class="fas fa-trash"></i></button></div>'}).join(''):'<p style="text-align:center;color:var(--text3);padding:2rem">Brak zgłoszeń</p>'}
-async function dSub(id){DB.submissions=DB.submissions.filter(function(x){return x.id!==id});await saveDB();rMsg();toast('Usunięto','ok')}
-
-// ADMIN RENDER
-function rAdm(){
-  function rL(c,items,ty,fn){document.getElementById(c).innerHTML=items.map(function(i){return'<div class="ai">'+fn(i)+'<div class="aac"><button class="aedit" onclick="oM(\''+ty+'\',\''+ea(i.id)+'\')"><i class="fas fa-pen"></i></button><button class="adel" onclick="dI(\''+ty+'\',\''+ea(i.id)+'\')"><i class="fas fa-trash"></i></button></div></div>'}).join('')||'<p style="text-align:center;color:var(--text3);padding:1.5rem">Brak</p>'}
-  rL('AP2',DB.projects,'project',function(p){return'<div class="ath">'+(p.image&&p.image.length>50?'<img src="'+p.image+'">':'<i class="'+(p.icon||'fas fa-folder')+'"></i>')+'</div><div class="ainf"><h4>'+ec(p.name)+'</h4><p>'+ec(p.desc||'')+'</p></div>'});
-  rL('AR2',DB.reviews,'review',function(r){return'<div class="ath"><i class="fas fa-user"></i></div><div class="ainf"><h4>'+ec(r.name)+' <span style="color:#fbbf24;font-size:.5rem">'+'★'.repeat(r.stars)+'</span></h4><p>'+ec(r.text)+'</p></div>'});
-  rL('AT2',DB.teams,'team',function(t){return'<div class="ath"><i class="fas fa-users"></i></div><div class="ainf"><h4>'+ec(t.name)+'</h4><p>'+ec(t.role)+' — '+ec(t.desc||'')+'</p></div>'});
-  rMsg();updCfg();
+function swT(t) {
+  document.querySelectorAll('.at').forEach(function(b, i) {
+    b.classList.toggle('act', TABS[i] === t);
+  });
+  document.querySelectorAll('.asc').forEach(function(s) {
+    s.classList.toggle('act', s.id === 't-' + t);
+  });
+  if (t === 'msg') rMsg();
+  if (t === 'cfg') updCfg();
 }
 
-// ADMIN MODAL
-var mTy='',eId=null,mImg='';
-function oM(ty,id){
-  mTy=ty;eId=id||null;mImg='';
-  var mc=document.getElementById('AMB');
-  var imgF='<div class="fg"><label>Obraz / Logo</label><div class="iup" id="UA"><input type="file" accept="image/*" onchange="hI(event)"><button type="button" class="rmi" onclick="rI(event)"><i class="fas fa-times"></i></button><div class="uic"><i class="fas fa-cloud-upload-alt"></i></div><div class="utx"><strong>Kliknij</strong></div><img class="ipv" id="IPV" src="" alt=""></div></div>';
-  if(ty==='project'){var p=eId?DB.projects.find(function(x){return x.id===eId}):null;mImg=p?p.image||'':'';mc.innerHTML='<h3><i class="fas fa-'+(eId?'pen':'plus-circle')+'"></i> '+(eId?'Edytuj':'Nowy')+' projekt</h3><form onsubmit="svI(event)">'+imgF+'<div class="fg"><label>Nazwa</label><input id="f_n" value="'+(p?ea(p.name):'')+'" required></div><div class="fr"><div class="fg"><label>Kategoria</label><select id="f_c"><option value="minecraft"'+(p&&p.category==='minecraft'?' selected':'')+'>Minecraft</option><option value="grafika"'+(p&&p.category==='grafika'?' selected':'')+'>Grafika</option><option value="skript"'+(p&&p.category==='skript'?' selected':'')+'>Skript</option><option value="animacja"'+(p&&p.category==='animacja'?' selected':'')+'>Animacja</option></select></div><div class="fg"><label>Ikona</label><input id="f_i" value="'+(p?p.icon:'fas fa-gamepad')+'"></div></div><div class="fg"><label>Opis</label><textarea id="f_d" required>'+(p?ec(p.desc||''):'')+'</textarea></div><div class="fg"><label>Tagi (po przecinku)</label><input id="f_t" value="'+(p?(p.tags||[]).join(', '):'')+'"></div><div class="mbt"><button type="button" class="mcn" onclick="cMod()">Anuluj</button><button type="submit" class="msv"><i class="fas fa-save"></i> Zapisz</button></div></form>'}
-  else if(ty==='review'){var r=eId?DB.reviews.find(function(x){return x.id===eId}):null;mImg=r?r.avatar||'':'';mc.innerHTML='<h3><i class="fas fa-'+(eId?'pen':'plus-circle')+'"></i> '+(eId?'Edytuj':'Nowa')+' opinia</h3><form onsubmit="svI(event)">'+imgF+'<div class="fr"><div class="fg"><label>Imię</label><input id="f_n" value="'+(r?ea(r.name):'')+'" required></div><div class="fg"><label>Rola</label><input id="f_r" value="'+(r?ea(r.role):'')+'" required></div></div><div class="fg"><label>Ocena (1-5)</label><input type="number" id="f_s" min="1" max="5" value="'+(r?r.stars:5)+'" required></div><div class="fg"><label>Treść opinii</label><textarea id="f_tx" required>'+(r?ec(r.text):'')+'</textarea></div><div class="mbt"><button type="button" class="mcn" onclick="cMod()">Anuluj</button><button type="submit" class="msv"><i class="fas fa-save"></i> Zapisz</button></div></form>'}
-  else if(ty==='team'){var t=eId?DB.teams.find(function(x){return x.id===eId}):null;mImg=t?t.icon||'':'';mc.innerHTML='<h3><i class="fas fa-'+(eId?'pen':'plus-circle')+'"></i> '+(eId?'Edytuj':'Nowy')+' zespół</h3><form onsubmit="svI(event)">'+imgF+'<div class="fr"><div class="fg"><label>Nazwa</label><input id="f_n" value="'+(t?ea(t.name):'')+'" required></div><div class="fg"><label>Twoja rola</label><input id="f_r" value="'+(t?ea(t.role):'')+'" required></div></div><div class="fg"><label>Opis</label><textarea id="f_d" required>'+(t?ec(t.desc||''):'')+'</textarea></div><div class="fr"><div class="fg"><label>Link Discord</label><input id="f_l" value="'+(t?ea(t.link):'')+'" required></div><div class="fg"><label>Styl</label><select id="f_st"><option value="tb"'+(t&&t.style==='tb'?' selected':'')+'>Niebieski</option><option value="to"'+(t&&t.style==='to'?' selected':'')+'>Pomarańcz</option><option value="tp"'+(t&&t.style==='tp'?' selected':'')+'>Fiolet</option><option value="tgr"'+(t&&t.style==='tgr'?' selected':'')+'>Zielony</option><option value="tre"'+(t&&t.style==='tre'?' selected':'')+'>Czerwony</option><option value="tdf"'+(t&&t.style==='tdf'?' selected':'')+'>Domyślny</option></select></div></div><div class="fr"><div class="fg"><label>Skrót (2-3 znaki)</label><input id="f_lo" maxlength="3" value="'+(t?ea(t.logo||''):'')+'"></div><div class="fg"><label>Liczba członków</label><input id="f_me" value="'+(t?ea(t.members||''):'')+'"></div></div><div class="fg"><label>Tagi (po przecinku)</label><input id="f_tt" value="'+(t?(t.tags||[]).join(', '):'')+'"></div><div class="mbt"><button type="button" class="mcn" onclick="cMod()">Anuluj</button><button type="submit" class="msv"><i class="fas fa-save"></i> Zapisz</button></div></form>'}
-  document.getElementById('AMO').classList.add('act');
-  setTimeout(function(){if(mImg){var a=document.getElementById('UA');if(a){document.getElementById('IPV').src=mImg;a.classList.add('has')}}},50);
+function updCfg() {
+  var u = document.getElementById('CU');
+  var s = document.getElementById('CS2');
+  if (u) u.textContent = FB || 'NIE USTAWIONY';
+  if (s) {
+    s.innerHTML = dbOk
+      ? '<i class="fas fa-circle" style="color:#22c55e;font-size:.45rem"></i> ✓ Połączono z Firebase'
+      : '<i class="fas fa-circle" style="color:' + (FB ? '#ef4444' : '#fbbf24') + ';font-size:.45rem"></i> ' +
+        (FB ? '✗ Błąd połączenia' : 'Ustaw Firebase URL powyżej');
+  }
 }
-function cMod(){document.getElementById('AMO').classList.remove('act');eId=null}
-function hI(e){var f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){toast('Max 2MB!','er');return}var img=new Image(),rd=new FileReader();rd.onload=function(ev){img.onload=function(){var c=document.createElement('canvas'),w=img.width,h=img.height;if(w>1200){h*=1200/w;w=1200}if(h>800){w*=800/h;h=800}c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);mImg=c.toDataURL('image/webp',.75);document.getElementById('IPV').src=mImg;document.getElementById('UA').classList.add('has');toast(Math.round(mImg.length/1024)+'KB OK','ok')};img.src=ev.target.result};rd.readAsDataURL(f)}
-function rI(e){e.preventDefault();e.stopPropagation();mImg='';document.getElementById('IPV').src='';document.getElementById('UA').classList.remove('has')}
-async function svI(e){
-  e.preventDefault();
-  if(mTy==='project'){var it={id:eId||gId(),name:document.getElementById('f_n').value.trim(),category:document.getElementById('f_c').value,icon:document.getElementById('f_i').value.trim()||'fas fa-folder',desc:document.getElementById('f_d').value.trim(),tags:document.getElementById('f_t').value.split(',').map(function(t){return t.trim()}).filter(Boolean),image:mImg};if(eId){var i=DB.projects.findIndex(function(x){return x.id===eId});if(i!==-1)DB.projects[i]=it}else DB.projects.push(it)}
-  else if(mTy==='review'){var it={id:eId||gId(),name:document.getElementById('f_n').value.trim(),role:document.getElementById('f_r').value.trim(),stars:Math.min(5,Math.max(1,+document.getElementById('f_s').value)),text:document.getElementById('f_tx').value.trim(),avatar:mImg};if(eId){var i=DB.reviews.findIndex(function(x){return x.id===eId});if(i!==-1)DB.reviews[i]=it}else DB.reviews.push(it)}
-  else if(mTy==='team'){var it={id:eId||gId(),name:document.getElementById('f_n').value.trim(),role:document.getElementById('f_r').value.trim(),desc:document.getElementById('f_d').value.trim(),link:document.getElementById('f_l').value.trim(),style:document.getElementById('f_st').value,icon:mImg,logo:document.getElementById('f_lo').value.trim(),members:document.getElementById('f_me').value.trim(),tags:document.getElementById('f_tt').value.split(',').map(function(t){return t.trim()}).filter(Boolean)};if(eId){var i=DB.teams.findIndex(function(x){return x.id===eId});if(i!==-1)DB.teams[i]=it}else DB.teams.push(it)}
-  cMod();renderAll();rAdm();
-  var ok=await saveDB();
-  toast((eId?'Zapisano':'Dodano')+(ok?' ✓ Firebase':''),'ok');
+
+// ===== ADMIN ACTIONS =====
+async function testDB() {
+  toast('Testowanie...', 'warn');
+  if (!FB) { toast('Brak URL!', 'er'); return; }
+  try {
+    await fbGet('');
+    log('ok', 'READ OK');
+    await fbPut('_test', { ts: Date.now(), ok: true });
+    log('ok', 'WRITE OK');
+    dbOk = true;
+    toast('Firebase działa! ✓', 'ok');
+  } catch (e) {
+    dbOk = false;
+    log('er', 'Test: ' + e.message);
+    toast('Błąd: ' + e.message, 'er');
+  }
+  updCfg();
 }
-async function dI(ty,id){
-  if(!confirm('Na pewno usunąć?'))return;
-  if(ty==='project')DB.projects=DB.projects.filter(function(x){return x.id!==id});
-  else if(ty==='review')DB.reviews=DB.reviews.filter(function(x){return x.id!==id});
-  else if(ty==='team')DB.teams=DB.teams.filter(function(x){return x.id!==id});
-  renderAll();rAdm();var ok=await saveDB();toast('Usunięto'+(ok?' ✓':''),'ok');
-}
-function renderAll(){rPort();rRev();rTeams()}
 
-// PARTICLES
-var cv=document.getElementById('particles'),cx=cv.getContext('2d'),pts=[],mPos={x:null,y:null},aId;
-var noMo=window.matchMedia('(prefers-reduced-motion:reduce)').matches,mob=innerWidth<768;
-function rCv(){cv.width=innerWidth;cv.height=innerHeight}rCv();
-function Pt(){this.x=Math.random()*cv.width;this.y=Math.random()*cv.height;this.s=Math.random()*1.5+.3;this.vx=(Math.random()-.5)*.12;this.vy=(Math.random()-.5)*.12;this.o=Math.random()*.18+.04;this.od=Math.random()>.5?1:-1;this.h=Math.random()*30+265}
-Pt.prototype.u=function(){this.x+=this.vx;this.y+=this.vy;if(mPos.x!==null){var dx=mPos.x-this.x,dy=mPos.y-this.y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){var f=(100-d)/100;this.x-=(dx/d)*f*.5;this.y-=(dy/d)*f*.5}}this.o+=.0006*this.od;if(this.o>=.22)this.od=-1;if(this.o<=.04)this.od=1;if(this.x<-5)this.x=cv.width+5;if(this.x>cv.width+5)this.x=-5;if(this.y<-5)this.y=cv.height+5;if(this.y>cv.height+5)this.y=-5};
-Pt.prototype.d=function(){cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);cx.fillStyle='hsla('+this.h+',45%,48%,'+this.o+')';cx.fill()};
-function iP(){pts=[];if(noMo)return;var c=mob?12:Math.min(Math.floor(cv.width*cv.height/20000),70);for(var i=0;i<c;i++)pts.push(new Pt)}
-function dCn(){for(var i=0;i<pts.length;i++)for(var j=i+1;j<pts.length;j++){var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<65){cx.beginPath();cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);cx.strokeStyle='hsla(270,30%,35%,'+(1-d/65)*.03+')';cx.lineWidth=.3;cx.stroke()}}}
-function anm(){cx.clearRect(0,0,cv.width,cv.height);pts.forEach(function(p){p.u();p.d()});dCn();aId=requestAnimationFrame(anm)}
-iP();if(!noMo)anm();
-
-// CURSOR + CARD GLOW
-var cDot=document.getElementById('CD'),cRing=document.getElementById('CR'),mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',function(e){
-  mx=e.clientX;my=e.clientY;mPos.x=e.clientX;mPos.y=e.clientY;
-  // Card glow tracking — kluczowe dla card effect
-  document.querySelectorAll('.card').forEach(function(c){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')});
-});
-function cLoop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;if(cDot){cDot.style.left=(mx-3)+'px';cDot.style.top=(my-3)+'px'}if(cRing){cRing.style.left=(rx-20)+'px';cRing.style.top=(ry-20)+'px'}requestAnimationFrame(cLoop)}cLoop();
-document.addEventListener('mouseenter',function(e){if(e.target.closest&&e.target.closest('a,button,.card,.pill,.tag,.ob'))cRing&&cRing.classList.add('h')},true);
-document.addEventListener('mouseleave',function(e){if(e.target.closest&&e.target.closest('a,button,.card,.pill,.tag,.ob'))cRing&&cRing.classList.remove('h')},true);
-
-// SCROLL
-var sThrottle=false;
-addEventListener('scroll',function(){if(sThrottle)return;sThrottle=true;requestAnimationFrame(function(){var s=scrollY;document.getElementById('NAV').classList.toggle('sc',s>50);document.querySelectorAll('section[id]').forEach(function(sec){if(s+200>=sec.offsetTop&&s+200<sec.offsetTop+sec.offsetHeight){document.querySelectorAll('.nl a').forEach(function(a){a.classList.remove('act')});var a=document.querySelector('.nl a[href="#'+sec.id+'"]');if(a)a.classList.add('act')}});var dh=document.documentElement.scrollHeight-innerHeight;document.getElementById('SP').style.width=(dh>0?(s/dh)*100:0)+'%';document.getElementById('SCT').classList.toggle('vis',s>400);var hc=document.querySelector('.hc');if(hc&&s<innerHeight){hc.style.transform='translateY('+s*.12+'px)';hc.style.opacity=Math.max(0,1-s/(innerHeight*.5))}sThrottle=false})});
-document.getElementById('SCT').onclick=function(){scrollTo({top:0,behavior:'smooth'})};
-
-var rszT;addEventListener('resize',function(){clearTimeout(rszT);rszT=setTimeout(function(){rCv();mob=innerWidth<768;iP();rRev()},250)});
-
-// MOBILE MENU
-var mobT=document.getElementById('MT'),mobM=document.getElementById('MM');
-mobT.onclick=function(){mobT.classList.toggle('act');mobM.classList.toggle('act')};
-mobM.querySelectorAll('a').forEach(function(a){a.onclick=function(){mobT.classList.remove('act');mobM.classList.remove('act')}});
-
-// THEME
-var html=document.documentElement;html.dataset.theme=localStorage.getItem('v_th')||'dark';document.getElementById('TI').className=html.dataset.theme==='dark'?'fas fa-moon':'fas fa-sun';
-document.getElementById('TT').onclick=function(){var n=html.dataset.theme==='dark'?'light':'dark';html.dataset.theme=n;localStorage.setItem('v_th',n);document.getElementById('TI').className=n==='dark'?'fas fa-moon':'fas fa-sun'};
-
-// COUNTERS
-function anCt(){document.querySelectorAll('.sn').forEach(function(c){var t=+c.dataset.t,st=t/80,cu=0;var tm=setInterval(function(){cu+=st;if(cu>=t){c.textContent=t+(t===99?'%':'+');clearInterval(tm)}else c.textContent=Math.floor(cu)+(t===99?'%':'+')},22)})}
-
-// SKILLS
-var skO=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){document.querySelectorAll('.skf').forEach(function(b){b.style.width=b.dataset.w+'%'});skO.unobserve(en.target)}})},{threshold:.2});var sg=document.getElementById('SKG');if(sg)skO.observe(sg);
-
-// REVEAL
-var rvO=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('v');rvO.unobserve(en.target)}})},{threshold:.05});document.querySelectorAll('.rv,.stg').forEach(function(el){rvO.observe(el)});
-
-// SMOOTH SCROLL
-document.querySelectorAll('a[href^="#"]').forEach(function(a){a.onclick=function(e){e.preventDefault();var t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})}});
-
-// NAME SCRAMBLE
-var hN=document.getElementById('HN'),oN='Vern0x';hN.onmouseenter=function(){var it=0,ch='!@#$%^&*01_-+=<>~';var iv=setInterval(function(){hN.textContent=oN.split('').map(function(c,i){return i<it?oN[i]:ch[Math.floor(Math.random()*ch.length)]}).join('');if(it>=oN.length)clearInterval(iv);it+=.3},30)};
-
-// TITLE SCRAMBLE
-document.querySelectorAll('.st2').forEach(function(tl){var o=tl.textContent,p=false;new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!p){p=true;var it=0,ch='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';var iv=setInterval(function(){tl.textContent=o.split('').map(function(c,i){return c===' '?' ':i<it?o[i]:ch[Math.floor(Math.random()*ch.length)]}).join('');if(it>=o.length)clearInterval(iv);it+=.4},28)}})},{threshold:.3}).observe(tl)});
-
-// SECRET
-document.getElementById('SB').onmouseenter=function(){this.style.opacity='.2'};document.getElementById('SB').onmouseleave=function(){this.style.opacity='0'};
-document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(aId);else if(!noMo)anm()});
-if(!localStorage.getItem('v_ck'))setTimeout(function(){document.getElementById('CK').classList.add('show')},1500);
-
-// BOOT
-(async function(){
-  initCfg();
-  setLd('Łączenie z Firebase...',10);
+async function syncNow() {
+  toast('Sync...', 'warn');
   await loadDB();
-  setLd('Renderowanie...',85);
   renderAll();
-  setLd('Gotowe!',100);
+  if (document.getElementById('AP').classList.contains('act')) rAdm();
+  toast(dbOk ? '✓ Zsynchronizowano!' : 'Dane lokalne', 'ok');
+}
+
+async function forceSv() {
+  saving = false;
+  var ok = await saveDB();
+  toast(ok ? '✓ Wysłano do Firebase!' : '✗ Błąd', ok ? 'ok' : 'er');
+  updCfg();
+}
+
+async function rstFB() {
+  if (!FB) { toast('Brak URL!', 'er'); return; }
+  toast('Reset...', 'warn');
+  localStorage.removeItem('v_db');
+  try {
+    var d = await fbGet('portfolio');
+    if (d && d.projects && d.projects.length) {
+      DB = mg(d);
+      localStorage.setItem('v_db', JSON.stringify(DB));
+      dbOk = true;
+      renderAll();
+      if (document.getElementById('AP').classList.contains('act')) rAdm();
+      toast('✓ Dane z Firebase!', 'ok');
+    } else {
+      toast('Baza Firebase pusta', 'warn');
+    }
+  } catch (e) {
+    toast('Błąd: ' + e.message, 'er');
+  }
+}
+
+function expDB() {
+  var b = new Blob([JSON.stringify(DB, null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(b);
+  a.download = 'vern0x-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+  a.click();
+  toast('Eksport OK', 'ok');
+}
+
+async function impDB(e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  try {
+    DB = mg(JSON.parse(await f.text()));
+    var ok = await saveDB();
+    renderAll();
+    rAdm();
+    toast('Import' + (ok ? ' + Firebase' : ''), 'ok');
+  } catch (er) {
+    toast('Błąd importu', 'er');
+  }
+  e.target.value = '';
+}
+
+function oCfg() {
+  document.getElementById('AMB').innerHTML =
+    '<h3><i class="fas fa-fire" style="color:#f97316"></i> Firebase URL</h3>' +
+    '<p style="color:var(--text3);font-size:.78rem;margin-bottom:1.2rem">Format: <code>https://projekt-default-rtdb.firebaseio.com</code></p>' +
+    '<form onsubmit="svCfg(event)">' +
+    '<div class="fg"><label>URL</label><input id="CU2" value="' + ea(FB) + '" required placeholder="https://twoj-projekt-default-rtdb.firebaseio.com"></div>' +
+    '<div class="mbt"><button type="button" class="mcn" onclick="cMod()">Anuluj</button>' +
+    '<button type="submit" class="msv"><i class="fas fa-save"></i> Zapisz i połącz</button></div></form>';
+  document.getElementById('AMO').classList.add('act');
+}
+
+async function svCfg(e) {
+  e.preventDefault();
+  var url = document.getElementById('CU2').value.trim().replace(/\/$/, '');
+  try { new URL(url); } catch (er) { toast('Nieprawidłowy URL', 'er'); return; }
+  if (!url.includes('.firebaseio.com')) {
+    toast('Musi kończyć się na .firebaseio.com', 'er');
+    return;
+  }
+  FB = url;
+  saveCfg();
+  cMod();
+  toast('Testowanie...', 'warn');
+  await loadDB();
+  renderAll();
+  if (document.getElementById('AP').classList.contains('act')) rAdm();
+  updCfg();
+  toast(dbOk ? '✓ Połączono!' : '✗ Błąd URL', dbOk ? 'ok' : 'er');
+}
+
+// ===== ADMIN MESSAGES =====
+function rMsg() {
+  var s = DB.submissions || [];
+  document.getElementById('AM2').innerHTML = s.length
+    ? s.map(function(x) {
+        return '<div class="amsg">' +
+          '<div class="amav">' + ec(x.nick || '?')[0].toUpperCase() + '</div>' +
+          '<div class="aminf"><h4>' + ec(x.nick) + '</h4>' +
+          '<div class="mdc"><i class="fab fa-discord"></i> ' + ec(x.discordId) + '</div>' +
+          '<p><b>' + ec(x.service) + ':</b> ' + ec(x.message) + '</p>' +
+          '<div class="mdt">' + new Date(x.time).toLocaleString('pl') + '</div></div>' +
+          '<button class="amx" onclick="dSub(\'' + ea(x.id) + '\')"><i class="fas fa-trash"></i></button></div>';
+      }).join('')
+    : '<p style="text-align:center;color:var(--text3);padding:2rem">Brak zgłoszeń</p>';
+}
+
+async function dSub(id) {
+  DB.submissions = DB.submissions.filter(function(x) { return x.id !== id; });
+  await saveDB();
+  rMsg();
+  toast('Usunięto', 'ok');
+}
+
+// ===== ADMIN RENDER =====
+function rAdm() {
+  function rL(c, items, ty, fn) {
+    document.getElementById(c).innerHTML = items.map(function(i) {
+      return '<div class="ai">' + fn(i) +
+        '<div class="aac">' +
+        '<button class="aedit" onclick="oM(\'' + ty + '\',\'' + ea(i.id) + '\')"><i class="fas fa-pen"></i></button>' +
+        '<button class="adel" onclick="dI(\'' + ty + '\',\'' + ea(i.id) + '\')"><i class="fas fa-trash"></i></button>' +
+        '</div></div>';
+    }).join('') || '<p style="text-align:center;color:var(--text3);padding:1.5rem">Brak</p>';
+  }
+
+  rL('AP2', DB.projects, 'project', function(p) {
+    return '<div class="ath">' +
+      (p.image && p.image.length > 50
+        ? '<img src="' + p.image + '">'
+        : '<i class="' + (p.icon || 'fas fa-folder') + '"></i>') +
+      '</div><div class="ainf"><h4>' + ec(p.name) + '</h4><p>' + ec(p.desc || '') + '</p></div>';
+  });
+
+  rL('AR2', DB.reviews, 'review', function(r) {
+    return '<div class="ath"><i class="fas fa-user"></i></div>' +
+      '<div class="ainf"><h4>' + ec(r.name) +
+      ' <span style="color:#fbbf24;font-size:.5rem">' + '★'.repeat(r.stars) + '</span></h4>' +
+      '<p>' + ec(r.text) + '</p></div>';
+  });
+
+  rL('AT2', DB.teams, 'team', function(t) {
+    return '<div class="ath"><i class="fas fa-users"></i></div>' +
+      '<div class="ainf"><h4>' + ec(t.name) + '</h4>' +
+      '<p>' + ec(t.role) + ' — ' + ec(t.desc || '') + '</p></div>';
+  });
+
+  rMsg();
+  updCfg();
+}
+
+// ===== ADMIN MODAL =====
+var mTy = '', eId = null, mImg = '';
+
+function oM(ty, id) {
+  mTy = ty;
+  eId = id || null;
+  mImg = '';
+  var mc = document.getElementById('AMB');
+
+  var imgF = '<div class="fg"><label>Obraz / Logo</label>' +
+    '<div class="iup" id="UA"><input type="file" accept="image/*" onchange="hI(event)">' +
+    '<button type="button" class="rmi" onclick="rI(event)"><i class="fas fa-times"></i></button>' +
+    '<div class="uic"><i class="fas fa-cloud-upload-alt"></i></div>' +
+    '<div class="utx"><strong>Kliknij</strong></div>' +
+    '<img class="ipv" id="IPV" src="" alt=""></div></div>';
+
+  if (ty === 'project') {
+    var p = eId ? DB.projects.find(function(x) { return x.id === eId; }) : null;
+    mImg = p ? p.image || '' : '';
+    mc.innerHTML = '<h3><i class="fas fa-' + (eId ? 'pen' : 'plus-circle') + '"></i> ' +
+      (eId ? 'Edytuj' : 'Nowy') + ' projekt</h3>' +
+      '<form onsubmit="svI(event)">' + imgF +
+      '<div class="fg"><label>Nazwa</label><input id="f_n" value="' + (p ? ea(p.name) : '') + '" required></div>' +
+      '<div class="fr"><div class="fg"><label>Kategoria</label><select id="f_c">' +
+      '<option value="minecraft"' + (p && p.category === 'minecraft' ? ' selected' : '') + '>Minecraft</option>' +
+      '<option value="grafika"' + (p && p.category === 'grafika' ? ' selected' : '') + '>Grafika</option>' +
+      '<option value="skript"' + (p && p.category === 'skript' ? ' selected' : '') + '>Skript</option>' +
+      '<option value="animacja"' + (p && p.category === 'animacja' ? ' selected' : '') + '>Animacja</option>' +
+      '</select></div>' +
+      '<div class="fg"><label>Ikona</label><input id="f_i" value="' + (p ? p.icon : 'fas fa-gamepad') + '"></div></div>' +
+      '<div class="fg"><label>Opis</label><textarea id="f_d" required>' + (p ? ec(p.desc || '') : '') + '</textarea></div>' +
+      '<div class="fg"><label>Tagi (po przecinku)</label><input id="f_t" value="' + (p ? (p.tags || []).join(', ') : '') + '"></div>' +
+      '<div class="mbt"><button type="button" class="mcn" onclick="cMod()">Anuluj</button>' +
+      '<button type="submit" class="msv"><i class="fas fa-save"></i> Zapisz</button></div></form>';
+
+  } else if (ty === 'review') {
+    var r = eId ? DB.reviews.find(function(x) { return x.id === eId; }) : null;
+    mImg = r ? r.avatar || '' : '';
+    mc.innerHTML = '<h3><i class="fas fa-' + (eId ? 'pen' : 'plus-circle') + '"></i> ' +
+      (eId ? 'Edytuj' : 'Nowa') + ' opinia</h3>' +
+      '<form onsubmit="svI(event)">' + imgF +
+      '<div class="fr"><div class="fg"><label>Imię</label><input id="f_n" value="' + (r ? ea(r.name) : '') + '" required></div>' +
+      '<div class="fg"><label>Rola</label><input id="f_r" value="' + (r ? ea(r.role) : '') + '" required></div></div>' +
+      '<div class="fg"><label>Ocena (1-5)</label><input type="number" id="f_s" min="1" max="5" value="' + (r ? r.stars : 5) + '" required></div>' +
+      '<div class="fg"><label>Treść opinii</label><textarea id="f_tx" required>' + (r ? ec(r.text) : '') + '</textarea></div>' +
+      '<div class="mbt"><button type="button" class="mcn" onclick="cMod()">Anuluj</button>' +
+      '<button type="submit" class="msv"><i class="fas fa-save"></i> Zapisz</button></div></form>';
+
+  } else if (ty === 'team') {
+    var t = eId ? DB.teams.find(function(x) { return x.id === eId; }) : null;
+    mImg = t ? t.icon || '' : '';
+    mc.innerHTML = '<h3><i class="fas fa-' + (eId ? 'pen' : 'plus-circle') + '"></i> ' +
+      (eId ? 'Edytuj' : 'Nowy') + ' zespół</h3>' +
+      '<form onsubmit="svI(event)">' + imgF +
+      '<div class="fr"><div class="fg"><label>Nazwa</label><input id="f_n" value="' + (t ? ea(t.name) : '') + '" required></div>' +
+      '<div class="fg"><label>Twoja rola</label><input id="f_r" value="' + (t ? ea(t.role) : '') + '" required></div></div>' +
+      '<div class="fg"><label>Opis</label><textarea id="f_d" required>' + (t ? ec(t.desc || '') : '') + '</textarea></div>' +
+      '<div class="fr"><div class="fg"><label>Link Discord</label><input id="f_l" value="' + (t ? ea(t.link) : '') + '" required></div>' +
+      '<div class="fg"><label>Styl</label><select id="f_st">' +
+      '<option value="tb"' + (t && t.style === 'tb' ? ' selected' : '') + '>Niebieski</option>' +
+      '<option value="to"' + (t && t.style === 'to' ? ' selected' : '') + '>Pomarańcz</option>' +
+      '<option value="tp"' + (t && t.style === 'tp' ? ' selected' : '') + '>Fiolet</option>' +
+      '<option value="tgr"' + (t && t.style === 'tgr' ? ' selected' : '') + '>Zielony</option>' +
+      '<option value="tre"' + (t && t.style === 'tre' ? ' selected' : '') + '>Czerwony</option>' +
+      '<option value="tdf"' + (t && t.style === 'tdf' ? ' selected' : '') + '>Domyślny</option>' +
+      '</select></div></div>' +
+      '<div class="fr"><div class="fg"><label>Skrót (2-3 znaki)</label><input id="f_lo" maxlength="3" value="' + (t ? ea(t.logo || '') : '') + '"></div>' +
+      '<div class="fg"><label>Liczba członków</label><input id="f_me" value="' + (t ? ea(t.members || '') : '') + '"></div></div>' +
+      '<div class="fg"><label>Tagi (po przecinku)</label><input id="f_tt" value="' + (t ? (t.tags || []).join(', ') : '') + '"></div>' +
+      '<div class="mbt"><button type="button" class="mcn" onclick="cMod()">Anuluj</button>' +
+      '<button type="submit" class="msv"><i class="fas fa-save"></i> Zapisz</button></div></form>';
+  }
+
+  document.getElementById('AMO').classList.add('act');
+
+  setTimeout(function() {
+    if (mImg) {
+      var a = document.getElementById('UA');
+      if (a) {
+        document.getElementById('IPV').src = mImg;
+        a.classList.add('has');
+      }
+    }
+  }, 50);
+}
+
+function cMod() {
+  document.getElementById('AMO').classList.remove('act');
+  eId = null;
+}
+
+// ===== IMAGE UPLOAD =====
+function hI(e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  if (f.size > 2 * 1024 * 1024) { toast('Max 2MB!', 'er'); return; }
+
+  var img = new Image();
+  var rd = new FileReader();
+
+  rd.onload = function(ev) {
+    img.onload = function() {
+      var c = document.createElement('canvas');
+      var w = img.width, h = img.height;
+      if (w > 1200) { h *= 1200 / w; w = 1200; }
+      if (h > 800) { w *= 800 / h; h = 800; }
+      c.width = w;
+      c.height = h;
+      c.getContext('2d').drawImage(img, 0, 0, w, h);
+      mImg = c.toDataURL('image/webp', 0.75);
+      document.getElementById('IPV').src = mImg;
+      document.getElementById('UA').classList.add('has');
+      toast(Math.round(mImg.length / 1024) + 'KB OK', 'ok');
+    };
+    img.src = ev.target.result;
+  };
+  rd.readAsDataURL(f);
+}
+
+function rI(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  mImg = '';
+  document.getElementById('IPV').src = '';
+  document.getElementById('UA').classList.remove('has');
+}
+
+// ===== SAVE ITEM =====
+async function svI(e) {
+  e.preventDefault();
+
+  if (mTy === 'project') {
+    var it = {
+      id: eId || gId(),
+      name: document.getElementById('f_n').value.trim(),
+      category: document.getElementById('f_c').value,
+      icon: document.getElementById('f_i').value.trim() || 'fas fa-folder',
+      desc: document.getElementById('f_d').value.trim(),
+      tags: document.getElementById('f_t').value.split(',').map(function(t) { return t.trim(); }).filter(Boolean),
+      image: mImg
+    };
+    if (eId) {
+      var idx = DB.projects.findIndex(function(x) { return x.id === eId; });
+      if (idx !== -1) DB.projects[idx] = it;
+    } else {
+      DB.projects.push(it);
+    }
+
+  } else if (mTy === 'review') {
+    var it = {
+      id: eId || gId(),
+      name: document.getElementById('f_n').value.trim(),
+      role: document.getElementById('f_r').value.trim(),
+      stars: Math.min(5, Math.max(1, +document.getElementById('f_s').value)),
+      text: document.getElementById('f_tx').value.trim(),
+      avatar: mImg
+    };
+    if (eId) {
+      var idx = DB.reviews.findIndex(function(x) { return x.id === eId; });
+      if (idx !== -1) DB.reviews[idx] = it;
+    } else {
+      DB.reviews.push(it);
+    }
+
+  } else if (mTy === 'team') {
+    var it = {
+      id: eId || gId(),
+      name: document.getElementById('f_n').value.trim(),
+      role: document.getElementById('f_r').value.trim(),
+      desc: document.getElementById('f_d').value.trim(),
+      link: document.getElementById('f_l').value.trim(),
+      style: document.getElementById('f_st').value,
+      icon: mImg,
+      logo: document.getElementById('f_lo').value.trim(),
+      members: document.getElementById('f_me').value.trim(),
+      tags: document.getElementById('f_tt').value.split(',').map(function(t) { return t.trim(); }).filter(Boolean)
+    };
+    if (eId) {
+      var idx = DB.teams.findIndex(function(x) { return x.id === eId; });
+      if (idx !== -1) DB.teams[idx] = it;
+    } else {
+      DB.teams.push(it);
+    }
+  }
+
+  cMod();
+  renderAll();
+  rAdm();
+  var ok = await saveDB();
+  toast((eId ? 'Zapisano' : 'Dodano') + (ok ? ' ✓ Firebase' : ''), 'ok');
+}
+
+// ===== DELETE ITEM =====
+async function dI(ty, id) {
+  if (!confirm('Na pewno usunąć?')) return;
+
+  if (ty === 'project') DB.projects = DB.projects.filter(function(x) { return x.id !== id; });
+  else if (ty === 'review') DB.reviews = DB.reviews.filter(function(x) { return x.id !== id; });
+  else if (ty === 'team') DB.teams = DB.teams.filter(function(x) { return x.id !== id; });
+
+  renderAll();
+  rAdm();
+  var ok = await saveDB();
+  toast('Usunięto' + (ok ? ' ✓' : ''), 'ok');
+}
+
+function renderAll() {
+  rPort();
+  rRev();
+  rTeams();
+}
+
+// ===== PARTICLES =====
+var cv = document.getElementById('particles');
+var cx = cv.getContext('2d');
+var pts = [];
+var mPos = { x: null, y: null };
+var aId;
+var noMo = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+var mob = innerWidth < 768;
+
+function rCv() { cv.width = innerWidth; cv.height = innerHeight; }
+rCv();
+
+function Pt() {
+  this.x = Math.random() * cv.width;
+  this.y = Math.random() * cv.height;
+  this.s = Math.random() * 1.5 + 0.3;
+  this.vx = (Math.random() - 0.5) * 0.12;
+  this.vy = (Math.random() - 0.5) * 0.12;
+  this.o = Math.random() * 0.18 + 0.04;
+  this.od = Math.random() > 0.5 ? 1 : -1;
+  this.h = Math.random() * 30 + 265;
+}
+
+Pt.prototype.u = function() {
+  this.x += this.vx;
+  this.y += this.vy;
+  if (mPos.x !== null) {
+    var dx = mPos.x - this.x;
+    var dy = mPos.y - this.y;
+    var d = Math.sqrt(dx * dx + dy * dy);
+    if (d < 100) {
+      var f = (100 - d) / 100;
+      this.x -= (dx / d) * f * 0.5;
+      this.y -= (dy / d) * f * 0.5;
+    }
+  }
+  this.o += 0.0006 * this.od;
+  if (this.o >= 0.22) this.od = -1;
+  if (this.o <= 0.04) this.od = 1;
+  if (this.x < -5) this.x = cv.width + 5;
+  if (this.x > cv.width + 5) this.x = -5;
+  if (this.y < -5) this.y = cv.height + 5;
+  if (this.y > cv.height + 5) this.y = -5;
+};
+
+Pt.prototype.d = function() {
+  cx.beginPath();
+  cx.arc(this.x, this.y, this.s, 0, Math.PI * 2);
+  cx.fillStyle = 'hsla(' + this.h + ',45%,48%,' + this.o + ')';
+  cx.fill();
+};
+
+function iP() {
+  pts = [];
+  if (noMo) return;
+  var c = mob ? 12 : Math.min(Math.floor(cv.width * cv.height / 20000), 70);
+  for (var i = 0; i < c; i++) pts.push(new Pt());
+}
+
+function dCn() {
+  for (var i = 0; i < pts.length; i++) {
+    for (var j = i + 1; j < pts.length; j++) {
+      var dx = pts[i].x - pts[j].x;
+      var dy = pts[i].y - pts[j].y;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 65) {
+        cx.beginPath();
+        cx.moveTo(pts[i].x, pts[i].y);
+        cx.lineTo(pts[j].x, pts[j].y);
+        cx.strokeStyle = 'hsla(270,30%,35%,' + (1 - d / 65) * 0.03 + ')';
+        cx.lineWidth = 0.3;
+        cx.stroke();
+      }
+    }
+  }
+}
+
+function anm() {
+  cx.clearRect(0, 0, cv.width, cv.height);
+  pts.forEach(function(p) { p.u(); p.d(); });
+  dCn();
+  aId = requestAnimationFrame(anm);
+}
+
+iP();
+if (!noMo) anm();
+
+// ===== CURSOR + CARD GLOW =====
+var cDot = document.getElementById('CD');
+var cRing = document.getElementById('CR');
+var mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', function(e) {
+  mx = e.clientX;
+  my = e.clientY;
+  mPos.x = e.clientX;
+  mPos.y = e.clientY;
+
+  document.querySelectorAll('.card').forEach(function(c) {
+    var r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
+
+function cLoop() {
+  rx += (mx - rx) * 0.1;
+  ry += (my - ry) * 0.1;
+  if (cDot) { cDot.style.left = (mx - 3) + 'px'; cDot.style.top = (my - 3) + 'px'; }
+  if (cRing) { cRing.style.left = (rx - 20) + 'px'; cRing.style.top = (ry - 20) + 'px'; }
+  requestAnimationFrame(cLoop);
+}
+cLoop();
+
+document.addEventListener('mouseenter', function(e) {
+  if (e.target.closest && e.target.closest('a,button,.card,.pill,.tag,.ob'))
+    cRing && cRing.classList.add('h');
+}, true);
+
+document.addEventListener('mouseleave', function(e) {
+  if (e.target.closest && e.target.closest('a,button,.card,.pill,.tag,.ob'))
+    cRing && cRing.classList.remove('h');
+}, true);
+
+// ===== SCROLL HANDLER =====
+var sThrottle = false;
+
+addEventListener('scroll', function() {
+  if (sThrottle) return;
+  sThrottle = true;
+
+  requestAnimationFrame(function() {
+    var s = scrollY;
+
+    document.getElementById('NAV').classList.toggle('sc', s > 50);
+
+    document.querySelectorAll('section[id]').forEach(function(sec) {
+      if (s + 200 >= sec.offsetTop && s + 200 < sec.offsetTop + sec.offsetHeight) {
+        document.querySelectorAll('.nl a').forEach(function(a) { a.classList.remove('act'); });
+        var a = document.querySelector('.nl a[href="#' + sec.id + '"]');
+        if (a) a.classList.add('act');
+      }
+    });
+
+    var dh = document.documentElement.scrollHeight - innerHeight;
+    document.getElementById('SP').style.width = (dh > 0 ? (s / dh) * 100 : 0) + '%';
+    document.getElementById('SCT').classList.toggle('vis', s > 400);
+
+    var hc = document.querySelector('.hc');
+    if (hc && s < innerHeight) {
+      hc.style.transform = 'translateY(' + s * 0.12 + 'px)';
+      hc.style.opacity = Math.max(0, 1 - s / (innerHeight * 0.5));
+    }
+
+    sThrottle = false;
+  });
+});
+
+document.getElementById('SCT').onclick = function() {
+  scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+var rszT;
+addEventListener('resize', function() {
+  clearTimeout(rszT);
+  rszT = setTimeout(function() {
+    rCv();
+    mob = innerWidth < 768;
+    iP();
+    rRev();
+  }, 250);
+});
+
+// ===== MOBILE MENU =====
+var mobT = document.getElementById('MT');
+var mobM = document.getElementById('MM');
+
+mobT.onclick = function() {
+  mobT.classList.toggle('act');
+  mobM.classList.toggle('act');
+};
+
+mobM.querySelectorAll('a').forEach(function(a) {
+  a.onclick = function() {
+    mobT.classList.remove('act');
+    mobM.classList.remove('act');
+  };
+});
+
+// ===== THEME TOGGLE =====
+var html = document.documentElement;
+html.dataset.theme = localStorage.getItem('v_th') || 'dark';
+document.getElementById('TI').className = html.dataset.theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+
+document.getElementById('TT').onclick = function() {
+  var n = html.dataset.theme === 'dark' ? 'light' : 'dark';
+  html.dataset.theme = n;
+  localStorage.setItem('v_th', n);
+  document.getElementById('TI').className = n === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+};
+
+// ===== COUNTERS ANIMATION =====
+function anCt() {
+  document.querySelectorAll('.sn').forEach(function(c) {
+    var t = +c.dataset.t;
+    var st = t / 80;
+    var cu = 0;
+    var tm = setInterval(function() {
+      cu += st;
+      if (cu >= t) {
+        c.textContent = t + (t === 99 ? '%' : '+');
+        clearInterval(tm);
+      } else {
+        c.textContent = Math.floor(cu) + (t === 99 ? '%' : '+');
+      }
+    }, 22);
+  });
+}
+
+// ===== SKILLS OBSERVER =====
+var skO = new IntersectionObserver(function(e) {
+  e.forEach(function(en) {
+    if (en.isIntersecting) {
+      document.querySelectorAll('.skf').forEach(function(b) {
+        b.style.width = b.dataset.w + '%';
+      });
+      skO.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+var sg = document.getElementById('SKG');
+if (sg) skO.observe(sg);
+
+// ===== REVEAL ON SCROLL =====
+var rvO = new IntersectionObserver(function(e) {
+  e.forEach(function(en) {
+    if (en.isIntersecting) {
+      en.target.classList.add('v');
+      rvO.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.rv,.stg').forEach(function(el) {
+  rvO.observe(el);
+});
+
+// ===== SMOOTH SCROLL LINKS =====
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.onclick = function(e) {
+    e.preventDefault();
+    var t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  };
+});
+
+// ===== NAME SCRAMBLE EFFECT =====
+var hN = document.getElementById('HN');
+var oN = 'Vern0x';
+
+hN.onmouseenter = function() {
+  var it = 0;
+  var ch = '!@#$%^&*01_-+=<>~';
+  var iv = setInterval(function() {
+    hN.textContent = oN.split('').map(function(c, i) {
+      return i < it ? oN[i] : ch[Math.floor(Math.random() * ch.length)];
+    }).join('');
+    if (it >= oN.length) clearInterval(iv);
+    it += 0.3;
+  }, 30);
+};
+
+// ===== TITLE SCRAMBLE =====
+document.querySelectorAll('.st2').forEach(function(tl) {
+  var o = tl.textContent;
+  var p = false;
+  new IntersectionObserver(function(e) {
+    e.forEach(function(en) {
+      if (en.isIntersecting && !p) {
+        p = true;
+        var it = 0;
+        var ch = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var iv = setInterval(function() {
+          tl.textContent = o.split('').map(function(c, i) {
+            return c === ' ' ? ' ' : i < it ? o[i] : ch[Math.floor(Math.random() * ch.length)];
+          }).join('');
+          if (it >= o.length) clearInterval(iv);
+          it += 0.4;
+        }, 28);
+      }
+    });
+  }, { threshold: 0.3 }).observe(tl);
+});
+
+// ===== MISC =====
+document.getElementById('SB').onmouseenter = function() { this.style.opacity = '.2'; };
+document.getElementById('SB').onmouseleave = function() { this.style.opacity = '0'; };
+
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden) cancelAnimationFrame(aId);
+  else if (!noMo) anm();
+});
+
+if (!localStorage.getItem('v_ck')) {
+  setTimeout(function() {
+    document.getElementById('CK').classList.add('show');
+  }, 1500);
+}
+
+// ===== BOOT =====
+(async function() {
+  initCfg();
+  setLd('Łączenie z Firebase...', 10);
+  await loadDB();
+  setLd('Renderowanie...', 85);
+  renderAll();
+  setLd('Gotowe!', 100);
   anCt();
-  setTimeout(function(){document.getElementById('LD').classList.add('hide')},400);
+  setTimeout(function() {
+    document.getElementById('LD').classList.add('hide');
+  }, 400);
 })();
 </script>
 </body>
